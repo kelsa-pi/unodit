@@ -33,7 +33,7 @@ class EasyDialog:
 
         s = {
             'GENERATED_DATETIME': conf.NOW,
-            'XDL2UNO_VERSION': conf.VERSION,
+            'UNODIT_VERSION': conf.VERSION,
         }
 
         f = os.path.join(d, 'simple_dialogs.py')
