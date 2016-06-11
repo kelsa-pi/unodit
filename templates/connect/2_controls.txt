@@ -1,0 +1,1 @@
+${I}${I}${CONTROL_NAME} = self.DialogModel.getByName("${CONTROL_NAME}")

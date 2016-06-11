@@ -1,0 +1,38 @@
+import simple_dialogs as dlg
+
+def xray(myObject):
+    try:
+        sm = uno.getComponentContext().ServiceManager
+        mspf = sm.createInstanceWithContext("com.sun.star.script.provider.MasterScriptProviderFactory", uno.getComponentContext())
+        scriptPro = mspf.createScriptProvider("")
+        xScript = scriptPro.getScript("vnd.sun.star.script:XrayTool._Main.Xray?language=Basic&location=application")
+        xScript.invoke((myObject,), (), ())
+        return
+    except:
+        raise _rtex("Basic library Xray is not installed", uno.getComponentContext())
+
+# -----------------------------------------------------------
+
+def ${EXEC_FUNCTION_PREFIX}${APP_NAME}(*args):
+
+    #a = dlg.get_choice(message="Select one item", title="getTitle", choices=["aaaa","bbbbbb", "ccccc"])
+    #print(a)
+
+    #b = dlg.get_list_of_choices(message="Select multiple items", title="getTitle", choices=["aaaa", "bbbbbb", "ccccc"])
+    #print(b)
+
+    #c = dlg.get_number(message="Choose a number", title="Title", default_value=12, min_=-10000, max_=10000, decimals=0)
+    #print(c)
+
+    #d = dlg.get_date(message="Choose a number", title="Title")
+    #print(d)
+
+    #f = dlg.get_directory_name()
+    #print(f)
+
+    xray(dlg.get_save_file_name())
+    #e = dlg.get_save_file_name()
+    #print(e)
+
+
+g_exportedScripts = ${EXEC_FUNCTION_PREFIX}${APP_NAME},

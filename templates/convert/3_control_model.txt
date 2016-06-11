@@ -1,0 +1,3 @@
+
+${I}${I}# --------- create an instance of ${UNOCONTROL} control, set properties ---
+${I}${I}self.${CONTROL_NAME} = self.DialogModel.createInstance("com.sun.star.awt.UnoControl${UNOCONTROL}Model")

@@ -1,0 +1,3 @@
+${I}${I}self.DialogContainer.getControl("${CONTROL_NAME}").addActionListener(self)
+${I}${I}self.DialogContainer.getControl("${CONTROL_NAME}").setActionCommand("${CONTROL_NAME}_OnClick")
+

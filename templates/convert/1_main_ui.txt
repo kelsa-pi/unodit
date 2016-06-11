@@ -1,0 +1,47 @@
+# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+
+# =============================================================================
+#
+# Dialog implementation generated from a XDL file.
+#
+# Created: ${GENERATED_DATETIME}
+#      by: ${XDL2UNO_VERSION}
+#
+# WARNING! All changes made in this file will be overwritten
+#          if the file is generated again!
+#
+# =============================================================================
+
+import uno
+import unohelper
+from com.sun.star.awt import XActionListener
+from com.sun.star.task import XJobExecutor
+
+class ${APP_NAME}_UI(unohelper.Base, XActionListener, XJobExecutor):
+${I}"""
+${I}Class documentation...
+${I}"""
+${I}def __init__(self):
+${I}${I}self.LocalContext = uno.getComponentContext()
+${I}${I}self.ServiceManager = self.LocalContext.ServiceManager
+${I}${I}self.Toolkit = self.ServiceManager.createInstanceWithContext("com.sun.star.awt.ExtToolkit", self.LocalContext)
+
+${I}${I}# -----------------------------------------------------------
+${I}${I}#               Create dialog and insert controls
+${I}${I}# -----------------------------------------------------------
+
+${I}${I}# --------------create dialog container and set model and properties
+${I}${I}self.DialogContainer = self.ServiceManager.createInstanceWithContext("com.sun.star.awt.UnoControlDialog", self.LocalContext)
+${I}${I}self.DialogModel = self.ServiceManager.createInstance("com.sun.star.awt.UnoControlDialogModel")
+${I}${I}self.DialogContainer.setModel(self.DialogModel)
+${GEN_DIALOG_PROPERTIES}
+${GEN_CONTROLS}
+${I}# -----------------------------------------------------------
+${I}#               Action events
+${I}# -----------------------------------------------------------
+
+${I}def actionPerformed(self, oActionEvent):
+${GEN_ACTIONS_EVENTS}
+
+# ----------------- END GENERATED CODE ----------------------------------------

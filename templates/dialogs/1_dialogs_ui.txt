@@ -1,0 +1,311 @@
+# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+
+# =============================================================================
+#
+# simple dialog
+#
+# Created: ${GENERATED_DATETIME}
+#      by: ${XDL2UNO_VERSION}
+# =============================================================================
+
+import uno
+import unohelper
+from com.sun.star.awt import XActionListener
+from com.sun.star.task import XJobExecutor
+from com.sun.star.ui.dialogs.TemplateDescription import FILESAVE_SIMPLE
+
+
+def xray(myObject):
+    try:
+        sm = uno.getComponentContext().ServiceManager
+        mspf = sm.createInstanceWithContext("com.sun.star.script.provider.MasterScriptProviderFactory", uno.getComponentContext())
+        scriptPro = mspf.createScriptProvider("")
+        xScript = scriptPro.getScript("vnd.sun.star.script:XrayTool._Main.Xray?language=Basic&location=application")
+        xScript.invoke((myObject,), (), ())
+        return
+    except:
+        raise _rtex("Basic library Xray is not installed", uno.getComponentContext())
+
+# -----------------------------------------------------------
+#               CLASSES
+# -----------------------------------------------------------
+
+class SimpleDialog(unohelper.Base, XActionListener, XJobExecutor):
+    """
+    Class documentation...
+    """
+    def __init__(self, nPositionX=None, nPositionY=None, nWidth=None, nHeight=None, sTitle=None):
+        self.LocalContext = uno.getComponentContext()
+        self.ServiceManager = self.LocalContext.ServiceManager
+        self.Toolkit = self.ServiceManager.createInstanceWithContext("com.sun.star.awt.ExtToolkit", self.LocalContext)
+
+        # --------------create dialog container and set model and properties
+        self.DialogContainer = self.ServiceManager.createInstanceWithContext("com.sun.star.awt.UnoControlDialog", self.LocalContext)
+        self.DialogModel = self.ServiceManager.createInstance("com.sun.star.awt.UnoControlDialogModel")
+        self.DialogContainer.setModel(self.DialogModel)
+        self.DialogModel.PositionX = nPositionX
+        self.DialogModel.PositionY = nPositionY
+        self.DialogModel.Height = nHeight
+        self.DialogModel.Width = nWidth
+        self.DialogModel.Name = "Default"
+        self.DialogModel.Closeable = True
+        self.DialogModel.Moveable = True
+
+    def addControl(self, sAwtName, sControlName, dProps):
+        oControlModel = self.DialogModel.createInstance("com.sun.star.awt.UnoControl" + sAwtName + "Model")
+        while dProps:
+            prp = dProps.popitem()
+            uno.invoke(oControlModel, "setPropertyValue", (prp[0], prp[1]))
+            oControlModel.Name = sControlName
+        self.DialogModel.insertByName(sControlName, oControlModel)
+        if sAwtName == "Button":
+            self.DialogContainer.getControl(sControlName).addActionListener(self)
+            self.DialogContainer.getControl(sControlName).setActionCommand(sControlName + '_OnClick')
+        return oControlModel
+
+    def showDialog(self):
+        self.DialogContainer.setVisible(True)
+        self.DialogContainer.createPeer(self.Toolkit, None)
+        self.DialogContainer.execute()
+
+
+class GetChoiceClass(SimpleDialog):
+
+    def __init__(self, message="Select one item", title="Title", choices=['a','b','c']):
+        SimpleDialog.__init__(self, nPositionX=60, nPositionY=60, nWidth=100, nHeight=55, sTitle=None)
+        self.DialogModel.Title = title
+
+        dMessage = {"PositionY": 5, "PositionX": 5, "Height": 15, "Width": 90, "Label": message,}
+        self.lbMessage = self.addControl("FixedText", "lbMessage", dMessage)
+
+        dChoices = {"PositionY": 15, "PositionX": 5, "Height": 15, "Width": 90,}
+        self.cbChoices = self.addControl("ComboBox", "cbChoices", dChoices)
+        self.cbChoices.StringItemList = tuple(choices)
+
+        dOK = {"PositionY": 35, "PositionX": 30, "Height": 15, "Width": 30, "Label": "OK",}
+        self.btnOK = self.addControl("Button", "btnOK", dOK)
+
+        dCancel = {"PositionY": 35, "PositionX": 65, "Height": 15, "Width": 30, "Label": "Cancel",}
+        self.btnCancel = self.addControl("Button", "btnCancel", dCancel)
+
+        default_text = self.cbChoices.StringItemList[0]
+        self.cbChoices.Text = default_text
+
+        self.returnValue = None
+
+        self.showDialog()
+        #xray(self.DialogContainer)
+
+    def actionPerformed(self, oActionEvent):
+        if oActionEvent.ActionCommand == 'btnOK_OnClick':
+            self.returnValue = self.cbChoices.Text
+            self.DialogContainer.endExecute()
+
+        if oActionEvent.ActionCommand == 'btnCancel_OnClick':
+            self.DialogContainer.endExecute()
+
+
+    def returnValue(self):
+        pass
+
+
+class GetListOfChoicesClass(SimpleDialog):
+    def __init__(self, message="Select multiple items", title="Title", choices=['a', 'b', 'c']):
+        SimpleDialog.__init__(self, nPositionX=60, nPositionY=60, nWidth=135, nHeight=120, sTitle=None)
+        self.DialogModel.Title = title
+
+        dMessage = {"PositionY": 5, "PositionX": 5, "Height": 15, "Width": 110, "Label": message,}
+        self.lbMessage = self.addControl("FixedText", "lbMessage", dMessage)
+
+        dChoices = {"PositionY": 15, "PositionX": 5, "Height": 80, "Width": 125,"MultiSelection": True}
+        self.lbChoices = self.addControl("ListBox", "lbChoices", dChoices)
+        self.lbChoices.StringItemList = tuple(choices)
+
+        dSelectAll = {"PositionY": 100, "PositionX": 5, "Height": 15, "Width": 30, "Label": "Select All",}
+        self.btnSelectAll = self.addControl("Button", "btnSelectAll", dSelectAll)
+
+        dClearAll = {"PositionY": 100, "PositionX": 35, "Height": 15, "Width": 30, "Label": "Clear All",}
+        self.btnClearAll = self.addControl("Button", "btnClearAll", dClearAll)
+
+        dOK = {"PositionY": 100, "PositionX": 70, "Height": 15, "Width": 30, "Label": "OK",}
+        self.btnOK = self.addControl("Button", "btnOK", dOK)
+
+        dCancel = {"PositionY": 100, "PositionX": 100, "Height": 15, "Width": 30, "Label": "Cancel",}
+        self.btnCancel = self.addControl("Button", "btnCancel", dCancel)
+
+        self.returnValue = None
+
+        self.showDialog()
+        #xray(self.DialogContainer)
+
+    def actionPerformed(self, oActionEvent):
+        if oActionEvent.ActionCommand == 'btnOK_OnClick':
+
+            n = len(self.DialogContainer.getControl('lbChoices').getSelectedItems())
+            if n == 0:
+                self.returnValue = None
+            elif n == 1:
+                self.returnValue = self.DialogContainer.getControl('lbChoices').getSelectedItem()
+            else:
+                self.returnValue = self.DialogContainer.getControl('lbChoices').getSelectedItems()
+
+            self.DialogContainer.endExecute()
+
+        if oActionEvent.ActionCommand == 'btnCancel_OnClick':
+            self.DialogContainer.endExecute()
+
+        if oActionEvent.ActionCommand == 'btnSelectAll_OnClick':
+            for item in self.lbChoices.StringItemList:
+                self.DialogContainer.getControl('lbChoices').selectItem(item, True)
+
+        if oActionEvent.ActionCommand == 'btnClearAll_OnClick':
+            for item in self.lbChoices.StringItemList:
+                self.DialogContainer.getControl('lbChoices').selectItem(item, False)
+
+    def returnValue(self):
+        pass
+
+
+class GetNumberClass(SimpleDialog):
+
+    def __init__(self, message="Choose a number", title="Title", default_value=0, min_=-10000, max_=10000, decimals=0):
+        SimpleDialog.__init__(self, nPositionX=60, nPositionY=60, nWidth=100, nHeight=55, sTitle=None)
+        self.DialogModel.Title = title
+
+        self.default_value = default_value
+        self.min_ = min_
+        self.max_ = max_
+        self.decimals = decimals
+
+        dMessage = {"PositionY": 5, "PositionX": 5, "Height": 15, "Width": 90, "Label": message,}
+        self.lbMessage = self.addControl("FixedText", "lbMessage", dMessage)
+
+        dNumber = {"PositionY": 15, "PositionX": 5, "Height": 15, "Width": 90,}
+        self.nfNumber = self.addControl("NumericField", "nfNumber", dNumber)
+        self.nfNumber.setPropertyValue("DecimalAccuracy", self.decimals)
+        self.nfNumber.setPropertyValue("Value", self.default_value)
+        self.nfNumber.setPropertyValue("ValueMin", self.min_)
+        self.nfNumber.setPropertyValue("ValueMax", self.max_)
+
+        dOK = {"PositionY": 35, "PositionX": 30, "Height": 15, "Width": 30, "Label": "OK",}
+        self.btnOK = self.addControl("Button", "btnOK", dOK)
+
+        dCancel = {"PositionY": 35, "PositionX": 65, "Height": 15, "Width": 30, "Label": "Cancel",}
+        self.btnCancel = self.addControl("Button", "btnCancel", dCancel)
+
+        self.returnValue = None
+
+        self.showDialog()
+        #xray(self.nfNumber)
+
+    def actionPerformed(self, oActionEvent):
+        if oActionEvent.ActionCommand == 'btnOK_OnClick':
+            self.returnValue = self.nfNumber.Value
+            self.DialogContainer.endExecute()
+
+        if oActionEvent.ActionCommand == 'btnCancel_OnClick':
+            self.DialogContainer.endExecute()
+
+    def returnValue(self):
+        pass
+
+
+class GetDateClass(SimpleDialog):
+
+    def __init__(self, message="Choose a date", title='Select Date', format=0):
+        """
+        specifies the format of the displayed date.
+
+        0:   system short
+        1:   system short YY
+        2:   system short YYYY
+        3:   system long
+        4:   short DDMMYY
+        5:   short MMDDYY
+        6:   short YYMMDD
+        7:   short DDMMYYYY
+        8:   short MMDDYYYY
+        9:   short YYYYMMDD
+        10:  short YYMMDD DIN5008
+        11:  short YYYYMMDD DIN5008
+
+        """
+        SimpleDialog.__init__(self, nPositionX=60, nPositionY=60, nWidth=100, nHeight=55, sTitle=None)
+        self.DialogModel.Title = title
+
+        dMessage = {"PositionY": 5, "PositionX": 5, "Height": 15, "Width": 90, "Label": message,}
+        self.lbMessage = self.addControl("FixedText", "lbMessage", dMessage)
+
+        dDate = {"PositionY": 15, "PositionX": 5, "Height": 15, "Width": 90, "Dropdown": True,
+                 "StrictFormat": True, "DateFormat": format}
+        self.dbDate = self.addControl("DateField", "dbDate", dDate)
+
+        dOK = {"PositionY": 35, "PositionX": 30, "Height": 15, "Width": 30, "Label": "OK",}
+        self.btnOK = self.addControl("Button", "btnOK", dOK)
+
+        dCancel = {"PositionY": 35, "PositionX": 65, "Height": 15, "Width": 30, "Label": "Cancel",}
+        self.btnCancel = self.addControl("Button", "btnCancel", dCancel)
+
+        self.returnValue = None
+
+        self.showDialog()
+        xray(self.DialogContainer)
+
+    def actionPerformed(self, oActionEvent):
+        if oActionEvent.ActionCommand == 'btnOK_OnClick':
+            self.returnValue = self.dbDate.Text
+            self.DialogContainer.endExecute()
+
+        if oActionEvent.ActionCommand == 'btnCancel_OnClick':
+            self.DialogContainer.endExecute()
+
+    def returnValue(self):
+        pass
+
+
+#class GetDirectory()
+
+# -----------------------------------------------------------
+#               FUNCTIONS
+# -----------------------------------------------------------
+
+
+def get_choice(message="Select one item", title="Title", choices=['a','b','c']):
+    app = GetChoiceClass(message, title, choices)
+    return app.returnValue
+
+
+def get_list_of_choices(message="Select multiple items", title="Title", choices=['a','b','c']):
+    app = GetListOfChoicesClass(message, title, choices)
+    return app.returnValue
+
+
+def get_number(message="Choose a number", title="Title", default_value=0, min_=-10000, max_=10000, decimals=0):
+    app = GetNumberClass(message, title, default_value, min_, max_, decimals)
+    return app.returnValue
+
+
+def get_date(message="Choose a date", title="Title",format=0):
+    app = GetDateClass(message, title)
+    return app.returnValue
+
+
+def get_directory_name():
+    ctx = uno.getComponentContext()
+    smgr = ctx.getServiceManager()
+    folder_picker = smgr.createInstanceWithContext("com.sun.star.ui.dialogs.FolderPicker", ctx)
+    folder_picker.execute()
+    return folder_picker.getDirectory()
+
+def get_save_file_name():
+    ctx = uno.getComponentContext()
+    smgr = ctx.getServiceManager()
+    #save_file_picker = smgr.createInstanceWithArgumentsAndContext("com.sun.star.ui.dialogs.FilePicker", FILESAVE_SIMPLE, ctx)
+    save_file_picker = smgr.createInstanceWithContext("com.sun.star.ui.dialogs.FilePicker", ctx)
+    xray(save_file_picker)
+    #save_file_picker.initialize(FILESAVE_SIMPLE)
+    save_file_picker.execute()
+    #return save_file_picker.getSelectedFiles()
+
+

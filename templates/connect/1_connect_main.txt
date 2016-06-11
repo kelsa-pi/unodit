@@ -1,0 +1,92 @@
+﻿# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+
+# =============================================================================
+#
+# Connect Python and XDL file.
+#
+# Created: ${GENERATED_DATETIME}
+#      by: ${XDL2UNO_VERSION}
+#
+# WARNING! All changes made in this file will be overwritten
+#          if the file is generated again!
+#
+# =============================================================================
+
+import uno
+import unohelper
+from com.sun.star.awt import XActionListener
+from com.sun.star.task import XJobExecutor
+
+from com.sun.star.awt.MessageBoxButtons import BUTTONS_OK, BUTTONS_OK_CANCEL, BUTTONS_YES_NO, BUTTONS_YES_NO_CANCEL, BUTTONS_RETRY_CANCEL, BUTTONS_ABORT_IGNORE_RETRY
+from com.sun.star.awt.MessageBoxButtons import DEFAULT_BUTTON_OK, DEFAULT_BUTTON_CANCEL, DEFAULT_BUTTON_RETRY, DEFAULT_BUTTON_YES, DEFAULT_BUTTON_NO, DEFAULT_BUTTON_IGNORE
+from com.sun.star.awt.MessageBoxType import MESSAGEBOX, INFOBOX, WARNINGBOX, ERRORBOX, QUERYBOX
+
+
+# ----------------- helper code for API_inspector tool MRI ----------
+def mri(ctx, target):
+${I}mri = ctx.ServiceManager.createInstanceWithContext("mytools.Mri", ctx)
+${I}mri.inspect(target)
+# -------------------------------------------------------------------
+
+
+class ${APP_NAME}_UI(unohelper.Base, XActionListener, XJobExecutor):
+${I}"""
+${I}Class documentation...
+${I}"""
+${I}def __init__(self):
+${I}${I}self.LocalContext = uno.getComponentContext()
+${I}${I}self.ServiceManager = self.LocalContext.ServiceManager
+${I}${I}self.Toolkit = self.ServiceManager.createInstanceWithContext("com.sun.star.awt.ExtToolkit", self.LocalContext)
+
+${I}${I}# --------------connect dialog container and set model --
+
+${I}${I}dlg_path = "vnd.sun.star.script:${GEN_DIALOG_ADDRESS}?location=application"
+${I}${I}self.Dialog = self.ServiceManager.createInstanceWithContext("com.sun.star.awt.DialogProvider", self.LocalContext)
+${I}${I}self.DialogContainer = self.Dialog.createDialog(dlg_path)
+${I}${I}self.DialogModel = self.DialogContainer.getModel()
+
+${I}${I}# ------------- define all controls models --------------
+
+${GEN_ALL_CONTROLS}
+${I}${I}# ------------- add the action listener to buttons ------
+
+${GEN_ACTIONS_EVENTS}
+${I}${I}# --------- my code ---------------------
+${I}${I}self.DialogModel.Title = "${APP_NAME}"
+${I}${I}# mri(self.LocalContext, self.DialogContainer)
+
+${I}# --------- functions -----------------------
+
+${I}def myFunction(self):
+${I}${I}# TODO: not implemented
+${I}${I}pass
+
+${I}# --------- helpers -------------------------
+
+${I}def messageBox(self, MsgText, MsgTitle, MsgType=MESSAGEBOX, MsgButtons=BUTTONS_OK):
+${I}${I}sm = self.LocalContext.ServiceManager
+${I}${I}si = sm.createInstanceWithContext("com.sun.star.awt.Toolkit", self.LocalContext)
+${I}${I}mBox = si.createMessageBox(self.Toolkit, MsgType, MsgButtons, MsgTitle, MsgText)
+${I}${I}mBox.execute()
+
+${I}# -----------------------------------------------------------
+${I}#                   Action events
+${I}# -----------------------------------------------------------
+
+${I}def actionPerformed(self, oActionEvent):
+${GEN_ACTIONS}
+
+${GEN_CALLBAKS}
+
+${I}def showDialog(self):
+${I}${I}self.DialogContainer.execute()
+
+
+def ${EXEC_FUNCTION_PREFIX}${APP_NAME}_UI(*args):
+${I}app = ${APP_NAME}_UI()
+${I}app.showDialog()
+
+g_exportedScripts = Run_${APP_NAME}_UI,
+
+# ----------------- END GENERATED CODE ----------------------------------------

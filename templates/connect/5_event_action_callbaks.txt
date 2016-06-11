@@ -1,0 +1,5 @@
+
+${I}def ${CONTROL_NAME}_OnClick(self):
+${I}${I}self.DialogContainer.Title = "It's Alive! - ${CONTROL_NAME}"
+${I}${I}self.messageBox("It's Alive! - ${CONTROL_NAME}", "Event: OnClick", INFOBOX)
+${I}${I}# TODO: not implemented
