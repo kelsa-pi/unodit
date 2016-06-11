@@ -6,7 +6,7 @@
 # simple dialog
 #
 # Created: ${GENERATED_DATETIME}
-#      by: ${XDL2UNO_VERSION}
+#      by: ${UNODIT_VERSION}
 # =============================================================================
 
 import uno
