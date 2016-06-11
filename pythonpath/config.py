@@ -7,6 +7,9 @@ path, ldir = os.path.split(full_path)
 
 
 class ReadINI(object):
+    """
+    Read ini file
+    """
     def __init__(self, *dir_paths):
         self.config = configparser.ConfigParser()
         self.config.optionxform = str
@@ -19,7 +22,7 @@ class ReadINI(object):
 
     def get(self, section_name, prop_name):
         if section_name not in self.config.sections():  # we don't want KeyError
-            return None  # just return None if not found
+            return None                                 # just return None if not found
 
         return self.config.get(section_name, prop_name)
 
