@@ -144,8 +144,11 @@ Ubuntu - `/usr/bin/unopkg add ./MyApp_Devel.oxt`
 The following is an incomplete lists of a few projects that share some similarity with `unodit`.
 
 [Gladex](https://launchpad.net/gladex): Gladex is a Python application which takes a .glade file written in the Glade User Interface Builder and generates code in Perl, Python, or Ruby.
+
 [pyuic4](http://pyqt.sourceforge.net/Docs/PyQt4/designer.html#the-uic-module): Convert a .ui file written with Qt Designer into a Python script.
+
 [EasyGUI](https://sourceforge.net/projects/easygui): Very easy GUI programming in Python and Tkinter
+
 [EasyGUI_Qt](https://github.com/aroberge/easygui_qt): Inspired by EasyGUI, designed for PyQt
 
 
