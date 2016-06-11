@@ -19,7 +19,7 @@ Tested with Xubuntu 16.04. and LibreOffice 1:5.1.3-0ubuntu1.
 
 ##Installation
 
-Place the unodit directory somewhere on your Python path
+Place the unodit directory somewhere on your Python path.
 
 ##Usage
     python3 ./unodit.py [-f ] [-d] [-a] [-m] [-i]
@@ -38,7 +38,7 @@ i - number of spaces used for indentation in the generated code. If 0, \t is use
 You can copy `config.ini` in your project root directory. Edit section in `my_project_dir/config.ini` file to make changes.
 
 ##Examples
-Create python project dir `TestLib` in `LIBREOFFICE_PATH/4/user/Scripts/python/`
+Create python project dir `TestLib` in `LIBREOFFICE_PATH/4/user/Scripts/python/`.
 
 Replace `LIBREOFFICE_PATH` with actual path.
 
@@ -70,7 +70,7 @@ Create dialog in dialog project DialogLib in My Macros (`Tools - Macros - Organi
                         -a 'Test_connect'
                         -m 'connect'
                
-Available options for parameter `-m`: `'connect'`
+Available options for parameter `-m`: `'connect'`.
 
 `'connect'` - connect to xdl file --> write your code in `my_project/src/MyApp.py`
 
