@@ -31,6 +31,9 @@ m - mode
 
 i - number of spaces used for indentation in the generated code. If 0, \t is used as indent
 
+##Customization 
+You can copy `config.ini` in your project root directory. Edit section in `my_project_dir/config.ini` file to make changes.
+
 ##Examples
 Create python project dir `TestLib` in `LIBREOFFICE_PATH/4/user/Scripts/python/`
 
