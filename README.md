@@ -120,12 +120,14 @@ Ubuntu - `/usr/bin/unopkg add ./MyApp_Devel.oxt`
         
         pythonpath/                    > submodules dir
             config.py                      > config file
+            embed_packer.py                > embed script in ODF file
             extractor.py                   > extract context from ui file
             generator.py                   > code generator
+            pyuno_generator.py             > python code generator
             schema.py                      > supported properties
             script_oxt_creator.py          > extension creator
-            util.py                        > python code generator
-        
+            simple_dialogs.py              > like easygui dialogs
+            
         templates/                     > tempaltes dir
             connect/
             convert/
