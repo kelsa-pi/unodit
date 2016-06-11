@@ -117,8 +117,7 @@ Ubuntu - `/usr/bin/unopkg add ./MyApp_Devel.oxt`
 ##Unodit directory structure
 
     unodit/
-        doc/                           > documentation dir
-            unodit.odt                     > manual
+        
         pythonpath/                    > submodules dir
             config.py                      > config file
             extractor.py                   > extract context from ui file
@@ -126,13 +125,14 @@ Ubuntu - `/usr/bin/unopkg add ./MyApp_Devel.oxt`
             schema.py                      > supported properties
             script_oxt_creator.py          > extension creator
             util.py                        > python code generator
+        
         templates/                     > tempaltes dir
             connect/
             convert/
             dialogs/
             embeded/
             script_ext/
-        test/                          > examples, ui files
+        
         config.ini                         > config file
         LICENSE.txt
         README.md
