@@ -30,7 +30,6 @@ def create_logger(lname, ldir, lfile):
     fh = logging.FileHandler(logfile, mode='w')
     fh.setLevel(logging.DEBUG)
     # create formatter and add it to the handlers
-    # formatter = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
     formatter = logging.Formatter('%(module)s - %(funcName)s - %(levelname)s - %(message)s')
     fh.setFormatter(formatter)
     # add the handlers to the logger
@@ -40,15 +39,17 @@ def create_logger(lname, ldir, lfile):
 
 def unodit(xdlfile='', pydir='', app='MyApp', mode='script_convert', indent=4):
     """
-    unodit is a Python unfinished library that takes a LibreOffice Basic Dialog XML file and:
-    a) converts it to python code (PyUNO)
-    b) connects it to other python code (PyUNO)
+    UNO Dialog Tools is a Python3 library (alpha version) that takes a LibreOffice Basic Dialog XML file (XDL) and:
 
-    Limited number of the supported properties defined in the schema.py
+    1. Convert XDL file to python code
+    2. Connect to XDL file with python code
+    3. Convert XDL file to python code and embed in document
+    4. Provides a simple dialog boxes for interaction with a user
+
     Other features are:
-    - if the option a) is chosen, it is possible to create a script extension for LibreOffice (oxt file)
+    - if the option 1 or 4 is chosen, it is possible to create a script extension for LibreOffice (oxt file)
     - callback functions are created for all button onClick events
-    - all steps in the conversion process are logged to log.log file (in project root)
+    - all steps in the conversion process are logged to log.log file in project root
     - per project customization with ini file (copy config.ini in project root)
 
     :param xdlfile: full path to the xdl file
@@ -56,43 +57,6 @@ def unodit(xdlfile='', pydir='', app='MyApp', mode='script_convert', indent=4):
     :param app: application name
     :param mode: 'script_convert', 'script_files', 'script_oxt', 'script_all', 'connect'
     :param indent: number of spaces used for indentation in the generated code. If 0, \t is used as indent
-
-    Tested with Xubuntu 15.10. and LibreOffice 1:5.1.1~rc2-0ubuntu1~wily0
-
-    Example
-    =======
-
-    Create python project TestLib in LIBREOFFICE_PATH/4/user/Scripts/python/
-    Replace LIBREOFFICE_PATH with actual path.
-
-    1) Convert XDL file to python code
-
-    Use parameter -f to set the path to any local directory with ui file.
-    Available options for parameter -m:
-    'script_convert' - convert xdl file,
-    'script_files' - create script extension files,
-    'script_oxt' - create script extension,
-    'script_all' - convert xdl file, create script extension files and script extension.
-
-    python 3 unodit -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
-                    -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib'
-                    -a 'Test_convert'
-                    -m  'script_convert'
-
-    2) Connect to XDL file with python code
-    Create dialog in dialog project DialogLib in My Macros
-    (Tools - Macros - Organize Dialogs - Dialogs - My Dialogs)
-
-    Use parameter -f to set the path to ui file in MyDialogs.
-    Available options for parameter -m:
-    'connect' - connect to xdl file.
-
-    python 3 unodit -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
-                    -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib''
-                    -a 'Test_connect'
-                    -m  'connect'
-
-
 
     """
     logger = logging.getLogger('unodit')
@@ -119,7 +83,6 @@ indent    = {}
         ctx = extractor.ContextGenerator(xdlfile)
         ctx.get_xdl_context()
         uno_ctx = ctx.get_uno_context()
-        # context_diff = ctx.get_diff(xdl_context)
         cg = generator.CodeGenerator(xdlfile, uno_ctx, pydir, app, mode, indent=4)
         cg.generate_code()
 
@@ -144,7 +107,6 @@ indent    = {}
         ctx = extractor.ContextGenerator(xdlfile)
         ctx.get_xdl_context()
         uno_ctx = ctx.get_uno_context()
-        # context_diff = ctx.get_diff(xdl_context)
         cg = generator.CodeGenerator(xdlfile, uno_ctx, pydir, app, mode, indent=4)
         cg.generate_code()
 
@@ -154,7 +116,6 @@ indent    = {}
         ctx = extractor.ContextGenerator(xdlfile)
         ctx.get_xdl_context()
         uno_ctx = ctx.get_uno_context()
-        # context_diff = ctx.get_diff(xdl_context)
         cg = generator.CodeGenerator(xdlfile, uno_ctx, pydir, app, mode, indent=4)
         cg.generate_code()
 
@@ -265,17 +226,7 @@ def main():
                     -a 'Test_convert'
                     -m  'script_convert'
 
-    2) Connect to XDL file with python code
-    Create dialog in dialog project DialogLib in My Macros
-    (Tools - Macros - Organize Dialogs - Dialogs - My Dialogs)
-
-    python 3 unodit -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
-                    -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib''
-                    -a 'Test_connect'
-                    -m  'connect'
-
-    Available options for parameter -m:
-    'connect' - connect to xdl file.
+    More examples in docs
 
     """
 
