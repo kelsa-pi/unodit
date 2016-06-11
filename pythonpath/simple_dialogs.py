@@ -1,6 +1,5 @@
 import os
 import string
-import zipfile
 import logging
 
 try:
