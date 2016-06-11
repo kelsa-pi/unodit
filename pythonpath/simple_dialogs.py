@@ -16,8 +16,8 @@ class EasyDialog:
         self.code = {}
         self.config = conf.ReadINI(conf.MAIN_DIR, self.pydir)
         self.ext_tmpl_dir = os.path.join(conf.TEMPLATES_DIR, 'dialogs')
-        self.logger = logging.getLogger('unodt.simple_dialogs.EasyDialog')
-        self.logger.info('NEW LOGGER: unodt.simple_dialogs.EasyDialog')
+        self.logger = logging.getLogger('unodit.simple_dialogs.EasyDialog')
+        self.logger.info('NEW LOGGER: unodit.simple_dialogs.EasyDialog')
 
     def get_template(self, ex_tmpl_dir, template):
         templ = os.path.join(ex_tmpl_dir, template)
