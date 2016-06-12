@@ -1,16 +1,19 @@
 # unodit
-**UNO** **Di**alog **T**ools is a Python3 library (alpha version) that takes a LibreOffice Basic Dialog XML file (XDL) and:
+**UNO** **Di**alog **T**ools is a Python3 library (alpha version) that takes a LibreOffice Basic Dialog XML file (.xdl) and:
 
-1. Convert XDL file to python code
-2. Connect to XDL file with python code
-3. Convert XDL file to python code and embed in document
-4. Provides a simple dialog boxes for interaction with a user
+1. Convert `xdl` file to python (pyuno) code
+2. Connect to `xdl` file with python (pyuno) code
+3. Convert `xdl` file to python (pyuno) code and embed in document
+4. Provides a simple dialog boxes for interaction with a user with python (pyuno)
 
 Other features are:
 - if the option `1` or `4` is chosen, it is possible to create a script extension for LibreOffice (oxt file)
 - callback functions are created for all button onClick events
 - all steps in the conversion process are logged to `log.log` file in project root
 - per project customization with ini file (copy `config.ini` in project root)
+
+ 
+If you have experience with macros, use this library to prepare your python script as extension for LibreOffice or embed in document. Newcomers would benefit from writing macros with simple dialog boxes for interaction with a user.
 
 DISCLAIMER:
 I'm not a programmer.
@@ -44,7 +47,7 @@ Replace `LIBREOFFICE_PATH` with actual path.
 
 ###Convert XDL file to python code and create extension
 
-Use parameter `-f` to set the path to any local directory with ui file.
+Use parameter `-f` to set the path to any local directory with `xdl` file.
 
     python3 ./unodit.py -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
                         -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib'
@@ -53,13 +56,13 @@ Use parameter `-f` to set the path to any local directory with ui file.
 
 Available options for parameter -m: `'script_convert'` , `'script_files'` , `'script_oxt'` , `'script_all'`
 
-`'script_convert'` - convert xdl file --> write your code in `my_project/src/MyApp.py`
+`'script_convert'` - convert `xdl` file --> write your code in `my_project/src/MyApp.py`
 
 `'script_files'` - create script extension files
 
 `'script_oxt'` - create script extension
 
-`'script_all'` - all in one (convert xdl file, create script extension files and script extension)
+`'script_all'` - all in one (convert `xdl` file, create script extension files and script extension)
 
 ###Connect to XDL file with python code
 
@@ -76,7 +79,7 @@ Available options for parameter `-m`: `'connect'`.
 
 ###Convert XDL file to python code and embed in document
 
-Use parameter `-f` to set the path to any local directory with ui file.
+Use parameter `-f` to set the path to any local directory with `xdl` file.
 Place odt document in  project dir.
 
     python3 ./unodit.py -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
@@ -86,13 +89,13 @@ Place odt document in  project dir.
 
 Available options for parameter `-m`: `‘embed_convert’`, `‘embed_pack’`, `‘embed_all’`
 
-`‘embed_convert’` - convert xdl file --> write your code in `my_project/src/MyApp.py`
+`‘embed_convert’` - convert `xdl` file --> write your code in `my_project/src/MyApp.py`
 
 `‘embed_pack’` -
 
 `‘embed_all’` -
 
-###Provides a simple dialog box  for scripts
+###Provides a simple dialog boxes for scripts
 
     python3 ./unodit.py -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib'
                         -a 'Test_dialogs
