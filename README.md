@@ -61,7 +61,7 @@ Available options for parameter -m: `'script_convert'` , `'script_files'` , `'sc
 |`'script_convert'`|convert `xdl` file|write your code in `src/Test_convert.py`|
 |`'script_files'`|create script extension files|change `description.txt`, `title.txt` and `license.txt`|
 |`'script_oxt'`|create script extension      |extension file `Test_convert_Devel.oxt`|
-|`'script_all'`|all in one|convert `xdl` file + create script extension files + script extension|
+|`'script_all'`|all in one - testing|convert `xdl` file + create script extension files + script extension|
 
 **Directory structure and parameters**
 
@@ -108,7 +108,7 @@ Available options for parameter `-m`: `'connect'`.
 ###Convert XDL file to python code and embed in document
 
 Use parameter `-f` to set the path to any local directory with `xdl` file.
-Place odt document in  project dir.
+Place ODF document `Text document.odt` in  project dir (tested with Writer).
 
     python3 ./unodit.py -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
                         -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib'
@@ -117,11 +117,19 @@ Place odt document in  project dir.
 
 Available options for parameter `-m`: `‘embed_convert’`, `‘embed_pack’`, `‘embed_all’`
 
-`‘embed_convert’` - convert `xdl` file --> write your code in `my_project/src/MyApp.py`
+| Parameter|Description|Note|
+|---------|------------|----|
+|`‘embed_convert’`|convert `xdl` file|write your code in `src/Test_embed.py`|
+|`‘embed_pack’`|pack     |pack macro in `Text document_MACRO.odt`|
+|`‘embed_all’`|all in one - testing|embed_convert + embed_pack|
 
-`‘embed_pack’` -
+**Directory structure and parameters**
 
-`‘embed_all’` -
+    TestLib/
+            Text document.odt
+            src/                          embed_convert
+                Test_embed.py            --------------
+            Text document_MACRO.odt       embed_pack
 
 ###Provides a simple dialog boxes for scripts
 
