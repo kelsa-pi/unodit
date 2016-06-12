@@ -58,28 +58,28 @@ Available options for parameter -m: `'script_convert'` , `'script_files'` , `'sc
 
 | Parameter|Description|Note|
 |---------|------------|----|
-|`'script_convert'`|convert `xdl` file|write your code in `src/MyApp.py`|
+|`'script_convert'`|convert `xdl` file|write your code in `src/Test_convert.py`|
 |`'script_files'`|create script extension files|change `description.txt`, `title.txt` and `license.txt`|
-|`'script_oxt'`|create script extension      |extension file `MyApp_Devel.oxt`|
+|`'script_oxt'`|create script extension      |extension file `Test_convert_Devel.oxt`|
 |`'script_all'`|all in one|convert `xdl` file + create script extension files + script extension|
 
 **Directory structure and parameters**
 
     TestLib/
             src/
-                MyApp.py           script_convert
+                Test_convert.py           script_convert
                 pythonpath/
-                    MyApp_UI.py   ---------------       
+                    Test_convert_UI.py   ---------------       
             META-INF/
                 manifest.xml
             description/
-                description.txt    script_files
+                description.txt           script_files
                 title.txt
             registration/
                 license.txt
             Addons.xcu
-            description.xml       --------------
-            MyApp_Devel.oxt        script_oxt
+            description.xml              --------------
+            Test_convert_Devel.oxt        script_oxt
             
             
 
@@ -94,7 +94,16 @@ Create dialog in dialog project DialogLib in My Macros (`Tools - Macros - Organi
                
 Available options for parameter `-m`: `'connect'`.
 
-`'connect'` - connect to xdl file --> write your code in `my_project/src/MyApp.py`
+| Parameter|Description|Note|
+|---------|------------|----|
+|`'connect'`|connect to xdl file|write your code in `src/Test_connect.py`|
+
+**Directory structure**
+
+    TestLib/
+            src/
+                MyApp.py 
+
 
 ###Convert XDL file to python code and embed in document
 
