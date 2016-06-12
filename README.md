@@ -96,7 +96,7 @@ Available options for parameter `-m`: `'connect'`.
 
 | Parameter|Description|Note|
 |---------|------------|----|
-|`'connect'`|connect to xdl file|write your code in `src/Test_connect.py`|
+|`'connect'`|connect to `xdl` file|write your code in `src/Test_connect.py`|
 
 **Directory structure**
 
