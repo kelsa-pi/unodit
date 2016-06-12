@@ -56,13 +56,32 @@ Use parameter `-f` to set the path to any local directory with `xdl` file.
 
 Available options for parameter -m: `'script_convert'` , `'script_files'` , `'script_oxt'` , `'script_all'`
 
-`'script_convert'` - convert `xdl` file --> write your code in `my_project/src/MyApp.py`
+| Parameter|Description|Note|
+|---------|------------|----|
+|`'script_convert'`|convert `xdl` file|write your code in `src/MyApp.py`|
+|`'script_files'`|create script extension files|change `description.txt`, `title.txt` and `license.txt`|
+|`'script_oxt'`|create script extension      |extension file `MyApp_Devel.oxt`|
+|`'script_all'`|all in one|convert `xdl` file + create script extension files + script extension|
 
-`'script_files'` - create script extension files
+**Directory structure and parameters**
 
-`'script_oxt'` - create script extension
-
-`'script_all'` - all in one (convert `xdl` file, create script extension files and script extension)
+    TestLib/
+            src/
+                MyApp.py           script_convert
+                pythonpath/
+                    MyApp_UI.py   ---------------       
+            META-INF/
+                manifest.xml
+            description/
+                description.txt    script_files
+                title.txt
+            registration/
+                license.txt
+            Addons.xcu
+            description.xml       --------------
+            MyApp_Devel.oxt        script_oxt
+            
+            
 
 ###Connect to XDL file with python code
 
