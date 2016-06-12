@@ -102,7 +102,7 @@ Available options for parameter `-m`: `'connect'`.
 
     TestLib/
             src/
-                MyApp.py 
+                Test_connect.py 
 
 
 ###Convert XDL file to python code and embed in document
