@@ -130,7 +130,7 @@ indent    = {}
 
     def mode_dialogs_create():
         logger.info('MODE: ---------- dialogs_create ----------------------------------')
-        e = dialogs.EasyDialog(pydir)
+        e = dialogs.EasyDialog(pydir, app)
         e.create_template()
 
     def mode_dialogs_files():
