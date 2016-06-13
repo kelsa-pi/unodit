@@ -166,11 +166,15 @@ Available options for parameter `-m`: `‘dialogs_create’`, `‘dialogs_files�
             Test_dialogs_Devel.oxt        dialogs_oxt
 
 
-##Installing an extension
+###Installing an extension
 
-Choose Tools - Extension Manager or command-line:
+If one create a script extension for LibreOffice (oxt file) install it with:
 
-Ubuntu - `/usr/bin/unopkg add ./MyApp_Devel.oxt`
+1. Choose Tools - Extension Manager or 
+
+2. Command-line:
+
+   Ubuntu - `/usr/bin/unopkg add ./MyApp_Devel.oxt`
 
 ##Unodit directory structure
 
