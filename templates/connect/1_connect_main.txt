@@ -6,7 +6,7 @@
 # Connect Python and XDL file.
 #
 # Created: ${GENERATED_DATETIME}
-#      by: ${XDL2UNO_VERSION}
+#      by: ${UNODIT_VERSION}
 #
 # WARNING! All changes made in this file will be overwritten
 #          if the file is generated again!

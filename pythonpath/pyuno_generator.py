@@ -90,7 +90,7 @@ class PythonGenerator:
 
             ui = {'I': self.indent,
                   'GENERATED_DATETIME': conf.NOW,
-                  'XDL2UNO_VERSION': conf.VERSION,
+                  'UNODIT_VERSION': conf.VERSION,
                   'APP_NAME': self.app,
                   'GEN_DIALOG_PROPERTIES': self._set_dialog_properties(dialog_properties),
                   'GEN_CONTROLS': self._get_controls_properties(control_properties),
@@ -113,7 +113,7 @@ class PythonGenerator:
 
             ui_lg = {'I': self.indent,
                      'GENERATED_DATETIME': conf.NOW,
-                     'XDL2UNO_VERSION': conf.VERSION,
+                     'UNODIT_VERSION': conf.VERSION,
                      'APP_NAME': self.app,
                      'GEN_DIALOG_ADDRESS': self._get_dialog_address(self.xdlfile),
                      'GEN_ALL_CONTROLS': self._get_controls_name(control_properties),
@@ -130,7 +130,7 @@ class PythonGenerator:
 
             ui = {'I': self.indent,
                   'GENERATED_DATETIME': conf.NOW,
-                  'XDL2UNO_VERSION': conf.VERSION,
+                  'UNODIT_VERSION': conf.VERSION,
                   'APP_NAME': self.app,
                   'GEN_DIALOG_PROPERTIES': self._set_dialog_properties(dialog_properties),
                   'GEN_CONTROLS': self._get_controls_properties(control_properties),

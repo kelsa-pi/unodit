@@ -31,7 +31,7 @@ class ReadINI(object):
 # =================
 
 # library version
-VERSION = 'xdl2uno 0.3'
+VERSION = 'unodit 0.5'
 
 # creation time
 NOW = time.strftime("%c")
