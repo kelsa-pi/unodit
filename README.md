@@ -56,7 +56,7 @@ Use parameter `-f` to set the path to any local directory with `xdl` file.
 
 Available options for parameter -m: `'script_convert'` , `'script_files'` , `'script_oxt'` , `'script_all'`
 
-| Parameter|Description|Note|
+|Parameter|Description|Note|
 |---------|------------|----|
 |`'script_convert'`|convert `xdl` file|write your code in `src/Test_convert.py`|
 |`'script_files'`|create script extension files|change `description.txt`, `title.txt` and `license.txt`|
@@ -85,7 +85,7 @@ Available options for parameter -m: `'script_convert'` , `'script_files'` , `'sc
 
 ###Connect to XDL file with python code
 
-Create dialog in dialog project DialogLib in My Macros (`Tools - Macros - Organize Dialogs - Dialogs - My Dialogs`)
+Create dialog in dialog project `DialogLib` in My Macros (`Tools - Macros - Organize Dialogs - Dialogs - My Dialogs`)
     
     python3 ./unodit.py -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
                         -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib''
@@ -94,7 +94,7 @@ Create dialog in dialog project DialogLib in My Macros (`Tools - Macros - Organi
                
 Available options for parameter `-m`: `'connect'`.
 
-| Parameter|Description|Note|
+|Parameter|Description|Note|
 |---------|------------|----|
 |`'connect'`|connect to `xdl` file|write your code in `src/Test_connect.py`|
 
@@ -117,7 +117,7 @@ Place ODF document `Text document.odt` in  project dir (tested with Writer).
 
 Available options for parameter `-m`: `‘embed_convert’`, `‘embed_pack’`, `‘embed_all’`
 
-| Parameter|Description|Note|
+|Parameter|Description|Note|
 |---------|------------|----|
 |`‘embed_convert’`|convert `xdl` file|write your code in `src/Test_embed.py`|
 |`‘embed_pack’`|pack     |pack macro in `Text document_MACRO.odt`|
@@ -134,18 +134,37 @@ Available options for parameter `-m`: `‘embed_convert’`, `‘embed_pack’`,
 ###Provides a simple dialog boxes for scripts
 
     python3 ./unodit.py -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib'
-                        -a 'Test_dialogs
+                        -a 'Test_dialogs'
                         -m 'dialogs_create'
                         
 Available options for parameter `-m`: `‘dialogs_create’`, `‘dialogs_files’`, `‘dialogs_oxt’`, `‘dialogs_all’`
 
-`‘dialogs_create’` -  --> write your code in `my_project/src/MyApp.py`
+|Parameter|Description|Note|
+|---------|------------|----|
+|`‘dialogs_create’`| create files|write your code in `src/Test_dialogs.py`|
+|`‘dialogs_files’`|create script extension files|change `description.txt`, `title.txt` and `license.txt`|
+|`‘dialogs_oxt’`|create script extension|extension file `Test_dialogs_Devel.oxt`|
+|`‘dialogs_all’`|all in one - testing|dialogs_create + dialogs_files + dialogs_oxt|
 
-`‘dialogs_files’` - create script extension files
 
-`‘dialogs_oxt’` - create script extension
+**Directory structure and parameters**
 
-`‘dialogs_all’` - all in one (create script extension files and script extension)
+    TestLib/
+            src/
+                Test_dialogs.py           dialogs_create
+                pythonpath/
+                    simple_dialogs.py    ---------------       
+            META-INF/
+                manifest.xml
+            description/
+                description.txt           dialogs_files
+                title.txt
+            registration/
+                license.txt
+            Addons.xcu
+            description.xml              --------------
+            Test_dialogs_Devel.oxt        dialogs_oxt
+
 
 ##Installing an extension
 
