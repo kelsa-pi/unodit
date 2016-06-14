@@ -15,14 +15,14 @@ Use this library to prepare your python script with dialogs as extension for Lib
           - generate python code to connect with dialog and 
           - create callback functions for all button onClick events
 2. Convert dialog and embed in ODF document
-3. Provides a simple dialog boxes for interaction with a user in python (pyuno)
+3. Provides a simple dialog boxes for interaction with a user
 
 Other features are:
 - all steps are logged to `log.log` file in project root
 - per project customization with ini file (copy `config.ini` in project root)
 - boilerplate code in `templates` directory
-- conversion `'xdl'` to `.py` defined in `schema.py`
-- diff `'xdl'` vs. `schema.py`
+- conversion `xdl` to `.py` defined in `schema.py`
+- diff `xdl` vs. `schema.py`
 
 
 DISCLAIMER:
