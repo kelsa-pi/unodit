@@ -3,9 +3,9 @@
 
 Use this library to prepare your python script with dialogs as extension for LibreOffice or embed in document. Newcomers would benefit from writing macros with simple dialog boxes for interaction with a user.
 
-'unodit' main features are:
+`unodit` main features are:
 
-1. Take a dialog file created with LibreOffice Dialog Editor (.xdl) and:
+1. Takes a dialog file created with LibreOffice Dialog Editor (.xdl) and:
     * Convert dialog
           - generate dialog in python code, 
           - create callback functions for all button onClick events
@@ -15,7 +15,7 @@ Use this library to prepare your python script with dialogs as extension for Lib
           - generate python code to connect with dialog and 
           - create callback functions for all button onClick events
 2. Convert dialog and embed in ODF document
-3. Provide a simple dialog boxes for interaction with a user in python (pyuno)
+3. Provides a simple dialog boxes for interaction with a user in python (pyuno)
 
 Other features are:
 - all steps are logged to `log.log` file in project root
