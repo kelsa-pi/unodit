@@ -1,19 +1,29 @@
 # unodit
-**UNO** **Di**alog **T**ools is a Python3 library (alpha version) that takes a LibreOffice Basic Dialog XML file (.xdl) and:
+**UNO** **Di**alog **T**ools (alpha version) automate some of the tedious tasks in order to help you write your own extension for LibreOffice.
 
-1. Convert `xdl` file to python (pyuno) code
-2. Connect to `xdl` file with python (pyuno) code
-3. Convert `xdl` file to python (pyuno) code and embed in document
-4. Provides a simple dialog boxes for interaction with a user with python (pyuno)
+Use this library to prepare your python script with dialogs as extension for LibreOffice or embed in document. Newcomers would benefit from writing macros with simple dialog boxes for interaction with a user.
+
+'unodit' main features are:
+
+1. Take a dialog file created with LibreOffice Dialog Editor (.xdl) and:
+    * Convert dialog
+          - generate dialog in python code, 
+          - create callback functions for all button onClick events
+          - create script extension for LibreOffice (oxt)
+          - create menu-item in `Tools - AddOns` menu
+    * Connect dialog
+          - generate python code to connect with dialog and 
+          - create callback functions for all button onClick events
+2. Convert dialog and embed in ODF document
+3. Provide a simple dialog boxes for interaction with a user in python (pyuno)
 
 Other features are:
-- if the option `1` or `4` is chosen, it is possible to create a script extension for LibreOffice (oxt file)
-- callback functions are created for all button onClick events
-- all steps in the conversion process are logged to `log.log` file in project root
+- all steps are logged to `log.log` file in project root
 - per project customization with ini file (copy `config.ini` in project root)
+- boilerplate code in `templates` directory
+- conversion `'xdl'` to `.py` defined in `schema.py`
+- diff `'xdl'` vs. `schema.py`
 
- 
-If you have experience with macros, use this library to prepare your python script as extension for LibreOffice or embed in document. Newcomers would benefit from writing macros with simple dialog boxes for interaction with a user.
 
 DISCLAIMER:
 I'm not a programmer.
