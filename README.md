@@ -243,6 +243,7 @@ Format: specifies the format of the displayed date.
 
 Return: the selected date
 
+![DateBox](resource/img/DateBox.png)
 
 #####FolderBox
 Usage: FolderBox()
