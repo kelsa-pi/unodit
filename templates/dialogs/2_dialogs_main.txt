@@ -1,4 +1,4 @@
-import simple_dialogs as dlg
+from simple_dialogs import SelectBox, OptionBox, InputBox, NumberBox, DateBox, FolderBox
 
 def xray(myObject):
     try:
@@ -11,28 +11,35 @@ def xray(myObject):
     except:
         raise _rtex("Basic library Xray is not installed", uno.getComponentContext())
 
-# -----------------------------------------------------------
 
 def ${EXEC_FUNCTION_PREFIX}${APP_NAME}(*args):
 
-    #a = dlg.get_choice(message="Select one item", title="getTitle", choices=["aaaa","bbbbbb", "ccccc"])
-    #print(a)
+    # SelectBox(message="Select one item", title="SelectBox", choices=['a','b','c'])
+    s = SelectBox(message="Select favorite city", title="My choice", choices=["New York","London", "Paris", "Berlin"])
+    print(s)
 
-    #b = dlg.get_list_of_choices(message="Select multiple items", title="getTitle", choices=["aaaa", "bbbbbb", "ccccc"])
-    #print(b)
+    # OptionBox(message="Select multiple items", title="OptionBox", choices=['a','b','c'])
+    # o = OptionBox(message="Select one or multiple cities", title="My choices", choices=["New York","London", "Paris", "Berlin"])
+    # print(o)
 
-    #c = dlg.get_number(message="Choose a number", title="Title", default_value=12, min_=-10000, max_=10000, decimals=0)
-    #print(c)
+    # InputBox(message="Enter your input", title="InputBox", text="")
+    # i = InputBox(message="Enter your e-mail address", title="E-mail")
+    # print(i)
 
-    #d = dlg.get_date(message="Choose a number", title="Title")
-    #print(d)
+    # NumberBox(message="Enter a number", title="NumberBox", default_value=0, min_=-10000, max_=10000, decimals=0)
+    # n = NumberBox(message="Year", title="Year of birth", default_value=1999, min_=1950, max_=2020, decimals=0)
+    # print(n)
 
-    #f = dlg.get_directory_name()
-    #print(f)
+    # DateBox(message="Choose a date", title='DateBox', format=0)
+    # d = DateBox(message="Date of birth", title="BirthDay")
+    # print(d)
 
-    xray(dlg.get_save_file_name())
+    # f = FolderBox()
+    # print(f)
+
+    #xray(dlg.get_save_file_name())
     #e = dlg.get_save_file_name()
-    #print(e)
+    # print(b)
 
 
 g_exportedScripts = ${EXEC_FUNCTION_PREFIX}${APP_NAME},

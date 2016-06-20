@@ -1,28 +1,40 @@
 # unodit
-**UNO** **Di**alog **T**ools (alpha version) automate some of the tedious tasks in order to help you write your own extension for LibreOffice.
+**UNO** **Di**alog **T**ools (alpha version) automate some of the tedious tasks with dialogs in order to help you write your own extension for LibreOffice.
 
-Use this library to prepare your python script with dialogs as extension for LibreOffice or embed in document. Newcomers would benefit from writing macros with simple dialog boxes for interaction with a user.
+Use this library to prepare your python script with dialogs as extension for LibreOffice or embed in document. Newcomers would benefit from reading generated code or writing macros with simple dialog boxes for interaction with a user.
 
 `unodit` main features are:
 
-1. Takes a dialog file created with LibreOffice Dialog Editor (.xdl) and:
-    * Convert dialog
-          - generate dialog in python code, 
-          - create callback functions for all button onClick events
-          - create script extension for LibreOffice (oxt)
-          - create menu-item in `Tools - AddOns` menu
-    * Connect dialog
-          - generate python code to connect with dialog and 
-          - create callback functions for all button onClick events
-2. Convert dialog and embed in ODF document
-3. Provides a simple dialog boxes for interaction with a user
+1. Convert dialog
+    - takes a dialog file created with LibreOffice Dialog Editor (`.xdl`)
+    - generate dialog in python code, 
+    - create callback functions for all button onClick events
+    - create script extension for LibreOffice (oxt) with
+      menu-item in `Tools - AddOns` menu
+2. Connect to dialog
+    - takes a dialog file (`.xdl`) in dialog library
+    - generate python code to connect with dialog and 
+    - create callback functions for all button onClick events
+3. Embed dialog
+    - takes a dialog file created with LibreOffice Dialog Editor (`.xdl`)
+    - generate dialog in python code, 
+    - create callback functions for all button onClick events
+    - embed dialog in ODF document
+4. Provides a simple dialog boxes for interaction with a user
+    - SelectBox 
+    - OptionBox 
+    - InputBox 
+    - NumberBox 
+    - DateBox 
+    - FolderBox
+
 
 Other features are:
 - all steps are logged to `log.log` file in project root
 - per project customization with ini file (copy `config.ini` in project root)
 - boilerplate code in `templates` directory
-- conversion `xdl` to `.py` defined in `schema.py`
-- diff `xdl` vs. `schema.py`
+- conversion `.xdl` to `.py` defined in `schema.py`
+- diff `.xdl` vs. `schema.py`
 
 
 DISCLAIMER:
@@ -51,13 +63,13 @@ i - number of spaces used for indentation in the generated code. If 0, \t is use
 You can copy `config.ini` in your project root directory. Edit section in `my_project_dir/config.ini` file to make changes.
 
 ##Examples
-Create python project dir `TestLib` in `LIBREOFFICE_PATH/4/user/Scripts/python/`.
+Create python project directory `TestLib` in `LIBREOFFICE_PATH/4/user/Scripts/python/`.
 
 Replace `LIBREOFFICE_PATH` with actual path.
 
 ###Convert XDL file to python code and create extension
 
-Use parameter `-f` to set the path to any local directory with `xdl` file.
+Use parameter `-f` to set the path to **any** local directory with `xdl` file.
 
     python3 ./unodit.py -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
                         -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib'
@@ -117,7 +129,7 @@ Available options for parameter `-m`: `'connect'`.
 
 ###Convert XDL file to python code and embed in document
 
-Use parameter `-f` to set the path to any local directory with `xdl` file.
+Use parameter `-f` to set the path to **any** local directory with `xdl` file.
 Place ODF document `Text document.odt` in  project dir (tested with Writer).
 
     python3 ./unodit.py -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
@@ -174,6 +186,18 @@ Available options for parameter `-m`: `‘dialogs_create’`, `‘dialogs_files�
             Addons.xcu
             description.xml              --------------
             Test_dialogs_Devel.oxt        dialogs_oxt
+
+**Dialogs**
+Generate files with option `‘dialogs_create’` and read `Test_dialogs.py` for more information.
+ 
+| Dialog|Usage
+|---|---|
+|SelectBox| SelectBox(message="Select one item", title="SelectBox", choices=['a','b','c'])| 
+|OptionBox| OptionBox(message="Select multiple items", title="OptionBox", choices=['a','b','c'])|
+|InputBox| InputBox(message="Enter your input", title="InputBox", text="")|
+|NumberBox| NumberBox(message="Enter a number", title="NumberBox", default_value=0, min_=-10000, max_=10000, decimals=0)|
+|DateBox| DateBox(message="Choose a date", title='DateBox', format=0)|
+|FolderBox|FolderBox()|
 
 
 ###Installing an extension
