@@ -200,7 +200,7 @@ Generate files with option `‘dialogs_create’` and read `Test_dialogs.py` for
 |DateBox| DateBox(message="Choose a date", title='DateBox', format=0)|the selected date |
 |FolderBox|FolderBox()|	the name of a directory or an empty string|
 
-
+! [SelectBox] (https://github.com/kelsa-pi/unodit/blob/master/resource/img/SelectBox.png)
 
 ###Installing an extension
 
