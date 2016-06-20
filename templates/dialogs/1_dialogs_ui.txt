@@ -168,9 +168,9 @@ class OptionBoxClass(SimpleDialog):
         pass
 
 
-class InputBoxClass(SimpleDialog):
+class TextBoxClass(SimpleDialog):
 
-    def __init__(self, message="Enter a text", title="InputBox", text=""):
+    def __init__(self, message="Enter a text", title="TextBox", text=""):
         SimpleDialog.__init__(self, nPositionX=60, nPositionY=60, nWidth=135, nHeight=55, sTitle=None)
         self.DialogModel.Title = title
 
@@ -314,8 +314,8 @@ def OptionBox(message="Select multiple items", title="OptionBox", choices=['a','
     return app.returnValue
 
 
-def InputBox(message="Enter your input", title="InputBox", text=""):
-    app = InputBoxClass(message, title, text)
+def TextBox(message="Enter your input", title="TextBox", text=""):
+    app = TextBoxClass(message, title, text)
     return app.returnValue
 
 

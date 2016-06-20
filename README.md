@@ -23,7 +23,7 @@ Use this library to prepare your python script with dialogs as extension for Lib
 4. Provides a simple dialog boxes for interaction with a user
     - SelectBox 
     - OptionBox 
-    - InputBox 
+    - TextBox 
     - NumberBox 
     - DateBox 
     - FolderBox
@@ -208,8 +208,8 @@ Return: a tuple of selected items, or empty tuple
 
 ![OptionBox](resource/img/OptionBox.png)
 
-#####InputBox
-Usage: InputBox(message="Enter your input", title="InputBox", text="")
+#####TextBox
+Usage: TextBox(message="Enter your input", title="TextBox", text="")
 
 Return: a string, or `None`
 
