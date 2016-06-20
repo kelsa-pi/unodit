@@ -334,10 +334,11 @@ def DateBox(message="Choose a date", title='DateBox', format=0):
     return app.returnValue
 
 
-def FolderBox():
+def FolderBox(title='Get directory path'):
     ctx = uno.getComponentContext()
     smgr = ctx.getServiceManager()
     folder_picker = smgr.createInstanceWithContext("com.sun.star.ui.dialogs.FolderPicker", ctx)
+    folder_picker.setTitle(title)
     folder_picker.execute()
     return folder_picker.getDirectory()
 
