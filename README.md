@@ -193,7 +193,7 @@ Generate files with option `‘dialogs_create’` and read `Test_dialogs.py` for
  
 | Dialog|Usage|Return|
 |---|---|---|
-|SelectBox| SelectBox(message="Select one item", title="SelectBox", choices=['a','b','c'])|a string, or `None`||
+|![SelectBox](resource/img/SelectBox.png)| SelectBox(message="Select one item", title="SelectBox", choices=['a','b','c'])|a string, or `None`||
 |OptionBox| OptionBox(message="Select multiple items", title="OptionBox", choices=['a','b','c'])|a list of selected items, or empty list|
 |InputBox| InputBox(message="Enter your input", title="InputBox", text="")|a string, or `None`|
 |NumberBox| NumberBox(message="Enter a number", title="NumberBox", default_value=0, min_=-10000, max_=10000, decimals=0)|an integer/float or `None`|
