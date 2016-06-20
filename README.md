@@ -200,7 +200,7 @@ Generate files with option `‘dialogs_create’` and read `Test_dialogs.py` for
 |DateBox| DateBox(message="Choose a date", title='DateBox', format=0)|the selected date |
 |FolderBox|FolderBox()|	the name of a directory or an empty string|
 
-[SelectBox] (resource/img/SelectBox.png)
+[SelectBox] (resource/img/SelectBox.png?raw=true)
 
 ###Installing an extension
 
