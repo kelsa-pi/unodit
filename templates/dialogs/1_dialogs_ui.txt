@@ -288,10 +288,10 @@ class DateBoxClass(SimpleDialog):
         dCancel = {"PositionY": 35, "PositionX": 65, "Height": 15, "Width": 30, "Label": "Cancel",}
         self.btnCancel = self.addControl("Button", "btnCancel", dCancel)
 
-        self.returnValue = None
+        self.returnValue = ""
 
         self.showDialog()
-        xray(self.DialogContainer)
+        #xray(self.DialogContainer)
 
     def actionPerformed(self, oActionEvent):
         if oActionEvent.ActionCommand == 'btnOK_OnClick':

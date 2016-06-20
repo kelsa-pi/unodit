@@ -31,11 +31,11 @@ def ${EXEC_FUNCTION_PREFIX}${APP_NAME}(*args):
     # print(n)
 
     # DateBox(message="Choose a date", title='DateBox', format=0)
-    # d = DateBox(message="Date of birth", title="BirthDay")
+    # d = DateBox(message="Date of birth", title="BirthDay", format=9)
     # print(d)
 
-    # f = FolderBox()
-    # print(f)
+    f = FolderBox()
+    print(f)
 
     #xray(dlg.get_save_file_name())
     #e = dlg.get_save_file_name()
