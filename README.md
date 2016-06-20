@@ -187,18 +187,39 @@ Available options for parameter `-m`: `‘dialogs_create’`, `‘dialogs_files�
             description.xml              --------------
             Test_dialogs_Devel.oxt        dialogs_oxt
 
-**Dialogs**
+####Dialogs
 
 Generate files with option `‘dialogs_create’` and read `Test_dialogs.py` for more information.
  
-| Dialog|Usage|Return|Image|
-|---|---|---|---|
-|SelectBox| SelectBox(message="Select one item", title="SelectBox", choices=['a','b','c'])|a string, or `None`|![SelectBox](resource/img/SelectBox.png)|
-|OptionBox| OptionBox(message="Select multiple items", title="OptionBox", choices=['a','b','c'])|a list of selected items, or empty list|
-|InputBox| InputBox(message="Enter your input", title="InputBox", text="")|a string, or `None`|
-|NumberBox| NumberBox(message="Enter a number", title="NumberBox", default_value=0, min_=-10000, max_=10000, decimals=0)|an integer/float or `None`|
-|DateBox| DateBox(message="Choose a date", title='DateBox', format=0)|the selected date |
-|FolderBox|FolderBox()|	the name of a directory or an empty string|
+
+#####SelectBox 
+
+Usage: SelectBox(message="Select one item", title="SelectBox", choices=['a','b','c'])
+Return: a string, or `None`
+
+![SelectBox](resource/img/SelectBox.png)
+
+#####OptionBox
+
+Usage: OptionBox(message="Select multiple items", title="OptionBox", choices=['a','b','c'])
+Return: a list of selected items, or empty list
+
+
+#####InputBox
+Usage: InputBox(message="Enter your input", title="InputBox", text="")
+Return: a string, or `None`
+
+#####NumberBox
+Usage: NumberBox(message="Enter a number", title="NumberBox", default_value=0, min_=-10000, max_=10000, decimals=0)
+Return: an integer/float or `None`
+
+#####DateBox
+Usage: DateBox(message="Choose a date", title='DateBox', format=0)
+Return: the selected date
+
+#####FolderBox
+Usage: FolderBox()
+Return: the name of a directory or an empty string|
 
 
 ###Installing an extension
