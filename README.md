@@ -204,8 +204,9 @@ Return: a string, or `None`
 
 Usage: OptionBox(message="Select multiple items", title="OptionBox", choices=['a','b','c'])
 
-Return: a list of selected items, or empty list
+Return: a tuple of selected items, or empty tuple
 
+![OptionBox](resource/img/OptionBox.png)
 
 #####InputBox
 Usage: InputBox(message="Enter your input", title="InputBox", text="")

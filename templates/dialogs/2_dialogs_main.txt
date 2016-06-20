@@ -15,12 +15,12 @@ def xray(myObject):
 def ${EXEC_FUNCTION_PREFIX}${APP_NAME}(*args):
 
     # SelectBox(message="Select one item", title="SelectBox", choices=['a','b','c'])
-    s = SelectBox(message="Select your favorite city", title="My choice", choices=["New York","London", "Paris", "Berlin"])
-    print(s)
+    # s = SelectBox(message="Select your favorite city", title="My choice", choices=["New York","London", "Paris", "Berlin"])
+    # print(s)
 
     # OptionBox(message="Select multiple items", title="OptionBox", choices=['a','b','c'])
-    # o = OptionBox(message="Select one or multiple cities", title="My choices", choices=["New York","London", "Paris", "Berlin"])
-    # print(o)
+    o = OptionBox(message="Select one or multiple cities", title="My choices", choices=["New York","London", "Paris", "Berlin"])
+    print(o)
 
     # InputBox(message="Enter your input", title="InputBox", text="")
     # i = InputBox(message="Enter your e-mail address", title="E-mail")

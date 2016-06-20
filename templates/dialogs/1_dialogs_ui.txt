@@ -134,7 +134,7 @@ class OptionBoxClass(SimpleDialog):
         dCancel = {"PositionY": 100, "PositionX": 100, "Height": 15, "Width": 30, "Label": "Cancel",}
         self.btnCancel = self.addControl("Button", "btnCancel", dCancel)
 
-        self.returnValue = None
+        self.returnValue = ()
 
         self.showDialog()
         #xray(self.DialogContainer)
@@ -144,9 +144,10 @@ class OptionBoxClass(SimpleDialog):
 
             n = len(self.DialogContainer.getControl('lbChoices').getSelectedItems())
             if n == 0:
-                self.returnValue = None
+                self.returnValue = ()
             elif n == 1:
-                self.returnValue = self.DialogContainer.getControl('lbChoices').getSelectedItem()
+                item = self.DialogContainer.getControl('lbChoices').getSelectedItem()
+                self.returnValue = (item,)
             else:
                 self.returnValue = self.DialogContainer.getControl('lbChoices').getSelectedItems()
 
