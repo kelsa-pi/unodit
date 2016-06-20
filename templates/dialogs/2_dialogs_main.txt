@@ -34,8 +34,8 @@ def ${EXEC_FUNCTION_PREFIX}${APP_NAME}(*args):
     # d = DateBox(message="Date of birth", title="BirthDay", format=9)
     # print(d)
 
-    f = FolderBox()
-    print(f)
+    # f = FolderBox(title='Get directory path')
+    # print(f)
 
     #xray(dlg.get_save_file_name())
     #e = dlg.get_save_file_name()

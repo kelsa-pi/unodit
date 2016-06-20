@@ -246,9 +246,11 @@ Return: the selected date
 ![DateBox](resource/img/DateBox.png)
 
 #####FolderBox
-Usage: FolderBox()
+Usage: FolderBox(title='Get directory path')
 
-Return: the name of a directory or an empty string|
+Return: the name of a directory or an empty string
+
+![FolderBox](resource/img/FolderBox.png)
 
 
 ###Installing an extension
