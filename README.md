@@ -153,7 +153,7 @@ Available options for parameter `-m`: `‘embed_convert’`, `‘embed_pack’`,
                 Test_embed.py            --------------
             Text document_MACRO.odt       embed_pack
 
-###Provides a simple dialog boxes for scripts
+###Provides a simple dialog boxes for scripts (work in proges)
 
     python3 ./unodit.py -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib'
                         -a 'Test_dialogs'
@@ -191,14 +191,14 @@ Available options for parameter `-m`: `‘dialogs_create’`, `‘dialogs_files�
 
 Generate files with option `‘dialogs_create’` and read `Test_dialogs.py` for more information.
  
-| Dialog|Usage
-|---|---|
-|SelectBox| SelectBox(message="Select one item", title="SelectBox", choices=['a','b','c'])| 
-|OptionBox| OptionBox(message="Select multiple items", title="OptionBox", choices=['a','b','c'])|
-|InputBox| InputBox(message="Enter your input", title="InputBox", text="")|
-|NumberBox| NumberBox(message="Enter a number", title="NumberBox", default_value=0, min_=-10000, max_=10000, decimals=0)|
-|DateBox| DateBox(message="Choose a date", title='DateBox', format=0)|
-|FolderBox|FolderBox()|
+| Dialog|Usage|Return|
+|---|---|---|
+|SelectBox| SelectBox(message="Select one item", title="SelectBox", choices=['a','b','c'])|a string, or `None`|
+|OptionBox| OptionBox(message="Select multiple items", title="OptionBox", choices=['a','b','c'])|a list of selected items, or empty list|
+|InputBox| InputBox(message="Enter your input", title="InputBox", text="")|a string, or `None`|
+|NumberBox| NumberBox(message="Enter a number", title="NumberBox", default_value=0, min_=-10000, max_=10000, decimals=0)|an integer/float or `None`|
+|DateBox| DateBox(message="Choose a date", title='DateBox', format=0)|the selected date |
+|FolderBox|FolderBox()|	the name of a directory or an empty string|
 
 
 ###Installing an extension
