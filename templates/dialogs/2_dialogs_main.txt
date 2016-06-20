@@ -15,7 +15,7 @@ def xray(myObject):
 def ${EXEC_FUNCTION_PREFIX}${APP_NAME}(*args):
 
     # SelectBox(message="Select one item", title="SelectBox", choices=['a','b','c'])
-    s = SelectBox(message="Select favorite city", title="My choice", choices=["New York","London", "Paris", "Berlin"])
+    s = SelectBox(message="Select your favorite city", title="My choice", choices=["New York","London", "Paris", "Berlin"])
     print(s)
 
     # OptionBox(message="Select multiple items", title="OptionBox", choices=['a','b','c'])

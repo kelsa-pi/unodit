@@ -201,6 +201,7 @@ Generate files with option `‘dialogs_create’` and read `Test_dialogs.py` for
 |FolderBox|FolderBox()|	the name of a directory or an empty string|
 
 
+
 ###Installing an extension
 
 If one create a script extension for LibreOffice (oxt file) install it with:
