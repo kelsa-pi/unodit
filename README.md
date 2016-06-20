@@ -220,6 +220,8 @@ Usage: NumberBox(message="Enter a number", title="NumberBox", default_value=0, m
 
 Return: an integer/float or `None`
 
+![NumberBox](resource/img/NumberBox.png)
+
 
 
 #####DateBox
