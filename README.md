@@ -195,6 +195,7 @@ Generate files with option `‘dialogs_create’` and read `Test_dialogs.py` for
 #####SelectBox 
 
 Usage: SelectBox(message="Select one item", title="SelectBox", choices=['a','b','c'])
+
 Return: a string, or `None`
 
 ![SelectBox](resource/img/SelectBox.png)
@@ -202,23 +203,28 @@ Return: a string, or `None`
 #####OptionBox
 
 Usage: OptionBox(message="Select multiple items", title="OptionBox", choices=['a','b','c'])
+
 Return: a list of selected items, or empty list
 
 
 #####InputBox
 Usage: InputBox(message="Enter your input", title="InputBox", text="")
+
 Return: a string, or `None`
 
 #####NumberBox
 Usage: NumberBox(message="Enter a number", title="NumberBox", default_value=0, min_=-10000, max_=10000, decimals=0)
+
 Return: an integer/float or `None`
 
 #####DateBox
 Usage: DateBox(message="Choose a date", title='DateBox', format=0)
+
 Return: the selected date
 
 #####FolderBox
 Usage: FolderBox()
+
 Return: the name of a directory or an empty string|
 
 
