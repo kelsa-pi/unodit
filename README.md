@@ -213,6 +213,8 @@ Usage: TextBox(message="Enter your input", title="TextBox", text="")
 
 Return: a string, or `None`
 
+![TextBox](resource/img/TextBox.png)
+
 #####NumberBox
 Usage: NumberBox(message="Enter a number", title="NumberBox", default_value=0, min_=-10000, max_=10000, decimals=0)
 
