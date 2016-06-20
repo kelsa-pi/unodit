@@ -188,6 +188,7 @@ Available options for parameter `-m`: `‘dialogs_create’`, `‘dialogs_files�
             Test_dialogs_Devel.oxt        dialogs_oxt
 
 **Dialogs**
+
 Generate files with option `‘dialogs_create’` and read `Test_dialogs.py` for more information.
  
 | Dialog|Usage
