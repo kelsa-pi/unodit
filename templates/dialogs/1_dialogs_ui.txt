@@ -220,6 +220,7 @@ class NumberBoxClass(SimpleDialog):
         dNumber = {"PositionY": 15, "PositionX": 5, "Height": 15, "Width": 90,}
         self.nfNumber = self.addControl("NumericField", "nfNumber", dNumber)
         self.nfNumber.setPropertyValue("DecimalAccuracy", self.decimals)
+        self.nfNumber.setPropertyValue("StrictFormat", True)
         self.nfNumber.setPropertyValue("Value", self.default_value)
         self.nfNumber.setPropertyValue("ValueMin", self.min_)
         self.nfNumber.setPropertyValue("ValueMax", self.max_)
@@ -233,11 +234,15 @@ class NumberBoxClass(SimpleDialog):
         self.returnValue = None
 
         self.showDialog()
-        #xray(self.nfNumber)
+        #xray(self.DialogContainer)
 
     def actionPerformed(self, oActionEvent):
         if oActionEvent.ActionCommand == 'btnOK_OnClick':
-            self.returnValue = self.nfNumber.Value
+            if self.decimals == 0:
+                self.returnValue = int(self.nfNumber.Value)
+            else:
+                self.returnValue = self.nfNumber.Value
+
             self.DialogContainer.endExecute()
 
         if oActionEvent.ActionCommand == 'btnCancel_OnClick':

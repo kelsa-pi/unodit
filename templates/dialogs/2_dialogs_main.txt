@@ -23,8 +23,8 @@ def ${EXEC_FUNCTION_PREFIX}${APP_NAME}(*args):
     # print(o)
 
     # TextBox(message="Enter your input", title="TextBox", text="")
-    t = TextBox(message="Enter your e-mail address", title="E-mail")
-    print(t)
+    # t = TextBox(message="Enter your e-mail address", title="E-mail")
+    # print(t)
 
     # NumberBox(message="Enter a number", title="NumberBox", default_value=0, min_=-10000, max_=10000, decimals=0)
     # n = NumberBox(message="Year", title="Year of birth", default_value=1999, min_=1950, max_=2020, decimals=0)
