@@ -353,15 +353,6 @@ def FilePathBox(title='Get file path'):
     open_file_picker.execute()
     return open_file_picker.getSelectedFiles()[0]
 
-def FileSaveBox(title='Save file'):
-    ctx = uno.getComponentContext()
-    smgr = ctx.getServiceManager()
-    save_file_picker = smgr.createInstanceWithContext("com.sun.star.ui.dialogs.FilePicker", ctx)
-    save_file_picker.setTitle(title)
-    save_file_picker.initialize((FILESAVE_SIMPLE,))
-    save_file_picker.appendFilter("All files (*.*)", "*.*")
-    # xray(save_file_picker)
-    if save_file_picker.execute():
-        return save_file_picker.getFiles()[0]
+
 
 
