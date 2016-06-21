@@ -334,7 +334,7 @@ def DateBox(message="Choose a date", title='DateBox', format=0):
     return app.returnValue
 
 
-def FolderBox(title='Get directory path'):
+def FolderPathBox(title='Get directory path'):
     ctx = uno.getComponentContext()
     smgr = ctx.getServiceManager()
     folder_picker = smgr.createInstanceWithContext("com.sun.star.ui.dialogs.FolderPicker", ctx)
@@ -343,14 +343,25 @@ def FolderBox(title='Get directory path'):
     return folder_picker.getDirectory()
 
 
-def get_save_file_name():
+def FilePathBox(title='Get file path'):
     ctx = uno.getComponentContext()
     smgr = ctx.getServiceManager()
-    #save_file_picker = smgr.createInstanceWithArgumentsAndContext("com.sun.star.ui.dialogs.FilePicker", FILESAVE_SIMPLE, ctx)
+    open_file_picker = smgr.createInstanceWithContext("com.sun.star.ui.dialogs.FilePicker", ctx)
+    open_file_picker.setMultiSelectionMode(False)
+    open_file_picker.setTitle(title)
+    open_file_picker.appendFilter("All files (*.*)", "*.*")
+    open_file_picker.execute()
+    return open_file_picker.getSelectedFiles()[0]
+
+def FileSaveBox(title='Save file'):
+    ctx = uno.getComponentContext()
+    smgr = ctx.getServiceManager()
     save_file_picker = smgr.createInstanceWithContext("com.sun.star.ui.dialogs.FilePicker", ctx)
-    xray(save_file_picker)
-    #save_file_picker.initialize(FILESAVE_SIMPLE)
-    save_file_picker.execute()
-    #return save_file_picker.getSelectedFiles()
+    save_file_picker.setTitle(title)
+    save_file_picker.initialize((FILESAVE_SIMPLE,))
+    save_file_picker.appendFilter("All files (*.*)", "*.*")
+    # xray(save_file_picker)
+    if save_file_picker.execute():
+        return save_file_picker.getFiles()[0]
 
 

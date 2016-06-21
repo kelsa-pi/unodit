@@ -26,7 +26,8 @@ Use this library to prepare your python script with dialogs as extension for Lib
     - TextBox 
     - NumberBox 
     - DateBox 
-    - FolderBox
+    - FolderPathBox
+    - FilePathBox
 
 
 Other features are:
@@ -245,12 +246,21 @@ Return: the selected date
 
 ![DateBox](resource/img/DateBox.png)
 
-#####FolderBox
-Usage: FolderBox(title='Get directory path')
+#####FolderPathBox
 
-Return: the name of a directory or an empty string
+Usage: FolderPathBox(title='Get directory path')
 
-![FolderBox](resource/img/FolderBox.png)
+Return: the path of a directory or an empty string
+
+![FolderPathBox](resource/img/FolderPathBox.png)
+
+#####FilePathBox
+
+Usage: FilePathBox(title='Get file path')
+
+Return: the path of a file or an empty string
+
+![FilePathBox](resource/img/FilePathBox.png)
 
 
 ###Installing an extension
