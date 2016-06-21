@@ -28,6 +28,7 @@ Use this library to prepare your python script with dialogs as extension for Lib
     - DateBox 
     - FolderPathBox
     - FilePathBox
+    - MessageBox
 
 
 Other features are:
@@ -261,6 +262,20 @@ Usage: FilePathBox(title='Get file path')
 Return: the path of a file or an empty string
 
 ![FilePathBox](resource/img/FilePathBox.png)
+
+#####MessageBox
+
+Usage: MessageBox(message="Message", title="MessageBox")
+
+![MessageBox](resource/img/MessageBox.png)
+
+#####ActionBox
+
+Usage: ActionBox(message="Message", title="ActionBox")
+
+Return: `OK` or `NO` or `Cancel`
+
+![ActionBox](resource/img/ActionBox.png)
 
 
 ###Installing an extension

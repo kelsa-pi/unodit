@@ -1,4 +1,4 @@
-from simple_dialogs import SelectBox, OptionBox, TextBox, NumberBox, DateBox, FolderPathBox, FilePathBox
+from simple_dialogs import SelectBox, OptionBox, TextBox, NumberBox, DateBox, FolderPathBox, FilePathBox, MessageBox, ActionBox
 
 def xray(myObject):
     try:
@@ -39,8 +39,16 @@ def ${EXEC_FUNCTION_PREFIX}${APP_NAME}(*args):
     # print(fop)
 
     # FilePathBox(title='Get file path')
-    fip = FilePathBox(title='Get file path')
-    print(fip)
+    # fip = FilePathBox(title='Get file path')
+    # print(fip)
+
+    # MessageBox(message="Message", title="MessageBox")
+    # m = MessageBox(message="Message to you Message to you Message to you Message to you Message to you Message to you", title="MessageBox")
+    # print(m)
+
+    # ActionBox(message="Message", title="ActionBox")
+    a = ActionBox(message="What's Your Decision?", title="ActionBox")
+    print(a)
 
 
 g_exportedScripts = ${EXEC_FUNCTION_PREFIX}${APP_NAME},
