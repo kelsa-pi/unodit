@@ -20,17 +20,15 @@ Use this library to prepare your python script with dialogs as extension for Lib
     - generate dialog in python code, 
     - create callback functions for all button onClick events
     - embed dialog in ODF document
-4. Provides a simple dialog boxes for interaction with a user
-    - SelectBox 
-    - OptionBox 
-    - TextBox 
-    - NumberBox 
-    - DateBox 
-    - FolderPathBox
-    - FilePathBox
-    - MessageBox
-    - ActionBox
-
+4. Simple dialog boxes 
+    - create dialogs for interaction with a user
+        - make choices (SelectBox, OptionBox) 
+        - enter new data (TextBox, NumberBox, DateBox) 
+        - get paths (FolderPathBox, FilePathBox)
+        - show information (MessageBox)
+        - ask questions (ActionBox)
+    - in script interactions are invoked by simple function calls 
+    - create script extension for LibreOffice (oxt)
 
 Other features are:
 - all steps are logged to `log.log` file in project root
@@ -191,6 +189,15 @@ Available options for parameter `-m`: `‘dialogs_create’`, `‘dialogs_files�
             Test_dialogs_Devel.oxt        dialogs_oxt
 
 ####Dialogs
+
+All dialogs are defined in `simple_dialogs,py`. In order to use dialog eg. `SelectBox` in your script `Test_dialogs.py` import it:
+
+    from simple_dialogs import SelectBox
+
+GUI operations are a simple a matter of invoking SelectBox functions with a few parameters
+    
+    s = SelectBox(message="Select your favorite city", title="My choice", choices=["New York","London", "Paris", "Berlin"])
+    print(s)
 
 Generate files with option `‘dialogs_create’` and read `Test_dialogs.py` for more information.
  
