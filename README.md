@@ -104,7 +104,7 @@ Available options for parameter -m: `'script_convert'` , `'script_files'` , `'sc
             description.xml              --------------
             Test_convert_Devel.oxt        script_oxt
             
-            
+           
 
 ###Connect to XDL file with python code
 
@@ -190,7 +190,7 @@ Available options for parameter `-m`: `‘dialogs_create’`, `‘dialogs_files�
 
 ####Dialogs
 
-All dialogs are defined in `simple_dialogs,py`. In order to use dialog eg. `SelectBox` in your script `Test_dialogs.py` import it:
+All dialogs are defined in `simple_dialogs.py`. In order to use dialog eg. `SelectBox` in your script `Test_dialogs.py` import it:
 
     from simple_dialogs import SelectBox
 
@@ -208,7 +208,7 @@ Usage: SelectBox(message="Select one item", title="SelectBox", choices=['a','b',
 
 Return: a string, or `None`
 
-![SelectBox](resource/img/SelectBox.png)
+![SelectBox](resource/dialogs/SelectBox.png)
 
 #####OptionBox
 
@@ -216,21 +216,21 @@ Usage: OptionBox(message="Select multiple items", title="OptionBox", choices=['a
 
 Return: a tuple of selected items, or empty tuple
 
-![OptionBox](resource/img/OptionBox.png)
+![OptionBox](resource/dialogs/OptionBox.png)
 
 #####TextBox
 Usage: TextBox(message="Enter your input", title="TextBox", text="")
 
 Return: a string, or `None`
 
-![TextBox](resource/img/TextBox.png)
+![TextBox](resource/dialogs/TextBox.png)
 
 #####NumberBox
 Usage: NumberBox(message="Enter a number", title="NumberBox", default_value=0, min_=-10000, max_=10000, decimals=0)
 
 Return: an integer/float or `None`
 
-![NumberBox](resource/img/NumberBox.png)
+![NumberBox](resource/dialogs/NumberBox.png)
 
 
 #####DateBox
@@ -253,7 +253,7 @@ Format: specifies the format of the displayed date.
 
 Return: the selected date
 
-![DateBox](resource/img/DateBox.png)
+![DateBox](resource/dialogs/DateBox.png)
 
 #####FolderPathBox
 
@@ -261,7 +261,7 @@ Usage: FolderPathBox(title='Get directory path')
 
 Return: the path of a directory or an empty string
 
-![FolderPathBox](resource/img/FolderPathBox.png)
+![FolderPathBox](resource/dialogs/FolderPathBox.png)
 
 #####FilePathBox
 
@@ -269,13 +269,13 @@ Usage: FilePathBox(title='Get file path')
 
 Return: the path of a file or an empty string
 
-![FilePathBox](resource/img/FilePathBox.png)
+![FilePathBox](resource/dialogs/FilePathBox.png)
 
 #####MessageBox
 
 Usage: MessageBox(message="Message", title="MessageBox")
 
-![MessageBox](resource/img/MessageBox.png)
+![MessageBox](resource/dialogs/MessageBox.png)
 
 #####ActionBox
 
@@ -283,7 +283,7 @@ Usage: ActionBox(message="Message", title="ActionBox")
 
 Return: `OK` or `NO` or `Cancel`
 
-![ActionBox](resource/img/ActionBox.png)
+![ActionBox](resource/dialogs/ActionBox.png)
 
 
 ###Installing an extension
@@ -309,7 +309,11 @@ If one create a script extension for LibreOffice (oxt file) install it with:
             schema.py                      > supported properties
             script_oxt_creator.py          > extension creator
             simple_dialogs.py              > like easygui dialogs
-            
+        
+        resource/                      > resources dir
+            dialogs/                       > dialog images
+            screanshoot/                   > screanshoot images
+        
         templates/                     > tempaltes dir
             connect/
             convert/
@@ -321,6 +325,28 @@ If one create a script extension for LibreOffice (oxt file) install it with:
         LICENSE.txt
         README.md
         unodit.py                          > main script
+
+
+##Screenshot
+
+Run macros
+
+![Script all](resource/screenshot/Macros_script_all.png)
+
+
+Test dialog
+
+![Test dialog](resource/screenshot/Example_dialog.png)
+
+
+Callback function
+
+![Callback functions](resource/screenshot/Button_event.png)
+
+
+Run embeded macro in document
+
+![Embed all](resource/screenshot/Macros_embed_all.png)
 
 
 ##Similar projects
