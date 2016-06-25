@@ -30,8 +30,8 @@ def ${EXEC_FUNCTION_PREFIX}${APP_NAME}(*args):
     # n = NumberBox(message="Year", title="Year of birth", default_value=1999, min_=1950, max_=2020, decimals=0)
     # print(n)
 
-    # DateBox(message="Choose a date", title='DateBox', format=0)
-    # d = DateBox(message="Date of birth", title="BirthDay", format=9)
+    # DateBox(message="Choose a date", title='DateBox')
+    # d = DateBox(message="Date of birth", title="BirthDay")
     # print(d)
 
     # FolderPathBox(title='Get directory path')

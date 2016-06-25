@@ -254,22 +254,9 @@ class NumberBoxClass(SimpleDialog):
 
 class DateBoxClass(SimpleDialog):
 
-    def __init__(self, message="Choose a date", title='DateBox', format=0):
+    def __init__(self, message="Choose a date", title='DateBox'):
         """
-        specifies the format of the displayed date.
-
-        0:   system short
-        1:   system short YY
-        2:   system short YYYY
-        3:   system long
-        4:   short DDMMYY
-        5:   short MMDDYY
-        6:   short YYMMDD
-        7:   short DDMMYYYY
-        8:   short MMDDYYYY
-        9:   short YYYYMMDD
-        10:  short YYMMDD DIN5008
-        11:  short YYYYMMDD DIN5008
+        the format of the displayed date 9: short YYYYMMDD
 
         """
         SimpleDialog.__init__(self, nPositionX=60, nPositionY=60, nWidth=100, nHeight=55, sTitle=None)
@@ -279,7 +266,7 @@ class DateBoxClass(SimpleDialog):
         self.lbMessage = self.addControl("FixedText", "lbMessage", dMessage)
 
         dDate = {"PositionY": 15, "PositionX": 5, "Height": 15, "Width": 90, "Dropdown": True,
-                 "StrictFormat": True, "DateFormat": format}
+                 "StrictFormat": True, "DateFormat": 9}
         self.dbDate = self.addControl("DateField", "dbDate", dDate)
 
         dOK = {"PositionY": 35, "PositionX": 30, "Height": 15, "Width": 30, "Label": "OK",}
@@ -390,7 +377,7 @@ def NumberBox(message="Enter a number", title="NumberBox", default_value=0, min_
     return app.returnValue
 
 
-def DateBox(message="Choose a date", title='DateBox', format=0):
+def DateBox(message="Choose a date", title='DateBox'):
     app = DateBoxClass(message, title)
     return app.returnValue
 

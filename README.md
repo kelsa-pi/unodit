@@ -236,22 +236,7 @@ Return: an integer/float or `None`
 #####DateBox
 Usage: DateBox(message="Choose a date", title='DateBox', format=3)
 
-Format: specifies the format of the displayed date.
-
-        0:   system short
-        1:   system short YY
-        2:   system short YYYY
-        3:   system long
-        4:   short DDMMYY
-        5:   short MMDDYY
-        6:   short YYMMDD
-        7:   short DDMMYYYY
-        8:   short MMDDYYYY
-        9:   short YYYYMMDD
-        10:  short YYMMDD DIN5008
-        11:  short YYYYMMDD DIN5008
-
-Return: the selected date
+Return: the selected date in format YYYYMMDD
 
 ![DateBox](resource/dialogs/DateBox.png)
 
