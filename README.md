@@ -108,7 +108,7 @@ Available options for parameter -m: `'script_convert'` , `'script_files'` , `'sc
 
 ###Connect to XDL file with python code
 
-Create dialog in dialog project `DialogLib` in My Macros (`Tools - Macros - Organize Dialogs - Dialogs - My Dialogs`)
+Create dialog `Default.xdl` in dialog project `DialogLib` in My Macros (`Tools - Macros - Organize Dialogs - Dialogs - My Dialogs`)
     
     python3 ./unodit.py -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
                         -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib''
@@ -138,13 +138,13 @@ Place ODF document `Text document.odt` in  project dir (tested with Writer).
                         -a 'Test_embed'
                         -m 'embed_convert'
 
-Available options for parameter `-m`: `‘embed_convert’`, `‘embed_pack’`, `‘embed_all’`
+Available options for parameter `-m`: `'embed_convert'`, `'embed_pack'`, `'embed_all'`
 
 |Parameter|Description|Note|
 |---------|------------|----|
-|`‘embed_convert’`|convert `xdl` file|write your code in `src/Test_embed.py`|
-|`‘embed_pack’`|pack     |pack macro in `Text document_MACRO.odt`|
-|`‘embed_all’`|all in one - testing|embed_convert + embed_pack|
+|`'embed_convert'`|convert `xdl` file|write your code in `src/Test_embed.py`|
+|`'embed_pack'`|pack     |pack macro in `Text document_MACRO.odt`|
+|`'embed_all'`|all in one - testing|embed_convert + embed_pack|
 
 **Directory structure and parameters**
 
@@ -160,14 +160,14 @@ Available options for parameter `-m`: `‘embed_convert’`, `‘embed_pack’`,
                         -a 'Test_dialogs'
                         -m 'dialogs_create'
                         
-Available options for parameter `-m`: `‘dialogs_create’`, `‘dialogs_files’`, `‘dialogs_oxt’`, `‘dialogs_all’`
+Available options for parameter `-m`: `'dialogs_create'`, `'dialogs_files'`, `'dialogs_oxt'`, `'dialogs_all'`
 
 |Parameter|Description|Note|
 |---------|------------|----|
-|`‘dialogs_create’`| create files|write your code in `src/Test_dialogs.py`|
-|`‘dialogs_files’`|create script extension files|change `description.txt`, `title.txt` and `license.txt`|
-|`‘dialogs_oxt’`|create script extension|extension file `Test_dialogs_Devel.oxt`|
-|`‘dialogs_all’`|all in one - testing|dialogs_create + dialogs_files + dialogs_oxt|
+|`'dialogs_create'`| create files|write your code in `src/Test_dialogs.py`|
+|`'dialogs_files'`|create script extension files|change `description.txt`, `title.txt` and `license.txt`|
+|`'dialogs_oxt'`|create script extension|extension file `Test_dialogs_Devel.oxt`|
+|`'dialogs_all'`|all in one - testing|dialogs_create + dialogs_files + dialogs_oxt|
 
 
 **Directory structure and parameters**
@@ -199,7 +199,7 @@ GUI operations are a simple a matter of invoking SelectBox functions with a few 
     s = SelectBox(message="Select your favorite city", title="My choice", choices=["New York","London", "Paris", "Berlin"])
     print(s)
 
-Generate files with option `‘dialogs_create’` and read `Test_dialogs.py` for more information.
+Generate files with option `'dialogs_create'` and read `Test_dialogs.py` for more information.
  
 
 #####SelectBox 
@@ -234,7 +234,7 @@ Return: an integer/float or `None`
 
 
 #####DateBox
-Usage: DateBox(message="Choose a date", title='DateBox', format=3)
+Usage: DateBox(message="Date of birth", title="BirthDay")
 
 Return: the selected date in format YYYYMMDD
 
