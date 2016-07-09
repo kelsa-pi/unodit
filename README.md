@@ -1,7 +1,7 @@
 # unodit
 **UNO** **Di**alog **T**ools (alpha version) automate some of the tedious tasks with dialogs in order to help you write your own extension for LibreOffice.
 
-Use this library to prepare your python script with dialogs as extension for LibreOffice or embed in document. Newcomers would benefit from reading generated code or writing macros with simple dialog boxes for interaction with a user.
+Use this library to prepare your python script with dialogs as extension for LibreOffice or embed in document. Newcomers would benefit from reading generated code (see `examples` directory) or writing macros with simple dialog boxes for interaction with a user.
 
 `unodit` main features are:
 
@@ -67,6 +67,7 @@ You can copy `config.ini` in your project root directory. Edit section in `my_pr
 Create python project directory `TestLib` in `LIBREOFFICE_PATH/4/user/Scripts/python/`.
 
 Replace `LIBREOFFICE_PATH` with actual path.
+
 
 ###Convert XDL file to python code and create extension
 
