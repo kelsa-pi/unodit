@@ -155,7 +155,7 @@ Available options for parameter `-m`: `'embed_convert'`, `'embed_pack'`, `'embed
                 Test_embed.py            --------------
             Text document_MACRO.odt       embed_pack
 
-###Provides a simple dialog boxes for scripts (work in progress)
+###Provides a simple dialog boxes for scripts
 
     python3 ./unodit.py -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib'
                         -a 'Test_dialogs'
