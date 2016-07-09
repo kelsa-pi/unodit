@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE manifest:manifest PUBLIC "-//OpenOffice.org//DTD Manifest 1.0//EN" "Manifest.dtd">
+<manifest:manifest xmlns:manifest="http://openoffice.org/2001/manifest">
+
+    <!--
+An extension must contain a directory META-INF (all uppercase). The META-INF 
+directory contains a manifest.xml which lists all items and their media-type. 
+
+Developer's Guide link:
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Extensions/File_Format
+
+Tip: When edited open file in browser to check for errors.
+    -->
+
+    <!-- Scripting Framework
+    The Scripting Framework allows users to write short program used to automate
+    a number of steps in Python.
+
+    Developer's Guide link:
+    https://wiki.openoffice.org/wiki/Documentation/DevGuide/Scripting/Scripting_Framework
+    -->
+
+    <!-- Directory with python scripts: script
+    -->
+    <manifest:file-entry manifest:media-type="application/vnd.sun.star.framework-script"
+                         manifest:full-path="src/"/>
+
+    <!-- Directory with dialogs files (*.xdl): gui
+    <manifest:file-entry manifest:media-type="application/vnd.sun.star.dialog-library" 
+        manifest:full-path="gui/"/>
+    -->
+
+    <!-- Configuration Data Files -->
+    <manifest:file-entry manifest:media-type="application/vnd.sun.star.configuration-data"
+                         manifest:full-path="Addons.xcu"/>
+
+
+    <!-- Extension name in the Extension Manager dialog -->
+    <manifest:file-entry manifest:media-type="application/vnd.sun.star.package-bundle-description"
+                         manifest:full-path="description/title.txt"/>
+
+
+</manifest:manifest>

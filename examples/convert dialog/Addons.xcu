@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<oor:component-data oor:name="Addons" oor:package="org.openoffice.Office" xmlns:install="http://openoffice.org/2004/installation" xmlns:oor="http://openoffice.org/2001/registry" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <!--
+    Add-on is an extension providing one or more functions through the user interface:
+    1) Submenu of the Tools menu (AddonMenu)
+    2) Custom menus in the Menu Bar inserted between the Tools and Window menus (OfficeMenuBar)
+    3) Integrated into the Function Bar (OfficeToolBar)
+
+    Developer's Guide link:
+    https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/AddOns/Add-Ons
+
+    Tip: When edited open file in browser to check for errors.
+    -->
+
+    <node oor:name="AddonUI">
+        <node oor:name="AddonMenu">
+            <node oor:name="my.identifier.value.for.myaddon" oor:op="replace">
+
+                <prop oor:name="Title" oor:type="xs:string">
+                    <value xml:lang="en-US">Test_convert</value>
+                </prop>
+
+                <!-- When hit entry execute:
+                     directory: src
+                     module - my_addon,
+                     function - Run_MyAddOn
+                -->
+
+                <prop oor:name="URL" oor:type="xs:string">
+                    <value>vnd.sun.star.script:Test_convert_Devel.oxt|src|Test_convert.py$Run_Test_convert?language=Python&amp;location=user:uno_packages</value>
+                </prop>
+
+            </node>
+        </node>
+  </node>
+</oor:component-data>
