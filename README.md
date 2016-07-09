@@ -9,7 +9,7 @@ Use this library to prepare your python script with dialogs as extension for Lib
     - takes a dialog file created with LibreOffice Dialog Editor (`.xdl`)
     - generate dialog in python code, 
     - create callback functions for all button onClick events
-    - create script extension for LibreOffice (oxt) with
+    - create script extension for LibreOffice (`.oxt`) with
       menu-item in `Tools - AddOns` menu
 2. Connect to dialog
     - takes a dialog file (`.xdl`) in dialog library
@@ -28,7 +28,7 @@ Use this library to prepare your python script with dialogs as extension for Lib
         - show information (MessageBox)
         - ask questions (ActionBox)
     - in script interactions are invoked by simple function calls 
-    - create script extension for LibreOffice (oxt)
+    - create script extension for LibreOffice (`.oxt`)
 
 Other features are:
 - all steps are logged to `log.log` file in project root
