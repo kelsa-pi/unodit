@@ -6,7 +6,7 @@ Use this library to prepare your python script with dialogs as extension for Lib
 `unodit` main features are:
 
 1. Convert dialog
-    - takes a dialog file created with LibreOffice Dialog Editor (`.xdl`)
+    - takes a dialog file created with Dialog Editor (`.xdl`)
     - generate dialog in python code, 
     - create callback functions for all button onClick events
     - create script extension for LibreOffice (`.oxt`) with
@@ -16,17 +16,17 @@ Use this library to prepare your python script with dialogs as extension for Lib
     - generate python code to connect with dialog and 
     - create callback functions for all button onClick events
 3. Embed dialog
-    - takes a dialog file created with LibreOffice Dialog Editor (`.xdl`)
+    - takes a dialog file created with Dialog Editor (`.xdl`)
     - generate dialog in python code, 
     - create callback functions for all button onClick events
     - embed dialog in ODF document
 4. Simple dialog boxes 
-    - create dialogs for interaction with a user
+    - provides a simple dialog boxes for interaction with a user
         - make choices (SelectBox, OptionBox) 
         - enter new data (TextBox, NumberBox, DateBox) 
         - get paths (FolderPathBox, FilePathBox)
         - show information (MessageBox)
-        - ask questions (ActionBox)
+        - make a decision (ActionBox)
     - in script interactions are invoked by simple function calls 
     - create script extension for LibreOffice (`.oxt`)
 
@@ -37,6 +37,7 @@ Other features are:
 - conversion `.xdl` to `.py` defined in `schema.py`
 - diff `.xdl` vs. `schema.py`
 
+Your comments, feedback and patches are welcomed and appreciated.
 
 DISCLAIMER:
 I'm not a programmer.
