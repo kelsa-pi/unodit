@@ -13,7 +13,7 @@ class PythonGenerator:
     Generate python code
     """
 
-    def __init__(self, xdlfile, context, pydir='', app='MyApp', mode='script_convert', indent=4):
+    def __init__(self, xdlfile, context, pydir='', app='MyApp', mode='script_convert', indent=4, **kwargs):
         self.xdlfile = xdlfile
         self.context = context
         self.pydir = pydir
@@ -76,6 +76,24 @@ class PythonGenerator:
             self.tmpl_event_callbacks = string.Template(self.get_template(py_tmpl_dir, '11_event_callbacks.txt'))
             self.logger.info('successfully read all templates for embed convert')
 
+        # read all templates
+        if self.mode == 'sidebar_convert':
+            # ui file
+            py_tmpl_dir = os.path.join(self.tempates_dir, 'convert')
+            self.tmpl_main_ui = string.Template(self.get_template(py_tmpl_dir, '1_main_ui.txt'))
+            self.tmpl_dialog_prop = string.Template(self.get_template(py_tmpl_dir, '2_dialog_properties.txt'))
+            self.tmpl_control_model = string.Template(self.get_template(py_tmpl_dir, '3_control_model.txt'))
+            self.tmpl_control_prop = string.Template(self.get_template(py_tmpl_dir, '4_control_properties.txt'))
+            self.tmpl_control_insert = string.Template(self.get_template(py_tmpl_dir, '5_control_insert.txt'))
+            self.tmpl_control_event_on_click = string.Template(
+                self.get_template(py_tmpl_dir, '6_control_event_action.txt'))
+            self.tmpl_event_action = string.Template(self.get_template(py_tmpl_dir, '7_event_action.txt'))
+            # exec file
+            self.tmpl_main = string.Template(self.get_template(py_tmpl_dir, '10_main.txt'))
+            self.tmpl_event_callbacks = string.Template(self.get_template(py_tmpl_dir, '11_event_callbacks.txt'))
+            self.logger.info('successfully read all templates for script files')
+
+
     def get_template(self, py_tmpl_dir, template):
         templ = os.path.join(py_tmpl_dir, template)
         with open(templ, 'rt') as t:
@@ -86,7 +104,7 @@ class PythonGenerator:
 
         dialog_properties, control_properties = self._get_dialog_and_controls()
 
-        if self.mode == 'script_convert' or self.mode == 'script_all':
+        if self.mode == 'script_convert' or self.mode == 'script_all' or self.mode == 'sidebar_convert':
 
             ui = {'I': self.indent,
                   'GENERATED_DATETIME': conf.NOW,

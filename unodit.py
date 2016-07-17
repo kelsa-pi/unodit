@@ -9,7 +9,7 @@ try:
     import script_oxt_creator as script
     import simple_dialogs as dialogs
     import embed_packer as ep
-    from config import LOGGER_NAME, LOG_FILE, VERSION, NOW, MAIN_DIR
+    from config import LOGGER_NAME, LOG_FILE, VERSION, NOW, MAIN_DIR, ReadINI
 
 except ImportError:
     # command line
@@ -18,7 +18,7 @@ except ImportError:
     import pythonpath.script_oxt_creator as script
     import pythonpath.simple_dialogs as dialogs
     import pythonpath.embed_packer as ep
-    from pythonpath.config import LOGGER_NAME, LOG_FILE, VERSION, NOW, MAIN_DIR
+    from pythonpath.config import LOGGER_NAME, LOG_FILE, VERSION, NOW, MAIN_DIR, ReadINI
 
 
 def create_logger(lname, ldir, lfile):
@@ -37,7 +37,7 @@ def create_logger(lname, ldir, lfile):
     return logger
 
 
-def unodit(xdlfile='', pydir='', app='MyApp', mode='script_convert', indent=4):
+def unodit(xdlfile='', pydir='', app='MyApp', mode='script_convert', indent=4, panel=2):
     """
     UNO Dialog Tools is a Python3 library (alpha version) that takes a LibreOffice Basic Dialog XML file (XDL) and:
 
@@ -57,7 +57,7 @@ def unodit(xdlfile='', pydir='', app='MyApp', mode='script_convert', indent=4):
     :param app: application name
     :param mode: 'script_convert', 'script_files', 'script_oxt', 'script_all', 'connect'
     :param indent: number of spaces used for indentation in the generated code. If 0, \t is used as indent
-
+    :param panel: number od panels in sidebar, work with mode sidebar_convert
     """
     logger = logging.getLogger('unodit')
 
@@ -72,8 +72,9 @@ pydir     = {}
 app name  = {}
 mode      = {}
 indent    = {}
+panel     = {}
 ---------------------------------------------------------------------
-    """.format(VERSION, NOW, MAIN_DIR, xdlfile, pydir, app, mode, indent)
+    """.format(VERSION, NOW, MAIN_DIR, xdlfile, pydir, app, mode, indent, panel)
 
     logger.info(start_log)
 
@@ -150,6 +151,27 @@ indent    = {}
         mode_dialogs_files()
         mode_dialogs_oxt()
 
+    def mode_sidebar_convert():
+        logger.info('MODE: ---------- sidebar_convert ---------------------------------')
+
+        for i in range(0, panel):
+            # reset
+            panel_section = ''
+            panel_name = ''
+
+            # read config.ini for xdl file
+            read_conf = ReadINI(MAIN_DIR, pydir)
+            panel_section = 'panel'+ str(i + 1)
+            file_xdl = read_conf.get(panel_section, 'xdl_ui')
+            panel_name = read_conf.get(panel_section, 'name')
+
+            # generate
+            ctx = extractor.ContextGenerator(file_xdl)
+            ctx.get_xdl_context()
+            uno_ctx = ctx.get_uno_context()
+            cg = generator.CodeGenerator(file_xdl, uno_ctx, pydir, app, mode, indent=4, panel_name=panel_name)
+            cg.generate_code()
+
     # script - convert xdl file (1)
     if mode == 'script_convert':
         mode_script_convert()
@@ -197,6 +219,10 @@ indent    = {}
     # simple dialogs all |9+10+11| (12)
     elif mode == 'dialogs_all':
         mode_dialogs_all()
+
+    # sidebar - convert xdl fils (13)
+    elif mode == 'sidebar_convert':
+        mode_sidebar_convert()
 
     print('Finished')
 
@@ -253,12 +279,16 @@ def main():
         help='script_convert - convert xdl file, script_files - create script extension files, script_oxt - create script extension, script_all - convert xdl file, create script extension files and script extension, connect - connect to xdl file.',
         choices=['script_convert', 'script_files', 'script_oxt', 'script_all',
                  'connect', 'embed_convert', 'embed_pack', 'embed_all',
-                 'dialogs_create', 'dialogs_files', 'dialogs_oxt', 'dialogs_all'], required=False)
+                 'dialogs_create', 'dialogs_files', 'dialogs_oxt', 'dialogs_all', 'sidebar_convert'], required=False)
 
     parser.add_argument(
         '-i', '--indent', type=int, default=4,
         help='number of spaces used for indentation in the generated code. If 0, \t is used as indent',
         choices=[0, 1, 2, 3, 4], required=False)
+
+    parser.add_argument(
+        '-p', '--panel', type=int, default=2,
+        help='number of panels in sidebar', required=False)
 
     args = parser.parse_args()
 
@@ -278,6 +308,7 @@ def main():
            args.appname,
            args.mode,
            args.indent,
+           args.panel,
            )
 
 

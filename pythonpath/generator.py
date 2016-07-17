@@ -19,13 +19,14 @@ class CodeGenerator:
     Generate code from uno context dict
     """
 
-    def __init__(self, xdlfile, context, pydir='', app='MyApp', mode='script_convert', indent=4):
+    def __init__(self, xdlfile, context, pydir='', app='MyApp', mode='script_convert', indent=4, **kwargs):
         self.xdlfile = xdlfile
         self.context = context
         self.pydir = pydir
         self.app = app
         self.mode = mode
         self.indent = indent
+        self.kwargs = kwargs
         self.code = {}
         self.config = conf.ReadINI(conf.MAIN_DIR, self.pydir)
         self.SOURCE_DIR = self.config.get('directories', 'source_dir')
@@ -53,20 +54,45 @@ class CodeGenerator:
             ui = py_code.generate_py_code()
             self.write_app_exec_file(ui)
 
+        # sidebar
+        elif self.mode == 'sidebar_convert':
+            py_code = pcg.PythonGenerator(self.xdlfile, self.context, self.pydir, self.app, self.mode, self.indent)
+            ui, logic = py_code.generate_py_code()
+            self.write_app_exec_file(logic)
+            self.write_main_ui_file(ui)
+
     def write_main_ui_file(self, sui):
         """
         write generated python main ui file
         :param sui:
         """
 
-        ui_file_name = self.app + self.config.get('ui_file', 'sufix') + '.py'
-
         # if not exist create 'pythopath' dir
         if not os.path.exists(os.path.join(self.pydir, self.SOURCE_DIR, IMPORT_DIR)):
             os.makedirs(os.path.join(self.pydir, self.SOURCE_DIR, IMPORT_DIR))
 
-        # if the main ui file exists, remove it
-        py_file_path = os.path.join(self.pydir, self.SOURCE_DIR, IMPORT_DIR, ui_file_name)
+        for name, value in self.kwargs.items():
+            if name == 'panel_name':
+                ui_file_name = value + self.config.get('ui_file', 'sufix') + '.py'
+            else:
+                ui_file_name = self.app + self.config.get('ui_file', 'sufix') + '.py'
+
+        if self.mode == 'sidebar_convert':
+
+            # if not exist create ui directory
+            uidir = self.config.get('sdb_directories', 'sdb_ui')
+            SDB_UI_DIR = os.path.join(self.pydir, self.SOURCE_DIR, IMPORT_DIR, uidir)
+            if not os.path.exists(SDB_UI_DIR):
+                os.makedirs(SDB_UI_DIR)
+
+            # if the main ui file exists, remove it
+            py_file_path = os.path.join(SDB_UI_DIR, ui_file_name)
+
+        else:
+
+            # if the main ui file exists, remove it
+            py_file_path = os.path.join(self.pydir, self.SOURCE_DIR, IMPORT_DIR, ui_file_name)
+
         if os.path.exists(py_file_path):
             os.remove(py_file_path)
 
@@ -82,9 +108,21 @@ class CodeGenerator:
         :param lg:
         :return:
         """
-        exec_file_name = self.app + '.py'
+        for name, value in self.kwargs.items():
+            if name == 'panel_name':
+                exec_file_name = value + '.py'
 
-        py_file_path = os.path.join(self.pydir, self.SOURCE_DIR, exec_file_name)
+                # if not exist create ui_logic directory
+                uilogic = self.config.get('sdb_directories', 'sdb_ui_logic')
+                SDB_LOGIC_DIR = os.path.join(self.pydir, self.SOURCE_DIR, IMPORT_DIR, uilogic)
+                if not os.path.exists(SDB_LOGIC_DIR):
+                    os.makedirs(SDB_LOGIC_DIR)
+
+                py_file_path = os.path.join(SDB_LOGIC_DIR, exec_file_name)
+
+            else:
+                exec_file_name = self.app + '.py'
+                py_file_path = os.path.join(self.pydir, self.SOURCE_DIR, exec_file_name)
 
         if not os.path.exists(self.pydir):
             os.makedirs(self.pydir)
