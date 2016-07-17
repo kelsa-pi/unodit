@@ -9,6 +9,7 @@ try:
     import script_oxt_creator as script
     import simple_dialogs as dialogs
     import embed_packer as ep
+    import sidebar
     from config import LOGGER_NAME, LOG_FILE, VERSION, NOW, MAIN_DIR, ReadINI
 
 except ImportError:
@@ -18,6 +19,7 @@ except ImportError:
     import pythonpath.script_oxt_creator as script
     import pythonpath.simple_dialogs as dialogs
     import pythonpath.embed_packer as ep
+    import pythonpath.sidebar as sidebar
     from pythonpath.config import LOGGER_NAME, LOG_FILE, VERSION, NOW, MAIN_DIR, ReadINI
 
 
@@ -153,6 +155,8 @@ panel     = {}
 
     def mode_sidebar_convert():
         logger.info('MODE: ---------- sidebar_convert ---------------------------------')
+        all_panels = ''
+        p_names = ''
 
         for i in range(0, panel):
             # reset
@@ -165,12 +169,19 @@ panel     = {}
             file_xdl = read_conf.get(panel_section, 'xdl_ui')
             panel_name = read_conf.get(panel_section, 'name')
 
-            # generate
+            # generate panel files
             ctx = extractor.ContextGenerator(file_xdl)
             ctx.get_xdl_context()
             uno_ctx = ctx.get_uno_context()
             cg = generator.CodeGenerator(file_xdl, uno_ctx, pydir, app, mode, indent=4, panel_name=panel_name)
             cg.generate_code()
+
+            p_names = p_names + panel_name + ','
+
+        # generate sidebar main file
+        p_names = p_names[:-1]
+        sb = sidebar.SidebarGenerator(file_xdl, uno_ctx, pydir, app, mode, indent=4, all_panels=p_names)
+        sb.generate_sidebar_code()
 
     # script - convert xdl file (1)
     if mode == 'script_convert':

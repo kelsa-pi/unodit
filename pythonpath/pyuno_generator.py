@@ -19,6 +19,7 @@ class PythonGenerator:
         self.pydir = pydir
         self.app = app
         self.mode = mode
+        self.kwargs = kwargs
         self.config = conf.ReadINI(conf.MAIN_DIR, self.pydir)
         self.logger = logging.getLogger('unodit.pyuno_generator.PythonGenerator')
         self.logger.info('NEW LOGGER: unodit.pyuno_generator.PythonGenerator')
@@ -79,7 +80,7 @@ class PythonGenerator:
         # read all templates
         if self.mode == 'sidebar_convert':
             # ui file
-            py_tmpl_dir = os.path.join(self.tempates_dir, 'convert')
+            py_tmpl_dir = os.path.join(self.tempates_dir, 'sidebar_convert')
             self.tmpl_main_ui = string.Template(self.get_template(py_tmpl_dir, '1_main_ui.txt'))
             self.tmpl_dialog_prop = string.Template(self.get_template(py_tmpl_dir, '2_dialog_properties.txt'))
             self.tmpl_control_model = string.Template(self.get_template(py_tmpl_dir, '3_control_model.txt'))

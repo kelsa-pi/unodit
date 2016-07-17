@@ -90,9 +90,9 @@ class CodeGenerator:
 
         else:
 
-            # if the main ui file exists, remove it
             py_file_path = os.path.join(self.pydir, self.SOURCE_DIR, IMPORT_DIR, ui_file_name)
 
+        # if the main ui file exists, remove it
         if os.path.exists(py_file_path):
             os.remove(py_file_path)
 
@@ -110,6 +110,7 @@ class CodeGenerator:
         """
         for name, value in self.kwargs.items():
             if name == 'panel_name':
+                # same in sidebar.py
                 exec_file_name = value + '.py'
 
                 # if not exist create ui_logic directory

@@ -8,8 +8,7 @@ from com.sun.star.lang import XComponent
 from com.sun.star.ui import XUIElement, XToolPanel,XSidebarPanel, LayoutSize
 from com.sun.star.ui.UIElementType import TOOLPANEL as UET_TOOLPANEL
 
-from logic.Test_convert import Test_convert
-
+${IMPORT_PANELS}
 from com.sun.star.uno import RuntimeException as _rtex
 
 
@@ -136,24 +135,4 @@ def create_some_content(panelWin,url):
 
 ${I}ctx = uno.getComponentContext()
 ${I}# url is set in Sidebar.xcu
-${I}if url == 'private:resource/toolpanel/SidebarExampleFactory/Panel1':
-
-${I}${I}pos_y = 30
-${I}${I}height = 200
-
-${I}${I}#xray(panelWin)
-
-${I}${I}app = Test_convert(panelWin)
-${I}${I}app.showDialog()
-
-${I}${I}return height + pos_y + 15
-
-${I}elif url == 'private:resource/toolpanel/SidebarExampleFactory/Panel2':
-
-${I}${I}pos_y = 20
-${I}${I}height = 200
-
-${I}${I}app = Test_convert(panelWin)
-${I}${I}app.showDialog()
-
-${I}${I}return height + pos_y + 15
+${RUN_PANELS}
