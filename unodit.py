@@ -155,13 +155,9 @@ panel     = {}
 
     def mode_sidebar_convert():
         logger.info('MODE: ---------- sidebar_convert ---------------------------------')
-        all_panels = ''
         p_names = ''
 
         for i in range(0, panel):
-            # reset
-            panel_section = ''
-            panel_name = ''
 
             # read config.ini for xdl file
             read_conf = ReadINI(MAIN_DIR, pydir)

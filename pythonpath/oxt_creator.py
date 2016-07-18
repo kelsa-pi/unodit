@@ -209,6 +209,7 @@ class CreateScriptExtension:
         oxt_zip_file.close()
         self.logger.info('oxt: ' + oxt)
 
+
 class SidebarExtensionFiles:
     def __init__(self, pydir='', app='MyApp', mode='script_convert'):
         self.pydir = pydir
