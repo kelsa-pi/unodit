@@ -6,7 +6,7 @@ try:
     # extension
     import extractor
     import generator
-    import script_oxt_creator as script
+    import oxt_creator as script
     import simple_dialogs as dialogs
     import embed_packer as ep
     import sidebar
@@ -16,7 +16,7 @@ except ImportError:
     # command line
     import pythonpath.extractor as extractor
     import pythonpath.generator as generator
-    import pythonpath.script_oxt_creator as script
+    import pythonpath.oxt_creator as script
     import pythonpath.simple_dialogs as dialogs
     import pythonpath.embed_packer as ep
     import pythonpath.sidebar as sidebar
