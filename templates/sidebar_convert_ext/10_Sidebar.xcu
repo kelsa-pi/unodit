@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<oor:component-data
+	oor:name="Sidebar"
+	oor:package="org.openoffice.Office.UI"
+	xmlns:install="http://openoffice.org/2004/installation"
+	xmlns:oor="http://openoffice.org/2001/registry"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <node oor:name="Content">
+		<node oor:name="DeckList">
+	
+			<node oor:name="${DECK_NAME}" oor:op="replace">
+	    	    <prop oor:name="Title" oor:type="xs:string">
+            	   	<value xml:lang="en-US">${DECK_TITLE}</value>
+	            </prop>
+	            <prop oor:name="Id" oor:type="xs:string">
+	               	<value>${DECK_ID}</value>
+	            </prop>
+	            <prop oor:name="IconURL" oor:type="xs:string">
+	               	<value>vnd.sun.star.extension://${EXTENSION_IDENTIFIER}.${SIDEBAR_NAME}/${SIDEBAR_ICON_DIR}/${SIDEBAR_ICON}</value>
+	            </prop>				
+		       	<prop oor:name="ContextList">
+	           		<value oor:separator=";">
+	           			${SIDEBAR_CONTEXT};
+	               	</value>
+	           	</prop>
+	       	</node>
+
+	    </node>
+    	<node oor:name="PanelList">
+        	
+        	${SIDEBAR_PANELS}
+
+    	</node>
+    </node>
+</oor:component-data>

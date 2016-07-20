@@ -1,0 +1,29 @@
+﻿<node oor:name="Panel_${PANEL_NAME}" oor:op="replace">
+	        	<prop oor:name="Title" oor:type="xs:string">
+                	<value xml:lang="en-US">${PANEL_TITLE}</value>
+            	</prop>
+            	<prop oor:name="Id" oor:type="xs:string">
+                	<value>Panel_${PANEL_NAME}_ID</value>
+            	</prop>
+            	<prop oor:name="DeckId" oor:type="xs:string">
+                	<value>${DECK_ID}</value>
+            	</prop>
+            	<prop oor:name="ContextList">
+            		<value oor:separator=";">
+            			${PANEL_CONTEXT}
+                	</value>
+            	</prop>
+            	<prop oor:name="ImplementationURL" oor:type="xs:string">
+            		<value>private:resource/toolpanel/${SIDEBAR_NAME}/${PANEL_NAME}</value>
+            	</prop>				
+            	<prop oor:name="OrderIndex" oor:type="xs:int">
+            		<value>${PANEL_ORDER_INDEX}</value>
+            	</prop>
+            	<prop oor:name="WantsCanvas" oor:type="xs:boolean">
+            		<value>false</value>
+            	</prop>
+            	<prop oor:name="DefaultMenuCommand">
+          			<value>${EXTENSION_IDENTIFIER}:${PANEL_NAME}</value>
+        		</prop>
+        	</node>
+

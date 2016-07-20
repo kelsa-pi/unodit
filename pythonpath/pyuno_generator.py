@@ -105,7 +105,7 @@ class PythonGenerator:
 
         dialog_properties, control_properties = self._get_dialog_and_controls()
 
-        if self.mode == 'script_convert' or self.mode == 'script_all' or self.mode == 'sidebar_convert':
+        if self.mode == 'script_convert' or self.mode == 'script_all':
 
             ui = {'I': self.indent,
                   'GENERATED_DATETIME': conf.NOW,
@@ -161,6 +161,32 @@ class PythonGenerator:
             main_ui = self.tmpl_main_ui.substitute(ui)
 
             return main_ui
+
+        elif self.mode == 'sidebar_convert':
+            for name, value in self.kwargs.items():
+                if name == 'panel_name':
+                    pn = value
+            ui = {'I': self.indent,
+                  'GENERATED_DATETIME': conf.NOW,
+                  'UNODIT_VERSION': conf.VERSION,
+                  'APP_NAME': pn,
+                  'GEN_DIALOG_PROPERTIES': self._set_dialog_properties(dialog_properties),
+                  'GEN_CONTROLS': self._get_controls_properties(control_properties),
+                  'GEN_ACTIONS_EVENTS': self._get_event_action(control_properties),
+                  'EXEC_FUNCTION_PREFIX': self.config.get('exec_function', 'prefix')
+                  }
+
+            main_ui = self.tmpl_main_ui.substitute(ui)
+
+            lg = {'I': self.indent,
+                  'UI_DIR': self.config.get('sdb_directories', 'sdb_ui'),
+                  'APP_NAME': pn,
+                  'GEN_ACTIONS_CALLBACKS': self._get_event_callbacks(control_properties),
+                  'EXEC_FUNCTION_PREFIX': self.config.get('exec_function', 'prefix')
+                  }
+            logic = self.tmpl_main.substitute(lg)
+
+            return main_ui, logic
 
     def _get_button_callbaks(self, cntrl_prop_dict):
 

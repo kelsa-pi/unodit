@@ -140,7 +140,6 @@ panel     = {}
         logger.info('MODE: ---------- dialogs_files -----------------------------------')
         sef = script.ScriptExtensionFiles(pydir, app, mode)
         sef.create()
-        pass
 
     def mode_dialogs_oxt():
         logger.info('MODE: ---------- dialogs_oxt -------------------------------------')
@@ -178,6 +177,25 @@ panel     = {}
         p_names = p_names[:-1]
         sb = sidebar.SidebarGenerator(file_xdl, uno_ctx, pydir, app, mode, indent=4, all_panels=p_names)
         sb.generate_sidebar_code()
+
+    def mode_sidebar_files():
+        logger.info('MODE: ---------- dialogs_files -----------------------------------')
+        sef = script.SidebarExtensionFiles(pydir, app, mode, panel)
+        sef.create()
+
+    def get_sidebar_panels():
+
+        for i in range(0, panel):
+            # read config.ini for xdl file
+            read_conf = ReadINI(MAIN_DIR, pydir)
+            panel_section = 'panel' + str(i + 1)
+            file_xdl = read_conf.get(panel_section, 'xdl_ui')
+            panel_name = read_conf.get(panel_section, 'name')
+            p_names = p_names + panel_name + ','
+
+        p_names = p_names[:-1]
+        return p_names
+
 
     # script - convert xdl file (1)
     if mode == 'script_convert':
@@ -230,6 +248,10 @@ panel     = {}
     # sidebar - convert xdl fils (13)
     elif mode == 'sidebar_convert':
         mode_sidebar_convert()
+
+    # sidebar - convert xdl fils (13)
+    elif mode == 'sidebar_files':
+        mode_sidebar_files()
 
     print('Finished')
 
@@ -286,7 +308,7 @@ def main():
         help='script_convert - convert xdl file, script_files - create script extension files, script_oxt - create script extension, script_all - convert xdl file, create script extension files and script extension, connect - connect to xdl file.',
         choices=['script_convert', 'script_files', 'script_oxt', 'script_all',
                  'connect', 'embed_convert', 'embed_pack', 'embed_all',
-                 'dialogs_create', 'dialogs_files', 'dialogs_oxt', 'dialogs_all', 'sidebar_convert'], required=False)
+                 'dialogs_create', 'dialogs_files', 'dialogs_oxt', 'dialogs_all', 'sidebar_convert', 'sidebar_files'], required=False)
 
     parser.add_argument(
         '-i', '--indent', type=int, default=4,

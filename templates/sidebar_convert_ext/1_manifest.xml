@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+ <manifest:manifest xmlns:manifest="http://openoffice.org/2001/manifest">
+		 
+	<manifest:file-entry
+		manifest:media-type="application/vnd.sun.star.uno-component;type=Python"
+		manifest:full-path="${SOURCE}/sidebar.py"/>
+		
+	<manifest:file-entry
+		manifest:media-type="application/vnd.sun.star.configuration-data"
+		manifest:full-path="${FACTORY}"/>
+
+	<manifest:file-entry
+		manifest:media-type="application/vnd.sun.star.configuration-data"
+		manifest:full-path="${PROTOCOL}"/>
+				
+	<manifest:file-entry 
+		manifest:media-type="application/vnd.sun.star.configuration-data"
+		manifest:full-path="${SIDEBAR}"/>
+
+	<!-- Extension name in the Extension Manager dialog -->
+	<manifest:file-entry manifest:media-type="application/vnd.sun.star.package-bundle-description"
+	manifest:full-path="${APP_DESCRIPTION}/${APP_TITLE}"/>
+
+</manifest:manifest>

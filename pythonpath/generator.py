@@ -56,7 +56,11 @@ class CodeGenerator:
 
         # sidebar
         elif self.mode == 'sidebar_convert':
-            py_code = pcg.PythonGenerator(self.xdlfile, self.context, self.pydir, self.app, self.mode, self.indent)
+            for name, value in self.kwargs.items():
+                if name == 'panel_name':
+                    pn = value
+
+            py_code = pcg.PythonGenerator(self.xdlfile, self.context, self.pydir, self.app, self.mode, self.indent, panel_name=pn )
             ui, logic = py_code.generate_py_code()
             self.write_app_exec_file(logic)
             self.write_main_ui_file(ui)
