@@ -2,6 +2,7 @@ import os
 import string
 import zipfile
 import logging
+import shutil
 
 try:
     import config as conf
@@ -326,25 +327,6 @@ class SidebarExtensionFiles:
         ef.close()
         self.logger.info('app title file ' + f)
 
-    # def ext_add_on_menu(self):
-    #
-    #     s = {'TITLE': self.app,
-    #          'OXT_NAME': self.app + self.config.get('script_oxt', 'name_sufix') + '.oxt',
-    #          'SOURCE': self.config.get('directories', 'source_dir'),
-    #          'EXEC_FILE_NAME': self.app + '.py',
-    #          'EXEC_FUNCTION': self.config.get('exec_function', 'prefix') + self.app,
-    #          'INSTALL': self.config.get('script_install', 'location'),
-    #          }
-    #     f = os.path.join(self.pydir, self.config.get('script_add_on_menu', 'file'))
-    #     t = string.Template(
-    #         self.get_template(self.ext_tmpl_dir, self.config.get('script_add_on_menu', 'template')))
-    #     ext_text = t.substitute(s)
-    #
-    #     ef = open(f, 'w')
-    #     ef.write(ext_text)
-    #     ef.close()
-    #     self.logger.info('app add_on_menu file ' + f + ' ' + str(s))
-
     def sidebar_factory(self):
         s = {'EXTENSION_IDENTIFIER': self.config.get('extension', 'identifier'),
              'SIDEBAR_NAME': self.config.get('sidebar', 'name'),
@@ -420,6 +402,18 @@ class SidebarExtensionFiles:
         ef.close()
         self.logger.info('sidebar protocol handler ' + f + ' ' + str(s))
 
+    def sidebar_icon(self):
+        d = os.path.join(self.pydir, self.config.get('sidebar_icon', 'dir'))
+        if not os.path.exists(d):
+            os.makedirs(d)
+
+        icon_src = os.path.join(conf.TEMPLATES_DIR, 'sidebar_convert_ext', self.config.get('sidebar_icon', 'template'))
+        icon_dest = os.path.join(d, self.config.get('sidebar_icon', 'file'))
+
+        shutil.copy(icon_src, icon_dest)
+        self.logger.info('app icon file ' + icon_dest)
+
+
     def create(self):
         self.ext_meta()
         self.ext_description()
@@ -428,6 +422,7 @@ class SidebarExtensionFiles:
         self.app_title()
         self.sidebar_factory()
         self.sidebar_protocol()
+        self.sidebar_icon()
         self.sidebar()
 
 
