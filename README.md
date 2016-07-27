@@ -291,7 +291,7 @@ Available options for parameter `-m`: `'sidebar_convert'`, `'sidebar_files'`
 
 |Parameter|Description|Note|
 |---------|------------|----|
-|`'sidebar_convert'`| create files|write your code in `src/Test_dialogs.py`|
+|`'sidebar_convert'`| create files|write your code in `src/pythonpath/ui_logic/Panel*.py` and `src/Test_sidebar.py`|
 |`'sidebar_files'`|create script extension files|change `description.txt`, `title.txt` and `license.txt`|
 |`'xxxxxxxxx'`|create script extension|extension file `Test_dialogs_Devel.oxt`|
 |`'xxxxxxxxx'`|all in one - testing|dialogs_create + dialogs_files + dialogs_oxt|
