@@ -3,7 +3,7 @@
 		 
 	<manifest:file-entry
 		manifest:media-type="application/vnd.sun.star.uno-component;type=Python"
-		manifest:full-path="${SOURCE}/sidebar.py"/>
+		manifest:full-path="${SOURCE}/${EXEC_FILE_NAME}"/>
 		
 	<manifest:file-entry
 		manifest:media-type="application/vnd.sun.star.configuration-data"

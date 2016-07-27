@@ -20,8 +20,8 @@ class ${APP_NAME}(${APP_NAME}_UI):
 ${I}'''
 ${I}Class documentation...
 ${I}'''
-${I}def __init__(self):
-${I}${I}${APP_NAME}_UI.__init__(self)
+${I}def __init__(self, panelWin):
+${I}${I}${APP_NAME}_UI.__init__(self, panelWin)
 
 ${I}${I}# --------- my code ---------------------
 ${I}${I}self.DialogModel.Title = "${APP_NAME}"

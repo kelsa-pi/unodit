@@ -292,7 +292,8 @@ properties = {
         'title': {'name': 'Title', 'type': 'string'},
         'top': {'name': 'PositionY', 'type': 'string'},
         'uno_name': {'name': 'Dialog', 'type': 'string'},
-        'width': {'name': 'Width', 'type': 'long'}},
+        'width': {'name': 'Width', 'type': 'long'},
+        'withtitlebar': {'name': 'DesktopAsParent', 'type': 'boolean'}},
     'event': {
         'ns': {'name': './/script:event', 'type': 'string'}},
 }

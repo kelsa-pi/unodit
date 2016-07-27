@@ -1,4 +1,5 @@
-﻿<node oor:name="Panel_${PANEL_NAME}" oor:op="replace">
+﻿
+            <node oor:name="Panel_${PANEL_NAME}" oor:op="replace">
 	        	<prop oor:name="Title" oor:type="xs:string">
                 	<value xml:lang="en-US">${PANEL_TITLE}</value>
             	</prop>
@@ -25,5 +26,5 @@
             	<prop oor:name="DefaultMenuCommand">
           			<value>${EXTENSION_IDENTIFIER}:${PANEL_NAME}</value>
         		</prop>
-        	</node>
+            </node>
 

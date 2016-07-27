@@ -237,6 +237,7 @@ class SidebarExtensionFiles:
             os.makedirs(d)
 
         s = {'SOURCE': self.config.get('directories', 'source_dir'),
+             'EXEC_FILE_NAME': self.app + '.py',
              'FACTORY': self.config.get('sidebar_panel_factory', 'file'),
              'PROTOCOL': self.config.get('sidebar_protocol_handler', 'file'),
              'SIDEBAR': self.config.get('sidebar_configuration', 'file'),
@@ -255,6 +256,7 @@ class SidebarExtensionFiles:
 
     def ext_description(self):
         s = {'EXTENSION_IDENTIFIER': self.config.get('extension', 'identifier'),
+             'SIDEBAR_NAME': self.config.get('sidebar', 'name'),
              'EXTENSION_VERSION': self.config.get('extension', 'version'),
              'EXTENSION_PLATFORM': self.config.get('extension', 'platform'),
              'EXTENSION_PUBLISHER': self.config.get('extension', 'publisher'),

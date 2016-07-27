@@ -6,11 +6,24 @@ import unohelper
 from com.sun.star.ui import XUIElementFactory
 from com.sun.star.lang import XComponent
 from com.sun.star.ui import XUIElement, XToolPanel,XSidebarPanel, LayoutSize
+from com.sun.star.frame import XDispatch,XDispatchProvider
 from com.sun.star.ui.UIElementType import TOOLPANEL as UET_TOOLPANEL
+
+from com.sun.star.awt.MessageBoxButtons import BUTTONS_OK, BUTTONS_OK_CANCEL, BUTTONS_YES_NO, BUTTONS_YES_NO_CANCEL, BUTTONS_RETRY_CANCEL, BUTTONS_ABORT_IGNORE_RETRY
+from com.sun.star.awt.MessageBoxButtons import DEFAULT_BUTTON_OK, DEFAULT_BUTTON_CANCEL, DEFAULT_BUTTON_RETRY, DEFAULT_BUTTON_YES, DEFAULT_BUTTON_NO, DEFAULT_BUTTON_IGNORE
+from com.sun.star.awt.MessageBoxType import MESSAGEBOX, INFOBOX, WARNINGBOX, ERRORBOX, QUERYBOX
+
 
 ${IMPORT_PANELS}
 from com.sun.star.uno import RuntimeException as _rtex
 
+${I}${I}# --------- helpers ---------------------
+
+def messageBox(self, MsgText, MsgTitle, MsgType=MESSAGEBOX, MsgButtons=BUTTONS_OK):
+${I}sm = self.LocalContext.ServiceManager
+${I}si = sm.createInstanceWithContext("com.sun.star.awt.Toolkit", self.LocalContext)
+${I}mBox = si.createMessageBox(self.Toolkit, MsgType, MsgButtons, MsgTitle, MsgText)
+${I}mBox.execute()
 
 def xray(myObject):
 ${I}try:
@@ -51,7 +64,7 @@ ${I}${I}${I}panelWin = xUIElement.Window
 
 ${I}${I}${I}# panelWin has to be set visible
 ${I}${I}${I}panelWin.Visible = True
-${I}${I}${I}panelWin.Model.BackgroundColor = 14804725
+#${I}${I}${I}panelWin.Model.BackgroundColor = 14804725
 
 ${I}${I}${I}# get and set height to receive a working scrollbar
 ${I}${I}${I}height = create_some_content(panelWin,url)
@@ -66,7 +79,7 @@ ${I}${I}${I}tb()
 g_ImplementationHelper = unohelper.ImplementationHelper()
 g_ImplementationHelper.addImplementation(
         ElementFactory,
-        "org.apache.openoffice.sidebar.SidebarExampleFactory",
+        "${EXTENSION_IDENTIFIER}.${SIDEBAR_NAME}",
         ("com.sun.star.task.Job",),)
 
 
@@ -84,7 +97,7 @@ ${I}# XUIElement
 ${I}def getRealInterface(self):
 
 ${I}${I}if not self.window:
-${I}${I}${I}dialogUrl = "vnd.sun.star.extension://org.apache.openoffice.sidebar.SidebarExampleFactory/Dialog_Sidebar.xdl"
+${I}${I}${I}dialogUrl = "vnd.sun.star.extension://${EXTENSION_IDENTIFIER}.${SIDEBAR_NAME}/Dialog_Sidebar.xdl"
 ${I}${I}${I}smgr = self.ctx.ServiceManager
 
 ${I}${I}${I}provider = smgr.createInstanceWithContext("com.sun.star.awt.ContainerWindowProvider",self.ctx)

@@ -18,11 +18,12 @@ import unohelper
 from com.sun.star.awt import XActionListener
 from com.sun.star.task import XJobExecutor
 
+
 class ${APP_NAME}_UI(unohelper.Base, XActionListener, XJobExecutor):
 ${I}"""
 ${I}Class documentation...
 ${I}"""
-${I}def __init__(self):
+${I}def __init__(self, panelWin):
 ${I}${I}self.LocalContext = uno.getComponentContext()
 ${I}${I}self.ServiceManager = self.LocalContext.ServiceManager
 ${I}${I}self.Toolkit = self.ServiceManager.createInstanceWithContext("com.sun.star.awt.ExtToolkit", self.LocalContext)
@@ -32,7 +33,7 @@ ${I}${I}#               Create dialog and insert controls
 ${I}${I}# -----------------------------------------------------------
 
 ${I}${I}# --------------create dialog container and set model and properties
-${I}${I}self.DialogContainer = self.ServiceManager.createInstanceWithContext("com.sun.star.awt.UnoControlDialog", self.LocalContext)
+${I}${I}self.DialogContainer = panelWin #self.ServiceManager.createInstanceWithContext("com.sun.star.awt.UnoControlDialog", self.LocalContext)
 ${I}${I}self.DialogModel = self.ServiceManager.createInstance("com.sun.star.awt.UnoControlDialogModel")
 ${I}${I}self.DialogContainer.setModel(self.DialogModel)
 ${GEN_DIALOG_PROPERTIES}

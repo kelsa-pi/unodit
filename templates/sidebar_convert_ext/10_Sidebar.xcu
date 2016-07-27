@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <oor:component-data
 	oor:name="Sidebar"
-	oor:package="org.openoffice.Office.UI"
+    oor:package="org.openoffice.Office.UI"
 	xmlns:install="http://openoffice.org/2004/installation"
 	xmlns:oor="http://openoffice.org/2001/registry"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -21,11 +21,10 @@
 	            </prop>				
 		       	<prop oor:name="ContextList">
 	           		<value oor:separator=";">
-	           			${SIDEBAR_CONTEXT};
+	           			${SIDEBAR_CONTEXT}
 	               	</value>
 	           	</prop>
 	       	</node>
-
 	    </node>
     	<node oor:name="PanelList">
         	

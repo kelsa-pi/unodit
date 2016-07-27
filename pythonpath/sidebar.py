@@ -63,6 +63,9 @@ class SidebarGenerator:
 
         sdb_main = {'I': self.indent,
                     'IMPORT_PANELS': self._get_import_panels(),
+                    'EXTENSION_IDENTIFIER': self.config.get('extension', 'identifier'),
+                    'SIDEBAR_NAME': self.config.get('sidebar', 'name'),
+                    'SIDEBAR_PROTOCOL': self.config.get('sidebar', 'protocol'),
                     'RUN_PANELS': self._run_panels(),
                     }
         sidebar_main = self.sidebar_main.substitute(sdb_main)

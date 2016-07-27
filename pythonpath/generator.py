@@ -112,6 +112,7 @@ class CodeGenerator:
         :param lg:
         :return:
         """
+        py_file_path = ''
         for name, value in self.kwargs.items():
             if name == 'panel_name':
                 # same in sidebar.py
