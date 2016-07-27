@@ -47,7 +47,7 @@ Your comments, feedback and patches are welcomed and appreciated.
 NOTE:
 I'm not a programmer and English is not my native language.
 This is a project that targets LibreOffice 5+ and Python3 (Apache OpenOffice patches are welcomed).
-Tested with Xubuntu 16.04. and LibreOffice 1:5.1.3-0ubuntu1.
+Tested with Xubuntu 16.04. and LibreOffice 5.1*.
 
 ##Installation
 
@@ -282,12 +282,24 @@ Return: `OK` or `NO` or `Cancel`
 
 ###Convert dialogs in sidebar (work in progress)
 
+Create dialogs in Dialog Editor. Copy `conf.ini` in `TestLib` directory. For each created dialog in `conf.ini` file set path to `xdl` file.
+
+    [panel1]
+    ...
+    xdl_ui = /path/to/my/Dialog1.xdl
+    
+    [panel2]
+    ...
+    xdl_ui = /path/to/my/Dialog2.xdl
+    
+Use parameter `-p` to set number of panels (dialogs) in sidebar
+
     python3 ./unodit.py -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib'
                         -a 'Test_sidebar'
                         -m 'sidebar_convert'
                         -p 2
                         
-Available options for parameter `-m`: `'sidebar_convert'`, `'sidebar_files'`
+Available options for parameter `-m`: `'sidebar_convert'`, `'sidebar_files'`...
 
 |Parameter|Description|Note|
 |---------|------------|----|
