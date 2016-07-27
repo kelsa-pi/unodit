@@ -54,7 +54,7 @@ Tested with Xubuntu 16.04. and LibreOffice 5.1*.
 Place the unodit directory somewhere on your Python path.
 
 ##Usage
-    python3 ./unodit.py [-f ] [-d] [-a] [-m] [-i]
+    python3 ./unodit.py [-f ] [-d] [-a] [-m] [-i] [-p]
     
 f  - full path to the xdl file
 
@@ -66,7 +66,7 @@ m - mode
 
 i - number of spaces used for indentation in the generated code. If 0, \t is used as indent
 
-p - number of dialogs in deck
+p - number of panels in deck
 
 ##Customization 
 You can copy `config.ini` in your project root directory. Edit section in `my_project_dir/config.ini` file to make changes.
