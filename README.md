@@ -282,7 +282,7 @@ Return: `OK` or `NO` or `Cancel`
 
 ###Convert dialogs in sidebar (work in progress)
 
-Create dialogs in Dialog Editor. Copy `conf.ini` in `TestLib` directory. For each created dialog in `conf.ini` file set path to `xdl` file.
+Create dialogs in Dialog Editor. Copy `config.ini` in `TestLib` directory. For each created dialog in `config.ini` file set path to `xdl` file.
 
     [panel1]
     ...
