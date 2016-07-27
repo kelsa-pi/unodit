@@ -44,8 +44,8 @@ Other features are:
 
 Your comments, feedback and patches are welcomed and appreciated.
 
-DISCLAIMER:
-I'm not a programmer.
+NOTE:
+I'm not a programmer and English is not my native language.
 This is a project that targets LibreOffice 5+ and Python3 (Apache OpenOffice patches are welcomed).
 Tested with Xubuntu 16.04. and LibreOffice 1:5.1.3-0ubuntu1.
 
