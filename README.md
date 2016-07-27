@@ -339,7 +339,7 @@ Available options for parameter `-m`: `'sidebar_convert'`, `'sidebar_files'`...
 
 ###Installing an extension
 
-If one create a script extension for LibreOffice (oxt file) install it with:
+If one create a extension for LibreOffice (oxt file) install it with:
 
 1. Choose Tools - Extension Manager or 
 
