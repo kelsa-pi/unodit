@@ -313,7 +313,7 @@ Available options for parameter `-m`: `'sidebar_convert'`, `'sidebar_files'`...
 
     TestLib/
             src/  
-                Test_sidebar.py           dialogs_create
+                Test_sidebar.py           sidebar_convert
                 pythonpath/
                     ui/
                         Panel1_UI.py
@@ -327,14 +327,14 @@ Available options for parameter `-m`: `'sidebar_convert'`, `'sidebar_files'`...
                 description.txt           
                 title.txt
             registration/
-                license.txt               dialogs_files
+                license.txt               sidebar_files
             image/
                 icon.png
             Factory.xcu
             Sidebar.xcu
             ProtocolHandler.xcu
             description.xml              --------------
-            Test_dialogs_Devel.oxt        dialogs_oxt
+            Test_sidebar_Devel.oxt        sidebar_oxt
 
 
 ###Installing an extension
