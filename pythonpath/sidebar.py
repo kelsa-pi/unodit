@@ -21,7 +21,6 @@ class SidebarGenerator:
         self.mode = mode
         self.kwargs = kwargs
         self.panel_list = self.get_panel_list()
-        print(self.panel_list)
         self.config = conf.ReadINI(conf.MAIN_DIR, self.pydir)
         self.SOURCE_DIR = self.config.get('directories', 'source_dir')
         self.logger = logging.getLogger('unodit.sidebar.SidebarGenerator')
@@ -63,8 +62,8 @@ class SidebarGenerator:
 
         sdb_main = {'I': self.indent,
                     'IMPORT_PANELS': self._get_import_panels(),
-                    'EXTENSION_IDENTIFIER': self.config.get('extension', 'identifier'),
-                    'SIDEBAR_NAME': self.config.get('sidebar', 'name'),
+                    'EXTENSION_IDENTIFIER_DOMAIN': self.config.get('extension', 'identifier_domain'),
+                    'EXTENSION_IDENTIFIER_APP': self.config.get('extension', 'identifier_app'),
                     'SIDEBAR_PROTOCOL': self.config.get('sidebar', 'protocol'),
                     'RUN_PANELS': self._run_panels(),
                     }

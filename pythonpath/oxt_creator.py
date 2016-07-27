@@ -255,8 +255,8 @@ class SidebarExtensionFiles:
         self.logger.info('manifest.xml ' + f + ' ' + str(s))
 
     def ext_description(self):
-        s = {'EXTENSION_IDENTIFIER': self.config.get('extension', 'identifier'),
-             'SIDEBAR_NAME': self.config.get('sidebar', 'name'),
+        s = {'EXTENSION_IDENTIFIER_DOMAIN': self.config.get('extension', 'identifier_domain'),
+             'EXTENSION_IDENTIFIER_APP': self.config.get('extension', 'identifier_app'),
              'EXTENSION_VERSION': self.config.get('extension', 'version'),
              'EXTENSION_PLATFORM': self.config.get('extension', 'platform'),
              'EXTENSION_PUBLISHER': self.config.get('extension', 'publisher'),
@@ -330,8 +330,8 @@ class SidebarExtensionFiles:
         self.logger.info('app title file ' + f)
 
     def sidebar_factory(self):
-        s = {'EXTENSION_IDENTIFIER': self.config.get('extension', 'identifier'),
-             'SIDEBAR_NAME': self.config.get('sidebar', 'name'),
+        s = {'EXTENSION_IDENTIFIER_DOMAIN': self.config.get('extension', 'identifier_domain'),
+             'EXTENSION_IDENTIFIER_APP': self.config.get('extension', 'identifier_app'),
              }
 
         f = os.path.join(self.pydir, self.config.get('sidebar_panel_factory', 'file'))
@@ -346,7 +346,7 @@ class SidebarExtensionFiles:
 
     def sidebar_protocol(self):
 
-        s = {'EXTENSION_IDENTIFIER': self.config.get('extension', 'identifier'),
+        s = {'EXTENSION_IDENTIFIER_DOMAIN': self.config.get('extension', 'identifier_domain'),
              'SIDEBAR_PROTOCOL': self.config.get('sidebar', 'protocol'),
              }
 
@@ -367,13 +367,13 @@ class SidebarExtensionFiles:
 
             panel_section = 'panel' + str(i + 1)
 
-            s = {'EXTENSION_IDENTIFIER': self.config.get('extension', 'identifier'),
+            s = {'EXTENSION_IDENTIFIER_DOMAIN': self.config.get('extension', 'identifier_domain'),
+                 'EXTENSION_IDENTIFIER_APP': self.config.get('extension', 'identifier_app'),
                  'PANEL_NAME': self.config.get(panel_section, 'name'),
                  'PANEL_TITLE': self.config.get(panel_section, 'title'),
-                 #'PANEL_ID': self.config.get(panel_section, 'id'),
+                 'PANEL_ID': self.config.get(panel_section, 'id'),
                  'DECK_ID': self.config.get('deck', 'id'),
                  'PANEL_CONTEXT': self.config.get(panel_section, 'context'),
-                 'SIDEBAR_NAME': self.config.get('sidebar', 'name'),
                  'PANEL_ORDER_INDEX': self.config.get(panel_section, 'order_index'),
                  }
             t = string.Template(
@@ -383,11 +383,11 @@ class SidebarExtensionFiles:
         return code
 
     def sidebar(self):
-        s = {'EXTENSION_IDENTIFIER': self.config.get('extension', 'identifier'),
+        s = {'EXTENSION_IDENTIFIER_DOMAIN': self.config.get('extension', 'identifier_domain'),
+             'EXTENSION_IDENTIFIER_APP': self.config.get('extension', 'identifier_app'),
              'DECK_NAME': self.config.get('deck', 'name'),
              'DECK_TITLE': self.config.get('deck', 'title'),
              'DECK_ID': self.config.get('deck', 'id'),
-             'SIDEBAR_NAME': self.config.get('sidebar', 'name'),
              'SIDEBAR_ICON_DIR': self.config.get('sidebar_icon', 'dir'),
              'SIDEBAR_ICON': self.config.get('sidebar_icon', 'file'),
              'SIDEBAR_CONTEXT': self.config.get('deck', 'context'),

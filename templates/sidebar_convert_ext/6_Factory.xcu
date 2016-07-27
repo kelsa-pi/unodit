@@ -13,13 +13,13 @@
                     <value>toolpanel</value>
                 </prop>
                 <prop oor:name="Name">
-                    <value>${SIDEBAR_NAME}</value>
+                    <value>${EXTENSION_IDENTIFIER_APP}</value>
                 </prop>
                 <prop oor:name="Module">
                     <value/>
                 </prop>
                 <prop oor:name="FactoryImplementation">
-                    <value>${EXTENSION_IDENTIFIER}.${SIDEBAR_NAME}</value>
+                    <value>${EXTENSION_IDENTIFIER_DOMAIN}.${EXTENSION_IDENTIFIER_APP}</value>
                 </prop>
             </node>
             

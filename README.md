@@ -29,6 +29,11 @@ Use this library to prepare your python script with dialogs as extension for Lib
         - make a decision (ActionBox)
     - in script interactions are invoked by simple function calls 
     - create script extension for LibreOffice (`.oxt`)
+5. Convert dialogs in sidebar (work in progress)
+    - takes a dialog file created with Dialog Editor (`.xdl`)
+    - generate dialog in python code, 
+    - create callback functions for all button onClick events
+    - create sidebar extension for LibreOffice (`.oxt`)
 
 Other features are:
 - all steps are logged to `log.log` file in project root
@@ -41,7 +46,7 @@ Your comments, feedback and patches are welcomed and appreciated.
 
 DISCLAIMER:
 I'm not a programmer.
-This is a project that targets LibreOffice 5+ and Python3 only.
+This is a project that targets LibreOffice 5+ and Python3 (Apache OpenOffice patches are welcomed).
 Tested with Xubuntu 16.04. and LibreOffice 1:5.1.3-0ubuntu1.
 
 ##Installation
@@ -60,6 +65,8 @@ a - application name
 m - mode
 
 i - number of spaces used for indentation in the generated code. If 0, \t is used as indent
+
+p - number of dialogs in deck
 
 ##Customization 
 You can copy `config.ini` in your project root directory. Edit section in `my_project_dir/config.ini` file to make changes.
@@ -271,6 +278,51 @@ Usage: ActionBox(message="Message", title="ActionBox")
 Return: `OK` or `NO` or `Cancel`
 
 ![ActionBox](resource/dialogs/ActionBox.png)
+
+
+###Convert dialogs in sidebar (work in progress)
+
+    python3 ./unodit.py -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib'
+                        -a 'Test_sidebar'
+                        -m 'sidebar_convert'
+                        -p 2
+                        
+Available options for parameter `-m`: `'sidebar_convert'`, `'sidebar_files'`
+
+|Parameter|Description|Note|
+|---------|------------|----|
+|`'sidebar_convert'`| create files|write your code in `src/Test_dialogs.py`|
+|`'sidebar_files'`|create script extension files|change `description.txt`, `title.txt` and `license.txt`|
+|`'xxxxxxxxx'`|create script extension|extension file `Test_dialogs_Devel.oxt`|
+|`'xxxxxxxxx'`|all in one - testing|dialogs_create + dialogs_files + dialogs_oxt|
+
+
+**Directory structure and parameters**
+
+    TestLib/
+            src/  
+                Test_sidebar.py           dialogs_create
+                pythonpath/
+                    ui/
+                        Panel1_UI.py
+                        Panel2_UI.py
+                    ui_logic/
+                        Panel1.py
+                        Panel2.py        ---------------       
+            META-INF/
+                manifest.xml
+            description/
+                description.txt           
+                title.txt
+            registration/
+                license.txt               dialogs_files
+            image/
+                icon.png
+            Factory.xcu
+            Sidebar.xcu
+            ProtocolHandler.xcu
+            description.xml              --------------
+            Test_dialogs_Devel.oxt        dialogs_oxt
 
 
 ###Installing an extension

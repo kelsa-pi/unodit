@@ -6,9 +6,9 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <node oor:name="HandlerSet">
-    	<node oor:name="${EXTENSION_IDENTIFIER}.${SIDEBAR_PROTOCOL}" oor:op="replace">
+    	<node oor:name="${EXTENSION_IDENTIFIER_DOMAIN}.${SIDEBAR_PROTOCOL}" oor:op="replace">
       		<prop oor:name="Protocols" oor:type="oor:string-list">
-      			<value>${EXTENSION_IDENTIFIER}:*</value>
+      			<value>${EXTENSION_IDENTIFIER_DOMAIN}:*</value>
       		</prop>
       	</node>
    	</node>

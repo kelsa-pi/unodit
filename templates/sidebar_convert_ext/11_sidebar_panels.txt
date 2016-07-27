@@ -4,7 +4,7 @@
                 	<value xml:lang="en-US">${PANEL_TITLE}</value>
             	</prop>
             	<prop oor:name="Id" oor:type="xs:string">
-                	<value>Panel_${PANEL_NAME}_ID</value>
+                	<value>Panel_${PANEL_ID}</value>
             	</prop>
             	<prop oor:name="DeckId" oor:type="xs:string">
                 	<value>${DECK_ID}</value>
@@ -15,7 +15,7 @@
                 	</value>
             	</prop>
             	<prop oor:name="ImplementationURL" oor:type="xs:string">
-            		<value>private:resource/toolpanel/${SIDEBAR_NAME}/${PANEL_NAME}</value>
+            		<value>private:resource/toolpanel/${EXTENSION_IDENTIFIER_APP}/${PANEL_NAME}</value>
             	</prop>				
             	<prop oor:name="OrderIndex" oor:type="xs:int">
             		<value>${PANEL_ORDER_INDEX}</value>
@@ -24,7 +24,7 @@
             		<value>false</value>
             	</prop>
             	<prop oor:name="DefaultMenuCommand">
-          			<value>${EXTENSION_IDENTIFIER}:${PANEL_NAME}</value>
+          			<value>${EXTENSION_IDENTIFIER_DOMAIN}:${PANEL_NAME}</value>
         		</prop>
             </node>
 

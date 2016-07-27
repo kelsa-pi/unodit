@@ -19,7 +19,7 @@ Tip: When edited open file in browser to check for errors.
     Unique identifier
 
     -->
-    <identifier value="${EXTENSION_IDENTIFIER}.${SIDEBAR_NAME}"/>
+    <identifier value="${EXTENSION_IDENTIFIER_DOMAIN}.${EXTENSION_IDENTIFIER_APP}"/>
 
     <version value="${EXTENSION_VERSION}"/>
 
