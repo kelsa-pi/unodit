@@ -29,10 +29,11 @@ Use this library to prepare your python script with dialogs as extension for Lib
         - make a decision (ActionBox)
     - in script interactions are invoked by simple function calls 
     - create script extension for LibreOffice (`.oxt`)
-5. Convert dialogs in sidebar (work in progress)
-    - takes a dialog file created with Dialog Editor (`.xdl`)
+5. Convert dialogs in sidebar panels (work in progress)
+    - takes one or more dialog files created with Dialog Editor (`.xdl`)
     - generate dialog in python code, 
     - create callback functions for all button onClick events
+    - create new sidebar deck with dialogs (panels)
     - create sidebar extension for LibreOffice (`.oxt`)
 
 Other features are:
@@ -68,8 +69,13 @@ i - number of spaces used for indentation in the generated code. If 0, \t is use
 
 p - number of panels in deck
 
+
+Before you start using `unodit` install UNO object browser ([MRI](https://github.com/hanya/MRI/tree/master/files) or [Xray](http://berma.pagesperso-orange.fr/index2.html))
+
+
 ##Customization 
-You can copy `config.ini` in your project root directory. Edit section in `my_project_dir/config.ini` file to make changes.
+You can copy `config.ini` in your project root directory. Edit section in `my_project_dir/config.ini` to make changes.
+
 
 ##Examples
 Create python project directory `TestLib` in `LIBREOFFICE_PATH/4/user/Scripts/python/`.
@@ -282,7 +288,7 @@ Return: `OK` or `NO` or `Cancel`
 
 ###Convert dialogs in sidebar (work in progress)
 
-Create dialogs in Dialog Editor. Copy `config.ini` in `TestLib` directory. For each created dialog in `config.ini` file set path to `xdl` file.
+Create dialogs in Dialog Editor. Copy `config.ini` in `TestLib` directory. For each created dialog in `config.ini` set path to `xdl` file.
 
     [panel1]
     ...
