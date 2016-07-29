@@ -88,7 +88,7 @@ This section gives a general overview, for more information see details below in
     - create project directory in `LIBREOFFICE_PATH/4/user/Scripts/python/`
     - copy `config.ini` in project directory and edit section to customize behavior (optional)
 - Write code
-    - run `unodit` with firts parameter in section
+    - run `unodit` with first parameter in section
     - write your code in generated file 
 - Prepare extension files
     - run `unodit` with `*_files` parameter
