@@ -70,12 +70,32 @@ i - number of spaces used for indentation in the generated code. If 0, \t is use
 p - number of panels in deck
 
 
+##Getting Started
 
-Before you start using `unodit` install UNO object browser ([MRI](https://github.com/hanya/MRI/tree/master/files) or [Xray](http://berma.pagesperso-orange.fr/index2.html))
+This section gives a general overview, for more information see details below in Examples. Before you start using `unodit` install UNO object browser ([MRI](https://github.com/hanya/MRI/tree/master/files) or [Xray](http://berma.pagesperso-orange.fr/index2.html))
 
+**Quick start**
 
-##Customization 
-You can copy `config.ini` in your project root directory. Edit section in `my_project_dir/config.ini` to make changes.
+- create dialog in Dialog Editor
+- create project directory in `LIBREOFFICE_PATH/4/user/Scripts/python/`
+- run `unodit` with `*__all` parameter to create extension in project directory
+- install extension
+
+**Really Start**
+
+- Prepare
+    - create dialog in Dialog Editor
+    - create project directory in `LIBREOFFICE_PATH/4/user/Scripts/python/`
+    - copy `config.ini` in project directory and edit section to customize behavior (optional)
+- Write code
+    - run `unodit` with firts parameter in section
+    - write your code in generated file 
+- Prepare extension files
+    - run `unodit` with `*_files` parameter
+    - change `description.txt`, `title.txt` and `license.txt` (optional)
+- Create extension
+    - run `unodit` with `*__oxt` parameter
+    - install extension
 
 
 ##Examples
