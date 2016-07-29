@@ -50,7 +50,8 @@ class ScriptExtensionFiles:
         self.logger.info('manifest.xml ' + f + ' ' + str(s))
 
     def ext_description(self):
-        s = {'EXTENSION_IDENTIFIER': self.config.get('extension', 'identifier'),
+        s = {'EXTENSION_IDENTIFIER_DOMAIN': self.config.get('extension', 'identifier_domain'),
+             'EXTENSION_IDENTIFIER_APP': self.config.get('extension', 'identifier_app'),
              'EXTENSION_VERSION': self.config.get('extension', 'version'),
              'EXTENSION_PLATFORM': self.config.get('extension', 'platform'),
              'EXTENSION_PUBLISHER': self.config.get('extension', 'publisher'),

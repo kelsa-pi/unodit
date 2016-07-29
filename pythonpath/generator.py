@@ -70,18 +70,18 @@ class CodeGenerator:
         write generated python main ui file
         :param sui:
         """
+        ui_file_name = self.app + self.config.get('ui_file', 'sufix') + '.py'
+        py_file_path = os.path.join(self.pydir, self.SOURCE_DIR, IMPORT_DIR, ui_file_name)
 
         # if not exist create 'pythopath' dir
         if not os.path.exists(os.path.join(self.pydir, self.SOURCE_DIR, IMPORT_DIR)):
             os.makedirs(os.path.join(self.pydir, self.SOURCE_DIR, IMPORT_DIR))
 
-        for name, value in self.kwargs.items():
-            if name == 'panel_name':
-                ui_file_name = value + self.config.get('ui_file', 'sufix') + '.py'
-            else:
-                ui_file_name = self.app + self.config.get('ui_file', 'sufix') + '.py'
-
         if self.mode == 'sidebar_convert':
+
+            for name, value in self.kwargs.items():
+                if name == 'panel_name':
+                    ui_file_name = value + self.config.get('ui_file', 'sufix') + '.py'
 
             # if not exist create ui directory
             uidir = self.config.get('sdb_directories', 'sdb_ui')
@@ -91,10 +91,6 @@ class CodeGenerator:
 
             # if the main ui file exists, remove it
             py_file_path = os.path.join(SDB_UI_DIR, ui_file_name)
-
-        else:
-
-            py_file_path = os.path.join(self.pydir, self.SOURCE_DIR, IMPORT_DIR, ui_file_name)
 
         # if the main ui file exists, remove it
         if os.path.exists(py_file_path):
@@ -112,23 +108,23 @@ class CodeGenerator:
         :param lg:
         :return:
         """
-        py_file_path = ''
-        for name, value in self.kwargs.items():
-            if name == 'panel_name':
-                # same in sidebar.py
-                exec_file_name = value + '.py'
+        exec_file_name = self.app + '.py'
+        py_file_path = os.path.join(self.pydir, self.SOURCE_DIR, exec_file_name)
 
-                # if not exist create ui_logic directory
-                uilogic = self.config.get('sdb_directories', 'sdb_ui_logic')
-                SDB_LOGIC_DIR = os.path.join(self.pydir, self.SOURCE_DIR, IMPORT_DIR, uilogic)
-                if not os.path.exists(SDB_LOGIC_DIR):
-                    os.makedirs(SDB_LOGIC_DIR)
+        if self.mode == 'sidebar_convert':
 
-                py_file_path = os.path.join(SDB_LOGIC_DIR, exec_file_name)
+            for name, value in self.kwargs.items():
+                if name == 'panel_name':
+                    # same in sidebar.py
+                    exec_file_name = value + '.py'
 
-            else:
-                exec_file_name = self.app + '.py'
-                py_file_path = os.path.join(self.pydir, self.SOURCE_DIR, exec_file_name)
+                    # if not exist create ui_logic directory
+                    uilogic = self.config.get('sdb_directories', 'sdb_ui_logic')
+                    SDB_LOGIC_DIR = os.path.join(self.pydir, self.SOURCE_DIR, IMPORT_DIR, uilogic)
+                    if not os.path.exists(SDB_LOGIC_DIR):
+                        os.makedirs(SDB_LOGIC_DIR)
+
+                    py_file_path = os.path.join(SDB_LOGIC_DIR, exec_file_name)
 
         if not os.path.exists(self.pydir):
             os.makedirs(self.pydir)
