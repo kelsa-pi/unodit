@@ -61,8 +61,7 @@ class EmbedScript:
         manifest_path = os.path.join(extract_dir, 'META-INF', 'manifest.xml')
 
         for file in os.listdir(self.pydir):
-            if file.endswith(".odt"):
-
+            if file.endswith((".odt", ".ods", ".odp", ".odg")):
                 file_name = os.path.join(self.pydir, file)
                 # extract document in extract dir
                 self.extract_document(file_name, extract_dir)

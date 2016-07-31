@@ -164,10 +164,10 @@ Available options for parameter `-m`: `'connect'`.
                 Test_connect.py 
 
 
-###Convert XDL file to python code and embed in document
+###Convert XDL file to python code and embed in LibreOffice document
 
 Use parameter `-f` to set the path to **any** local directory with `xdl` file.
-Place ODF document `Text document.odt` in  project dir (tested with Writer).
+Place ODF document eg. `Text document.odt` in  project dir.(tested with `.odt`, `.ods`, `.odp` and `.odg`).
 
     python3 ./unodit.py -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
                         -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib'
