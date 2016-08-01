@@ -45,27 +45,20 @@ i - number of spaces used for indentation in the generated code. If 0, \t is use
 p - number of panels in deck
 
 
-##Getting Started
+##Quick start
 
-This section gives a general overview, for more information see details below in Examples. Before you start using `unodit` install UNO object browser ([MRI](https://github.com/hanya/MRI/tree/master/files) or [Xray](http://berma.pagesperso-orange.fr/index2.html))
-
-**Quick start**
+This section gives a general overview, for more information see [documentation](https://github.com/kelsa-pi/unodit/wiki).
 
 - create dialog in Dialog Editor
 - create project directory in `LIBREOFFICE_PATH/4/user/Scripts/python/`
-- run `unodit` with `*__all` parameter to create extension in project directory
-- install extension
+- run `unodit` to create extension in project directory
+ 
+    python3 ./unodit.py -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
+                        -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib'
+                        -a 'Test_convert'
+                        -m 'script_convert'
 
-
-###Installing an extension
-
-If one create a extension for LibreOffice (oxt file) install it with:
-
-1. Choose Tools - Extension Manager or 
-
-2. Command-line:
-
-   Ubuntu - `/usr/bin/unopkg add ./MyApp_Devel.oxt`
+- install extension using Tools - Extension Manager or command-line `/usr/bin/unopkg add ./MyApp_Devel.oxt` (Ubuntu) 
 
 
 ##Screenshot
