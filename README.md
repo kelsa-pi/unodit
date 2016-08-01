@@ -23,7 +23,7 @@ Your comments, feedback and patches are welcomed and appreciated.
 NOTE:
 I'm not a programmer and English is not my native language.
 This is a project that targets LibreOffice 5+ and Python3 (Apache OpenOffice patches are welcomed).
-Tested with Xubuntu 16.04. and LibreOffice 5.1+.
+Tested with Xubuntu 16.04. and LibreOffice 5+.
 
 ##Installation
 
