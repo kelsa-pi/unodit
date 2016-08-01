@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dlg:window PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "dialog.dtd">
+<dlg:window xmlns:dlg="http://openoffice.org/2000/dialog" xmlns:script="http://openoffice.org/2000/script" dlg:id="list_dialog" dlg:left="100" dlg:top="60" dlg:width="100" dlg:height="100" dlg:closeable="true" dlg:moveable="true">
+ <dlg:bulletinboard>
+  <dlg:menulist dlg:id="ListBox1" dlg:tab-index="0" dlg:left="7" dlg:top="6" dlg:width="50" dlg:height="84">
+   <dlg:menupopup>
+    <dlg:menuitem dlg:value="Berlin"/>
+    <dlg:menuitem dlg:value="Hong Kong"/>
+    <dlg:menuitem dlg:value="London"/>
+    <dlg:menuitem dlg:value="Paris"/>
+    <dlg:menuitem dlg:value="New York"/>
+   </dlg:menupopup>
+  </dlg:menulist>
+  <dlg:button dlg:id="CommandButton2" dlg:tab-index="2" dlg:left="64" dlg:top="28" dlg:width="30" dlg:height="17" dlg:value="Option 2"/>
+  <dlg:button dlg:id="CommandButton3" dlg:tab-index="3" dlg:left="64" dlg:top="48" dlg:width="30" dlg:height="17" dlg:value="Option 3"/>
+  <dlg:button dlg:id="CommandButton4" dlg:tab-index="4" dlg:left="64" dlg:top="74" dlg:width="30" dlg:height="17" dlg:value="OK"/>
+  <dlg:button dlg:id="CommandButton1" dlg:tab-index="1" dlg:left="64" dlg:top="7" dlg:width="30" dlg:height="17" dlg:value="Option 1"/>
+ </dlg:bulletinboard>
+</dlg:window>

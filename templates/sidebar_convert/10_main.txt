@@ -29,6 +29,9 @@ ${I}'''
 ${I}def __init__(self, panelWin):
 ${I}${I}${APP_NAME}_UI.__init__(self, panelWin)
 
+${I}def getHeight(self):
+${I}${I}return self.DialogModel.Height
+
 ${I}${I}# --------- my code ---------------------
 ${I}${I}self.DialogModel.Title = "${APP_NAME}"
 ${I}${I}# mri(self.LocalContext, self.DialogContainer)
@@ -62,7 +65,11 @@ ${GEN_ACTIONS_CALLBACKS}
 
 
 def ${EXEC_FUNCTION_PREFIX}${APP_NAME}(*args):
-${I}app = ${APP_NAME}()
+${I}ctx = uno.getComponentContext()
+${I}sm = ctx.ServiceManager
+${I}dialog = sm.createInstanceWithContext("com.sun.star.awt.UnoControlDialog", ctx)
+
+${I}app = ${APP_NAME}(dialog)
 ${I}app.showDialog()
 
 g_exportedScripts = ${EXEC_FUNCTION_PREFIX}${APP_NAME},
