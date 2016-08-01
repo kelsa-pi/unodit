@@ -49,8 +49,8 @@ p - number of panels in deck
 
 This section gives a general overview, for more information see [documentation](https://github.com/kelsa-pi/unodit/wiki).
 
-- create dialog in Dialog Editor
-- create project directory in `LIBREOFFICE_PATH/4/user/Scripts/python/`
+- create dialog eg. `Default.xdl` in Dialog Editor
+- create project directory eg. `TestLib` in `LIBREOFFICE_PATH/4/user/Scripts/python/`
 - run `unodit` to create extension in project directory
  
         python3 ./unodit.py -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
