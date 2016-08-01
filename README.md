@@ -54,9 +54,9 @@ This section gives a general overview, for more information see [documentation](
 - run `unodit` to create extension in project directory
  
         python3 ./unodit.py -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
-                        -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib'
-                        -a 'Test_convert'
-                        -m 'script_convert'
+                            -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib'
+                            -a 'Test_convert'
+                            -m 'script_all'
 
 - install extension using Tools - Extension Manager or command-line `/usr/bin/unopkg add ./MyApp_Devel.oxt` (Ubuntu) 
 
