@@ -53,7 +53,7 @@ This section gives a general overview, for more information see [documentation](
 - create project directory in `LIBREOFFICE_PATH/4/user/Scripts/python/`
 - run `unodit` to create extension in project directory
  
-    python3 ./unodit.py -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
+        python3 ./unodit.py -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
                         -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib'
                         -a 'Test_convert'
                         -m 'script_convert'
