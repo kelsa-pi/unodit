@@ -23,24 +23,31 @@ from com.sun.star.awt.MessageBoxType import MESSAGEBOX, INFOBOX, WARNINGBOX, ERR
 ${IMPORT_PANELS}
 from com.sun.star.uno import RuntimeException as _rtex
 
-${I}${I}# --------- helpers ---------------------
+# ----------------- helpers for API_inspector tools -----------------
+
+# uncomment for MRI
+#def mri(ctx, target):
+#${I}mri = ctx.ServiceManager.createInstanceWithContext("mytools.Mri", ctx)
+#${I}mri.inspect(target)
+
+# uncomment for Xray
+#def xray(myObject):
+#${I}try:
+#${I}${I}sm = uno.getComponentContext().ServiceManager
+#${I}${I}mspf = sm.createInstanceWithContext("com.sun.star.script.provider.MasterScriptProviderFactory", uno.getComponentContext())
+#${I}${I}scriptPro = mspf.createScriptProvider("")
+#${I}${I}xScript = scriptPro.getScript("vnd.sun.star.script:XrayTool._Main.Xray?language=Basic&location=application")
+#${I}${I}xScript.invoke((myObject,), (), ())
+#${I}${I}return
+#${I}except:
+#${I}${I}raise _rtex("\nBasic library Xray is not installed", uno.getComponentContext())
+# -------------------------------------------------------------------
 
 def messageBox(self, MsgText, MsgTitle, MsgType=MESSAGEBOX, MsgButtons=BUTTONS_OK):
 ${I}sm = self.LocalContext.ServiceManager
 ${I}si = sm.createInstanceWithContext("com.sun.star.awt.Toolkit", self.LocalContext)
 ${I}mBox = si.createMessageBox(self.Toolkit, MsgType, MsgButtons, MsgTitle, MsgText)
 ${I}mBox.execute()
-
-def xray(myObject):
-${I}try:
-${I}${I}sm = uno.getComponentContext().ServiceManager
-${I}${I}mspf = sm.createInstanceWithContext("com.sun.star.script.provider.MasterScriptProviderFactory", uno.getComponentContext())
-${I}${I}scriptPro = mspf.createScriptProvider("")
-${I}${I}xScript = scriptPro.getScript("vnd.sun.star.script:XrayTool._Main.Xray?language=Basic&location=application")
-${I}${I}xScript.invoke((myObject,), (), ())
-${I}${I}return
-${I}except:
-${I}${I}raise _rtex("\nBasic library Xray is not installed", uno.getComponentContext())
 
 
 class ElementFactory( unohelper.Base, XUIElementFactory):

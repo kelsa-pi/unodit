@@ -1,15 +1,24 @@
 from simple_dialogs import SelectBox, OptionBox, TextBox, NumberBox, DateBox, FolderPathBox, FilePathBox, MessageBox, ActionBox
 
-def xray(myObject):
-    try:
-        sm = uno.getComponentContext().ServiceManager
-        mspf = sm.createInstanceWithContext("com.sun.star.script.provider.MasterScriptProviderFactory", uno.getComponentContext())
-        scriptPro = mspf.createScriptProvider("")
-        xScript = scriptPro.getScript("vnd.sun.star.script:XrayTool._Main.Xray?language=Basic&location=application")
-        xScript.invoke((myObject,), (), ())
-        return
-    except:
-        raise _rtex("Basic library Xray is not installed", uno.getComponentContext())
+# ----------------- helpers for API_inspector tools -----------------
+
+# uncomment for MRI
+#def mri(ctx, target):
+#${I}mri = ctx.ServiceManager.createInstanceWithContext("mytools.Mri", ctx)
+#${I}mri.inspect(target)
+
+# uncomment for Xray
+#def xray(myObject):
+#${I}try:
+#${I}${I}sm = uno.getComponentContext().ServiceManager
+#${I}${I}mspf = sm.createInstanceWithContext("com.sun.star.script.provider.MasterScriptProviderFactory", uno.getComponentContext())
+#${I}${I}scriptPro = mspf.createScriptProvider("")
+#${I}${I}xScript = scriptPro.getScript("vnd.sun.star.script:XrayTool._Main.Xray?language=Basic&location=application")
+#${I}${I}xScript.invoke((myObject,), (), ())
+#${I}${I}return
+#${I}except:
+#${I}${I}raise _rtex("\nBasic library Xray is not installed", uno.getComponentContext())
+# -------------------------------------------------------------------
 
 
 def ${EXEC_FUNCTION_PREFIX}${APP_NAME}(*args):
