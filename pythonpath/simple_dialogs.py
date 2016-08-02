@@ -9,7 +9,7 @@ except ImportError:
 
 
 class EasyDialog:
-    def __init__(self, pydir='', app='MyApp'):
+    def __init__(self, pydir='', app='MyApp', indent=4):
         self.pydir = pydir
         self.app = app
         self.code = {}
@@ -17,6 +17,11 @@ class EasyDialog:
         self.ext_tmpl_dir = os.path.join(conf.TEMPLATES_DIR, 'dialogs')
         self.logger = logging.getLogger('unodit.simple_dialogs.EasyDialog')
         self.logger.info('NEW LOGGER: unodit.simple_dialogs.EasyDialog')
+
+        if indent == 0:
+            self.indent = '\t'
+        else:
+            self.indent = indent * " "
 
     def get_template(self, ex_tmpl_dir, template):
         templ = os.path.join(ex_tmpl_dir, template)
@@ -30,10 +35,10 @@ class EasyDialog:
         if not os.path.exists(d):
             os.makedirs(d)
 
-        s = {
+        s = {'I': self.indent,
             'GENERATED_DATETIME': conf.NOW,
             'UNODIT_VERSION': conf.VERSION,
-        }
+             }
 
         f = os.path.join(d, 'simple_dialogs.py')
         t = string.Template(self.get_template(self.ext_tmpl_dir, '1_dialogs_ui.txt'))
@@ -49,7 +54,7 @@ class EasyDialog:
         if not os.path.exists(d):
             os.makedirs(d)
 
-        s = {
+        s = {'I': self.indent,
             'APP_NAME': self.app,
             'EXEC_FUNCTION_PREFIX': self.config.get('exec_function', 'prefix')
         }
