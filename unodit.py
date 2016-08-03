@@ -196,7 +196,6 @@ panel     = {}
         p_names = p_names[:-1]
         return p_names
 
-
     # script - convert xdl file (1)
     if mode == 'script_convert':
         mode_script_convert()
@@ -253,10 +252,12 @@ panel     = {}
     elif mode == 'sidebar_files':
         mode_sidebar_files()
 
-    print('Finished')
+    print(start_log + '\nStatus: Finished')
+
+    return 0
 
 
-def main():
+def create_parser():
     """
     Parses and returns arguments passed in
     """
@@ -319,6 +320,12 @@ def main():
         '-p', '--panel', type=int, default=2,
         help='number of panels in sidebar', required=False)
 
+    return parser
+
+
+def main():
+
+    parser = create_parser()
     args = parser.parse_args()
 
     if args.dir == '' or args.dir is None:
@@ -340,18 +347,5 @@ def main():
            args.panel,
            )
 
-
-def run():
-    # unfinished - LibreOffice extension
-    xdlfile = 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
-    mydir = 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib'
-
-    create_logger(LOGGER_NAME, mydir, LOG_FILE)
-
-    unodit(xdlfile, pydir=mydir, app='MyApp', mode='script_convert', indent=4)
-
-
 if __name__ == '__main__':
     main()
-
-g_exportedScripts = run,
