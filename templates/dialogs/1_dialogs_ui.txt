@@ -296,7 +296,7 @@ ${I}${I}${I}self.DialogContainer.endExecute()
 ${I}${I}if oActionEvent.ActionCommand == 'btnCancel_OnClick':
 ${I}${I}${I}self.DialogContainer.endExecute()
 
- ${I}def returnValue(self):
+${I}def returnValue(self):
 ${I}${I}pass
 
 
@@ -350,7 +350,7 @@ ${I}${I}if oActionEvent.ActionCommand == 'btnOK_OnClick':
 ${I}${I}${I}self.returnValue = "OK"
 ${I}${I}${I}self.DialogContainer.endExecute()
 
-        if oActionEvent.ActionCommand == 'btnNO_OnClick':
+${I}${I}if oActionEvent.ActionCommand == 'btnNO_OnClick':
 ${I}${I}${I}self.returnValue = "NO"
 ${I}${I}${I}self.DialogContainer.endExecute()
 

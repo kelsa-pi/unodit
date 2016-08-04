@@ -10,7 +10,7 @@ except ImportError:
 
 
 class EmbedScript:
-    def __init__(self, pydir='', app='MyApp'):
+    def __init__(self, pydir, app='MyApp'):
         self.pydir = pydir
         self.app = app
         self.language = 'python'

@@ -80,12 +80,12 @@ indent    = {}
 
     def mode_script_files():
         logger.info('MODE: ---------- script_files ------------------------------------')
-        sef = script.ScriptExtensionFiles(pydir, app)
+        sef = script.ScriptExtensionFiles(mode, pydir, app)
         sef.create()
 
     def mode_script_oxt():
         logger.info('MODE: ---------- script_oxt --------------------------------------')
-        cse = script.CreateScriptExtension(pydir, app)
+        cse = script.CreateScriptExtension(mode, pydir, app)
         cse.create()
 
     def mode_script_all():
@@ -99,7 +99,7 @@ indent    = {}
         ctx = extractor.ContextGenerator(xdlfile)
         ctx.get_xdl_context()
         uno_ctx = ctx.get_uno_context()
-        cg = generator.CodeGenerator(xdlfile, uno_ctx, pydir, app, mode, indent=4)
+        cg = generator.CodeGenerator(mode, pydir, xdlfile, uno_ctx, app, indent=4)
         cg.generate_code()
 
     def mode_embed_convert():
@@ -108,12 +108,12 @@ indent    = {}
         ctx = extractor.ContextGenerator(xdlfile)
         ctx.get_xdl_context()
         uno_ctx = ctx.get_uno_context()
-        cg = generator.CodeGenerator(xdlfile, uno_ctx, pydir, app, mode, indent=4)
+        cg = generator.CodeGenerator(mode, pydir, xdlfile, uno_ctx, app, indent=4)
         cg.generate_code()
 
     def mode_embed_pack():
         logger.info('MODE: ---------- embed_pack --------------------------------------')
-        e = ep.EmbedScript(pydir, app, language='python')
+        e = ep.EmbedScript(pydir, app)
         e.pack_script()
 
     def mode_embed_all():
@@ -127,12 +127,12 @@ indent    = {}
 
     def mode_dialogs_files():
         logger.info('MODE: ---------- dialogs_files -----------------------------------')
-        sef = script.ScriptExtensionFiles(pydir, app, mode)
+        sef = script.ScriptExtensionFiles(mode, pydir, app, )
         sef.create()
 
     def mode_dialogs_oxt():
         logger.info('MODE: ---------- dialogs_oxt -------------------------------------')
-        cse = script.CreateScriptExtension(pydir, app, mode)
+        cse = script.CreateScriptExtension(mode, pydir, app, )
         cse.create()
 
     def mode_dialogs_all():
