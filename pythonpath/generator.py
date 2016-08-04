@@ -19,7 +19,7 @@ class CodeGenerator:
     Generate code from uno context dict
     """
 
-    def __init__(self, mode, pydir, xdlfile, context, app='MyApp',indent=4, **kwargs):
+    def __init__(self, mode, pydir, xdlfile, context, app='MyApp', indent=4, **kwargs):
         self.xdlfile = xdlfile
         self.context = context
         self.pydir = pydir

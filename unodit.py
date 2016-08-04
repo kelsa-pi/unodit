@@ -75,7 +75,7 @@ indent    = {}
         ctx = extractor.ContextGenerator(xdlfile)
         ctx.get_xdl_context()
         uno_ctx = ctx.get_uno_context()
-        cg = generator.CodeGenerator(xdlfile, uno_ctx, pydir, app, mode, indent=4)
+        cg = generator.CodeGenerator(mode, pydir, xdlfile, uno_ctx, app, indent=4)
         cg.generate_code()
 
     def mode_script_files():
@@ -157,19 +157,19 @@ indent    = {}
             ctx = extractor.ContextGenerator(file_xdl)
             ctx.get_xdl_context()
             uno_ctx = ctx.get_uno_context()
-            cg = generator.CodeGenerator(file_xdl, uno_ctx, pydir, app, mode, indent=4, panel_name=panel_name)
+            cg = generator.CodeGenerator(mode, pydir, file_xdl, uno_ctx, app, indent=4, panel_name=panel_name)
             cg.generate_code()
 
             p_names = p_names + panel_name + ','
 
         # generate sidebar main file
         p_names = p_names[:-1]
-        sb = sidebar.SidebarGenerator(file_xdl, uno_ctx, pydir, app, mode, indent=4, all_panels=p_names)
+        sb = sidebar.SidebarGenerator(mode, pydir, file_xdl, uno_ctx, app, indent=4, all_panels=p_names)
         sb.generate_sidebar_code()
 
     def mode_sidebar_files():
         logger.info('MODE: ---------- dialogs_files -----------------------------------')
-        sef = script.SidebarExtensionFiles(pydir, app, mode, panel)
+        sef = script.SidebarExtensionFiles(mode, pydir, app, panel)
         sef.create()
 
     def get_sidebar_panels():
@@ -258,21 +258,6 @@ def create_parser():
     Create python project TestLib in LIBREOFFICE_PATH/4/user/Scripts/python/
     Replace LIBREOFFICE_PATH with actual path.
 
-    1) Convert XDL file to python code
-    Use parameter -f to set the path to any local directory with ui file.
-    Available options for parameter -m:
-    'script_convert' - convert xdl file,
-    'script_files' - create script extension files,
-    'script_oxt' - create script extension,
-    'script_all' - convert xdl file, create script extension files and script extension.
-
-    python 3 unodit -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
-                    -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib'
-                    -a 'Test_convert'
-                    -m  'script_convert'
-
-    More examples in docs
-
     """
 
     # assign description to the help doc
@@ -328,12 +313,12 @@ def main():
 
     create_logger(LOGGER_NAME, args.dir, LOG_FILE)
 
-    unodit(args.file,
+    unodit(args.mode,
            args.dir,
+           args.file,
            args.appname,
-           args.mode,
-           args.indent,
            args.panel,
+           args.indent,
            )
 
 if __name__ == '__main__':
