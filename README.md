@@ -45,8 +45,6 @@ p - number of panels in deck
 i - number of spaces used for indentation in the generated code. If 0, \t is used as indent
 
 
-
-
 ##Quick start
 
 This section gives a general overview, for more information see [documentation](https://github.com/kelsa-pi/unodit/wiki).
