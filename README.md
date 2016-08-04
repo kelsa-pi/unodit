@@ -30,19 +30,16 @@ Tested with Xubuntu 16.04. and LibreOffice 5+.
 Place the unodit directory somewhere on your Python path.
 
 ##Usage
-    python3 ./unodit.py [-f ] [-d] [-a] [-m] [-i] [-p]
+    python3 ./unodit.py -m -d [-f ] [-a] [-p] [-i] 
     
-f  - full path to the xdl file
-
-d - full path to the output directory (project root)
-
-a - application name
-
 m - mode
-
+d - full path to the output directory (project root)
+f  - full path to the xdl file
+a - application name
+p - number of panels in deck
 i - number of spaces used for indentation in the generated code. If 0, \t is used as indent
 
-p - number of panels in deck
+
 
 
 ##Quick start
@@ -53,10 +50,10 @@ This section gives a general overview, for more information see [documentation](
 - create project directory eg. `TestLib` in `LIBREOFFICE_PATH/4/user/Scripts/python/`
 - run `unodit` to create extension in project directory
  
-        python3 ./unodit.py -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
+        python3 ./unodit.py -m 'script_all'
                             -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib'
-                            -a 'Test_convert'
-                            -m 'script_all'
+                            -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
+                            -a 'Test_convert'                           
 
 - install extension using Tools - Extension Manager or command-line `/usr/bin/unopkg add ./MyApp_Devel.oxt` (Ubuntu) 
 

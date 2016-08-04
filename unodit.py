@@ -39,44 +39,33 @@ def create_logger(lname, ldir, lfile):
     return logger
 
 
-def unodit(xdlfile='', pydir='', app='MyApp', mode='script_convert', indent=4, panel=2):
+def unodit(mode, pydir, xdlfile='', app='MyApp', panel=2, indent=4):
     """
-    UNO Dialog Tools is a Python3 library (alpha version) that takes a LibreOffice Basic Dialog XML file (XDL) and:
+    UNODialogTools automate some of the tedious tasks with dialogs in order to help you write your own extension for LibreOffice in Python(PyUNO).
 
-    1. Convert XDL file to python code
-    2. Connect to XDL file with python code
-    3. Convert XDL file to python code and embed in document
-    4. Provides a simple dialog boxes for interaction with a user
-
-    Other features are:
-    - if the option 1 or 4 is chosen, it is possible to create a script extension for LibreOffice (oxt file)
-    - callback functions are created for all button onClick events
-    - all steps in the conversion process are logged to log.log file in project root
-    - per project customization with ini file (copy config.ini in project root)
-
-    :param xdlfile: full path to the xdl file
+    :param mode:
     :param pydir: full path to the output directory
+    :param xdlfile: full path to the xdl file
     :param app: application name
-    :param mode: 'script_convert', 'script_files', 'script_oxt', 'script_all', 'connect'
-    :param indent: number of spaces used for indentation in the generated code. If 0, \t is used as indent
     :param panel: number od panels in sidebar, work with mode sidebar_convert
+    :param indent: number of spaces used for indentation in the generated code. If 0, \t is used as indent
+
     """
     logger = logging.getLogger('unodit')
 
     start_log = """
-
 Version:  {}      Created:  {}
 
 unodit directory = {}
 ---------------------------------------------------------------------
-xdlfile   = {}
-pydir     = {}
-app name  = {}
 mode      = {}
-indent    = {}
+pydir     = {}
+xdlfile   = {}
+app name  = {}
 panel     = {}
+indent    = {}
 ---------------------------------------------------------------------
-    """.format(VERSION, NOW, MAIN_DIR, xdlfile, pydir, app, mode, indent, panel)
+""".format(VERSION, NOW, MAIN_DIR, mode, pydir, xdlfile, app, panel, indent)
 
     logger.info(start_log)
 
@@ -294,31 +283,31 @@ def create_parser():
         description="unodit is a Python unfinished library that takes a LibreOffice Basic Dialog XML file and: a) converts it to python code (PyUNO) b) connects it to other python code (PyUNO)")
 
     # add arguments
-
-    parser.add_argument(
-        '-f', '--file', type=str, help='full path to the xdl file', required=False)
-
-    parser.add_argument(
-        '-d', '--dir', type=str, help='full path to the output directory', default=os.getcwd(), required=False)
-
-    parser.add_argument(
-        '-a', '--appname', type=str, default='MyApp', help='application name', required=False)
-
     parser.add_argument(
         '-m', '--mode', type=str, default='script_convert',
         help='script_convert - convert xdl file, script_files - create script extension files, script_oxt - create script extension, script_all - convert xdl file, create script extension files and script extension, connect - connect to xdl file.',
         choices=['script_convert', 'script_files', 'script_oxt', 'script_all',
                  'connect', 'embed_convert', 'embed_pack', 'embed_all',
-                 'dialogs_create', 'dialogs_files', 'dialogs_oxt', 'dialogs_all', 'sidebar_convert', 'sidebar_files'], required=False)
+                 'dialogs_create', 'dialogs_files', 'dialogs_oxt', 'dialogs_all', 'sidebar_convert', 'sidebar_files'],
+        required=True)
+
+    parser.add_argument(
+        '-d', '--dir', type=str, help='full path to the output directory', default=os.getcwd(), required=True)
+
+    parser.add_argument(
+        '-f', '--file', type=str, help='full path to the xdl file', required=False)
+
+    parser.add_argument(
+        '-a', '--appname', type=str, default='MyApp', help='application name', required=False)
+
+    parser.add_argument(
+        '-p', '--panel', type=int, default=2,
+        help='number of panels in sidebar', required=False)
 
     parser.add_argument(
         '-i', '--indent', type=int, default=4,
         help='number of spaces used for indentation in the generated code. If 0, \t is used as indent',
         choices=[0, 1, 2, 3, 4], required=False)
-
-    parser.add_argument(
-        '-p', '--panel', type=int, default=2,
-        help='number of panels in sidebar', required=False)
 
     return parser
 
@@ -328,14 +317,14 @@ def main():
     parser = create_parser()
     args = parser.parse_args()
 
-    if args.dir == '' or args.dir is None:
-        args.dir = os.getcwd()
+    # if args.mode is None:
+    #     args.mode = 1
+    #
+    # if args.dir == '' or args.dir is None:
+    #     args.dir = os.getcwd()
 
     if not os.path.exists(args.dir):
         os.makedirs(args.dir)
-
-    if args.mode is None:
-        args.mode = 1
 
     create_logger(LOGGER_NAME, args.dir, LOG_FILE)
 

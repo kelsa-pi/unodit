@@ -13,7 +13,7 @@ class PythonGenerator:
     Generate python code
     """
 
-    def __init__(self, xdlfile, context, pydir='', app='MyApp', mode='script_convert', indent=4, **kwargs):
+    def __init__(self, mode, pydir, xdlfile, context, app='MyApp', indent=4, **kwargs):
         self.xdlfile = xdlfile
         self.context = context
         self.pydir = pydir

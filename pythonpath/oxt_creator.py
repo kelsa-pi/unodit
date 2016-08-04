@@ -11,7 +11,7 @@ except ImportError:
 
 
 class ScriptExtensionFiles:
-    def __init__(self, pydir='', app='MyApp', mode='script_convert'):
+    def __init__(self, mode, pydir, app='MyApp'):
         self.pydir = pydir
         self.app = app
         self.mode = mode
@@ -153,7 +153,7 @@ class ScriptExtensionFiles:
 
 
 class CreateScriptExtension:
-    def __init__(self, pydir='', app="MyApp", mode='script_convert'):
+    def __init__(self, mode, pydir, app='MyApp'):
         self.pydir = pydir
         self.app = app
         self.mode = mode
@@ -213,7 +213,7 @@ class CreateScriptExtension:
 
 
 class SidebarExtensionFiles:
-    def __init__(self, pydir='', app='MyApp', mode='sidebar_convert', panel=2):
+    def __init__(self, mode, pydir, app='MyApp', panel=2):
         self.pydir = pydir
         self.app = app
         self.mode = mode
@@ -430,7 +430,7 @@ class SidebarExtensionFiles:
 
 
 class CreateSidebarExtension:
-    def __init__(self, pydir='', app="MyApp", mode='script_convert'):
+    def __init__(self, mode, pydir, app='MyApp'):
         self.pydir = pydir
         self.app = app
         self.mode = mode

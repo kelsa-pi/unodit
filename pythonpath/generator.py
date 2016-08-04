@@ -19,7 +19,7 @@ class CodeGenerator:
     Generate code from uno context dict
     """
 
-    def __init__(self, xdlfile, context, pydir='', app='MyApp', mode='script_convert', indent=4, **kwargs):
+    def __init__(self, mode, pydir, xdlfile, context, app='MyApp',indent=4, **kwargs):
         self.xdlfile = xdlfile
         self.context = context
         self.pydir = pydir
@@ -37,20 +37,20 @@ class CodeGenerator:
 
         # convert
         if self.mode == 'script_convert' or self.mode == 'script_all':
-            py_code = pcg.PythonGenerator(self.xdlfile, self.context, self.pydir, self.app, self.mode, self.indent)
+            py_code = pcg.PythonGenerator(self.mode, self.pydir, self.xdlfile, self.context, self.app, self.indent)
             ui, logic = py_code.generate_py_code()
             self.write_app_exec_file(logic)
             self.write_main_ui_file(ui)
 
         # connect
         elif self.mode == 'connect':
-            py_code = pcg.PythonGenerator(self.xdlfile, self.context, self.pydir, self.app, self.mode, self.indent)
+            py_code = pcg.PythonGenerator(self.mode, self.pydir, self.xdlfile, self.context, self.app, self.indent)
             ui = py_code.generate_py_code()
             self.write_app_exec_file(ui)
 
         # embed
         elif self.mode == 'embed_convert' or self.mode == 'embed_all':
-            py_code = pcg.PythonGenerator(self.xdlfile, self.context, self.pydir, self.app, self.mode, self.indent)
+            py_code = pcg.PythonGenerator(self.mode, self.pydir, self.xdlfile, self.context, self.app, self.indent)
             ui = py_code.generate_py_code()
             self.write_app_exec_file(ui)
 
@@ -60,7 +60,7 @@ class CodeGenerator:
                 if name == 'panel_name':
                     pn = value
 
-            py_code = pcg.PythonGenerator(self.xdlfile, self.context, self.pydir, self.app, self.mode, self.indent, panel_name=pn )
+            py_code = pcg.PythonGenerator(self.mode, self.pydir, self.xdlfile, self.context, self.app, self.indent, panel_name=pn )
             ui, logic = py_code.generate_py_code()
             self.write_app_exec_file(logic)
             self.write_main_ui_file(ui)

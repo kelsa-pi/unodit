@@ -10,10 +10,10 @@ except ImportError:
 
 
 class EmbedScript:
-    def __init__(self, pydir='', app="MyApp", language='python'):
+    def __init__(self, pydir='', app='MyApp'):
         self.pydir = pydir
         self.app = app
-        self.language = language
+        self.language = 'python'
         self.config = conf.ReadINI(conf.MAIN_DIR, self.pydir)
         self.logger = logging.getLogger('unodit.embed_packer.EmbedScript')
         self.logger.info('NEW LOGGER: unodit.embed_packer.EmbedScript')

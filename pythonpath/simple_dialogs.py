@@ -9,7 +9,7 @@ except ImportError:
 
 
 class EasyDialog:
-    def __init__(self, pydir='', app='MyApp', indent=4):
+    def __init__(self, pydir, app='MyApp', indent=4):
         self.pydir = pydir
         self.app = app
         self.code = {}
