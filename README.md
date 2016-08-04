@@ -33,10 +33,15 @@ Place the unodit directory somewhere on your Python path.
     python3 ./unodit.py -m -d [-f ] [-a] [-p] [-i] 
     
 m - mode
+
 d - full path to the output directory (project root)
+
 f  - full path to the xdl file
+
 a - application name
+
 p - number of panels in deck
+
 i - number of spaces used for indentation in the generated code. If 0, \t is used as indent
 
 
