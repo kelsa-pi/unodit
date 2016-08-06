@@ -63,11 +63,6 @@ This section gives a general overview, for more information see [documentation](
 
 ##Screenshot
 
-Run macros
-
-![Script all](resource/screenshot/Macros_script_all.png)
-
-
 Test dialog
 
 ![Test dialog](resource/screenshot/Example_dialog.png)
@@ -77,6 +72,14 @@ Callback function
 
 ![Callback functions](resource/screenshot/Button_event.png)
 
+
+Run macro script
+
+![Script all](resource/screenshot/Macros_script_all.png)
+
+Run macro connect
+
+![Script all](resource/screenshot/Macros_connect.png)
 
 Run embeded macro in document
 

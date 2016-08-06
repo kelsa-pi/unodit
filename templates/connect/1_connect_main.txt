@@ -97,10 +97,10 @@ ${I}def showDialog(self):
 ${I}${I}self.DialogContainer.execute()
 
 
-def ${EXEC_FUNCTION_PREFIX}${APP_NAME}_UI(*args):
+def ${EXEC_FUNCTION_PREFIX}${APP_NAME}(*args):
 ${I}app = ${APP_NAME}_UI()
 ${I}app.showDialog()
 
-g_exportedScripts = Run_${APP_NAME}_UI,
+g_exportedScripts = ${EXEC_FUNCTION_PREFIX}${APP_NAME},
 
 # ----------------- END GENERATED CODE ----------------------------------------
