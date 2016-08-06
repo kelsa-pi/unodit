@@ -36,8 +36,8 @@ class EasyDialog:
             os.makedirs(d)
 
         s = {'I': self.indent,
-            'GENERATED_DATETIME': conf.NOW,
-            'UNODIT_VERSION': conf.VERSION,
+             'GENERATED_DATETIME': conf.NOW,
+             'UNODIT_VERSION': conf.VERSION,
              }
 
         f = os.path.join(d, 'simple_dialogs.py')
@@ -55,9 +55,9 @@ class EasyDialog:
             os.makedirs(d)
 
         s = {'I': self.indent,
-            'APP_NAME': self.app,
-            'EXEC_FUNCTION_PREFIX': self.config.get('exec_function', 'prefix')
-        }
+             'APP_NAME': self.app,
+             'EXEC_FUNCTION_PREFIX': self.config.get('exec_function', 'prefix')
+             }
 
         f = os.path.join(d, self.app + '.py')
         t = string.Template(self.get_template(self.ext_tmpl_dir, '2_dialogs_main.txt'))

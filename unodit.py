@@ -127,12 +127,12 @@ indent    = {}
 
     def mode_dialogs_files():
         logger.info('MODE: ---------- dialogs_files -----------------------------------')
-        sef = script.ScriptExtensionFiles(mode, pydir, app, )
+        sef = script.ScriptExtensionFiles(mode, pydir, app)
         sef.create()
 
     def mode_dialogs_oxt():
         logger.info('MODE: ---------- dialogs_oxt -------------------------------------')
-        cse = script.CreateScriptExtension(mode, pydir, app, )
+        cse = script.CreateScriptExtension(mode, pydir, app)
         cse.create()
 
     def mode_dialogs_all():
