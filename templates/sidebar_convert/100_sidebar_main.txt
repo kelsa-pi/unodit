@@ -84,7 +84,7 @@ ${I}${I}${I}# panelWin has to be set visible
 ${I}${I}${I}panelWin.Visible = True
 
 ${I}${I}${I}# get and set height to receive a working scrollbar
-${I}${I}${I}height = create_some_content(panelWin,url)
+${I}${I}${I}height = create_panels(panelWin,url)
 ${I}${I}${I}xUIElement.height = height
 
 ${I}${I}${I}return xUIElement
@@ -114,7 +114,7 @@ ${I}# XUIElement
 ${I}def getRealInterface(self):
 
 ${I}${I}if not self.window:
-${I}${I}${I}dialogUrl = "vnd.sun.star.extension://${EXTENSION_IDENTIFIER_DOMAIN}.${EXTENSION_IDENTIFIER_APP}/Dialog_Sidebar.xdl"
+${I}${I}${I}dialogUrl = "vnd.sun.star.extension://${EXTENSION_IDENTIFIER_DOMAIN}.${EXTENSION_IDENTIFIER_APP}/empty_dialog.xdl"
 ${I}${I}${I}smgr = self.ctx.ServiceManager
 
 ${I}${I}${I}provider = smgr.createInstanceWithContext("com.sun.star.awt.ContainerWindowProvider",self.ctx)
@@ -205,7 +205,7 @@ ${I}${I}text.insertString(cur,t,False)
 g_ImplementationHelper.addImplementation(*test.get_imple())
 
 
-def create_some_content(panelWin,url):
+def create_panels(panelWin,url):
 
 ${I}ctx = uno.getComponentContext()
 ${I}# url is set in Sidebar.xcu

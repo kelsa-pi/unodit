@@ -172,6 +172,11 @@ indent    = {}
         sef = script.SidebarExtensionFiles(mode, pydir, app, panel)
         sef.create()
 
+    def mode_sidebar_oxt():
+        logger.info('\nMODE: ---------- sidebar_oxt -------------------------------------')
+        cse = script.CreateSidebarExtension(mode, pydir, app, panel)
+        cse.create()
+
     def get_sidebar_panels():
 
         for i in range(0, panel):
@@ -241,6 +246,9 @@ indent    = {}
     elif mode == 'sidebar_files':
         mode_sidebar_files()
 
+    elif mode == 'sidebar_oxt':
+        mode_sidebar_oxt()
+
     # print(start_log + '\nStatus: Finished')
 
     paths = ''
@@ -281,7 +289,7 @@ def create_parser():
         help='script_convert - convert xdl file, script_files - create script extension files, script_oxt - create script extension, script_all - convert xdl file, create script extension files and script extension, connect - connect to xdl file.',
         choices=['script_convert', 'script_files', 'script_oxt', 'script_all',
                  'connect', 'embed_convert', 'embed_pack', 'embed_all',
-                 'dialogs_create', 'dialogs_files', 'dialogs_oxt', 'dialogs_all', 'sidebar_convert', 'sidebar_files'],
+                 'dialogs_create', 'dialogs_files', 'dialogs_oxt', 'dialogs_all', 'sidebar_convert', 'sidebar_files', 'sidebar_oxt', 'sidebar_all'],
         required=True)
 
     parser.add_argument(
