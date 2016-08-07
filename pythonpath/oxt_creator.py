@@ -207,7 +207,14 @@ class CreateScriptExtension:
 
         # /src/pythonpath/*
         if self.mode == 'dialogs_oxt' or self.mode == 'dialogs_all':
-            pass
+            # /src/pythonpath/simple_dialogs.py
+            oxt_zip_file.write(os.path.join(self.pydir,
+                                            self.config.get('directories', 'source_dir'),
+                                            conf.IMPORT_DIR,
+                                            'simple_dialogs.py'),
+                               self.config.get('directories',
+                                               'source_dir') + '/' + conf.IMPORT_DIR + '/' + 'simple_dialogs.py',
+                               zipfile.ZIP_DEFLATED)
         else:
             # /src/pythonpath/TestApp_UI.py
             oxt_zip_file.write(os.path.join(self.pydir,
