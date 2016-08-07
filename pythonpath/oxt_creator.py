@@ -168,37 +168,48 @@ class CreateScriptExtension:
         # add directories and files in zip file
         oxt_zip_file = zipfile.ZipFile(oxt, "w")
 
+        # Addons.xcu
         oxt_zip_file.write(os.path.join(self.pydir, "Addons.xcu"), "Addons.xcu", zipfile.ZIP_DEFLATED)
+        # description.xml
         oxt_zip_file.write(os.path.join(self.pydir, "description.xml"), "description.xml", zipfile.ZIP_DEFLATED)
-
-        oxt_zip_file.write(os.path.join(self.pydir,
-                                        self.config.get('script_ext_meta', 'dir'),
-                                        self.config.get('script_ext_meta', 'file')),
-                           self.config.get('script_ext_meta', 'dir') + '/' + self.config.get('script_ext_meta', 'file'),
-                           zipfile.ZIP_DEFLATED)
-
+        # /description/description.txt
         oxt_zip_file.write(os.path.join(self.pydir,
                                         self.config.get('script_app_description', 'dir'),
                                         self.config.get('script_app_description', 'file')),
                            self.config.get('script_app_description', 'dir') + '/' + self.config.get(
                                'script_app_description', 'file'),
                            zipfile.ZIP_DEFLATED)
-
+        # /description/title.txt
+        oxt_zip_file.write(os.path.join(self.pydir,
+                                        self.config.get('script_app_title', 'dir'),
+                                        self.config.get('script_app_title', 'file')),
+                           self.config.get('script_app_title', 'dir') + '/' + self.config.get(
+                               'script_app_title', 'file'),
+                           zipfile.ZIP_DEFLATED)
+        # META-INF/manifest.xml
+        oxt_zip_file.write(os.path.join(self.pydir,
+                                        self.config.get('script_ext_meta', 'dir'),
+                                        self.config.get('script_ext_meta', 'file')),
+                           self.config.get('script_ext_meta', 'dir') + '/' + self.config.get('script_ext_meta', 'file'),
+                           zipfile.ZIP_DEFLATED)
+        # /registration/license.txt
         oxt_zip_file.write(os.path.join(self.pydir,
                                         self.config.get('script_app_license', 'dir'),
                                         self.config.get('script_app_license', 'file')),
                            self.config.get('script_app_license', 'dir') + '/' + self.config.get('script_app_license',
                                                                                                 'file'),
                            zipfile.ZIP_DEFLATED)
-
+        # /src/Test_convert.py
         oxt_zip_file.write(os.path.join(self.pydir,
                                         self.config.get('directories', 'source_dir'),
                                         self.app + '.py'),
                            self.config.get('directories', 'source_dir') + '/' + self.app + '.py', zipfile.ZIP_DEFLATED)
 
+        # /src/pythonpath/*
         if self.mode == 'dialogs_oxt' or self.mode == 'dialogs_all':
             pass
         else:
+            # /src/pythonpath/TestApp_UI.py
             oxt_zip_file.write(os.path.join(self.pydir,
                                             self.config.get('directories', 'source_dir'),
                                             conf.IMPORT_DIR,
@@ -415,7 +426,6 @@ class SidebarExtensionFiles:
 
         shutil.copy(icon_src, icon_dest)
         self.logger.info('app icon file ' + icon_dest)
-
 
     def create(self):
         self.ext_meta()

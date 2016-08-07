@@ -71,7 +71,7 @@ indent    = {}
 
     def mode_script_convert():
 
-        logger.info('MODE: ---------- script_convert ----------------------------------')
+        logger.info('\nMODE: ---------- script_convert ----------------------------------')
         ctx = extractor.ContextGenerator(xdlfile)
         ctx.get_xdl_context()
         uno_ctx = ctx.get_uno_context()
@@ -79,12 +79,12 @@ indent    = {}
         cg.generate_code()
 
     def mode_script_files():
-        logger.info('MODE: ---------- script_files ------------------------------------')
+        logger.info('\nMODE: ---------- script_files ------------------------------------')
         sef = script.ScriptExtensionFiles(mode, pydir, app)
         sef.create()
 
     def mode_script_oxt():
-        logger.info('MODE: ---------- script_oxt --------------------------------------')
+        logger.info('\nMODE: ---------- script_oxt --------------------------------------')
         cse = script.CreateScriptExtension(mode, pydir, app)
         cse.create()
 
@@ -95,7 +95,7 @@ indent    = {}
 
     def mode_connect():
 
-        logger.info('MODE: ---------- connect -----------------------------------------')
+        logger.info('\nMODE: ---------- connect -----------------------------------------')
         ctx = extractor.ContextGenerator(xdlfile)
         ctx.get_xdl_context()
         uno_ctx = ctx.get_uno_context()
@@ -104,7 +104,7 @@ indent    = {}
 
     def mode_embed_convert():
 
-        logger.info('MODE: ---------- embed_convert -----------------------------------')
+        logger.info('\nMODE: ---------- embed_convert -----------------------------------')
         ctx = extractor.ContextGenerator(xdlfile)
         ctx.get_xdl_context()
         uno_ctx = ctx.get_uno_context()
@@ -112,7 +112,7 @@ indent    = {}
         cg.generate_code()
 
     def mode_embed_pack():
-        logger.info('MODE: ---------- embed_pack --------------------------------------')
+        logger.info('\nMODE: ---------- embed_pack --------------------------------------')
         e = ep.EmbedScript(pydir, app)
         e.pack_script()
 
@@ -121,28 +121,28 @@ indent    = {}
         mode_embed_pack()
 
     def mode_dialogs_create():
-        logger.info('MODE: ---------- dialogs_create ----------------------------------')
+        logger.info('\nMODE: ---------- dialogs_create ----------------------------------')
         e = dialogs.EasyDialog(pydir, app)
         e.create_template()
 
     def mode_dialogs_files():
-        logger.info('MODE: ---------- dialogs_files -----------------------------------')
+        logger.info('\nMODE: ---------- dialogs_files -----------------------------------')
         sef = script.ScriptExtensionFiles(mode, pydir, app)
         sef.create()
 
     def mode_dialogs_oxt():
-        logger.info('MODE: ---------- dialogs_oxt -------------------------------------')
+        logger.info('\nMODE: ---------- dialogs_oxt -------------------------------------')
         cse = script.CreateScriptExtension(mode, pydir, app)
         cse.create()
 
     def mode_dialogs_all():
-        logger.info('MODE: ---------- dialogs_all -------------------------------------')
+        logger.info('\nMODE: ---------- dialogs_all -------------------------------------')
         mode_dialogs_create()
         mode_dialogs_files()
         mode_dialogs_oxt()
 
     def mode_sidebar_convert():
-        logger.info('MODE: ---------- sidebar_convert ---------------------------------')
+        logger.info('\nMODE: ---------- sidebar_convert ---------------------------------')
         p_names = ''
 
         for i in range(0, panel):
@@ -168,7 +168,7 @@ indent    = {}
         sb.generate_sidebar_code()
 
     def mode_sidebar_files():
-        logger.info('MODE: ---------- dialogs_files -----------------------------------')
+        logger.info('\nMODE: ---------- dialogs_files -----------------------------------')
         sef = script.SidebarExtensionFiles(mode, pydir, app, panel)
         sef.create()
 
@@ -241,8 +241,16 @@ indent    = {}
     elif mode == 'sidebar_files':
         mode_sidebar_files()
 
-    print(start_log + '\nStatus: Finished')
+    # print(start_log + '\nStatus: Finished')
 
+    paths = ''
+    for path, subdirs, files in os.walk(pydir):
+        for name in files:
+            paths = paths + os.path.join(path, name) + ',\n'
+            # print(os.path.join(path, name))
+    logger.info('\nCONNTENT:' + pydir + ' directory:\n' + paths)
+
+    print('Finished')
     return 0
 
 
