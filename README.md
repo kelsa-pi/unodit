@@ -85,6 +85,10 @@ Run embeded macro in document
 
 ![Embed all](resource/screenshot/Macros_embed_all.png)
 
+Run simple dialogs
+
+![Embed all](resource/screenshot/Macros_simple_dialogs.png)
+
 ##Unodit directory structure
 
     unodit/
