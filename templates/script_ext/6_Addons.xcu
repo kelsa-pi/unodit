@@ -15,7 +15,7 @@
 
     <node oor:name="AddonUI">
         <node oor:name="AddonMenu">
-            <node oor:name="my.identifier.value.for.myaddon" oor:op="replace">
+            <node oor:name="${EXTENSION_IDENTIFIER_DOMAIN}.${EXTENSION_IDENTIFIER_APP}" oor:op="replace">
 
                 <prop oor:name="Title" oor:type="xs:string">
                     <value xml:lang="en-US">${TITLE}</value>

@@ -126,7 +126,9 @@ class ScriptExtensionFiles:
 
     def ext_add_on_menu(self):
 
-        s = {'TITLE': self.app,
+        s = {'EXTENSION_IDENTIFIER_DOMAIN': self.config.get('extension', 'identifier_domain'),
+             'EXTENSION_IDENTIFIER_APP': self.config.get('extension', 'identifier_app'),
+             'TITLE': self.app,
              'OXT_NAME': self.app + self.config.get('script_oxt', 'name_sufix') + '.oxt',
              'SOURCE': self.config.get('directories', 'source_dir'),
              'EXEC_FILE_NAME': self.app + '.py',
