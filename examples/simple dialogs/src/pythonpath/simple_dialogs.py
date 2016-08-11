@@ -37,6 +37,7 @@ class SimpleDialog(unohelper.Base, XActionListener, XJobExecutor):
     Class documentation...
     """
     def __init__(self, nPositionX=None, nPositionY=None, nWidth=None, nHeight=None, sTitle=None):
+        self.sTitle = sTitle
         self.LocalContext = uno.getComponentContext()
         self.ServiceManager = self.LocalContext.ServiceManager
         self.Toolkit = self.ServiceManager.createInstanceWithContext("com.sun.star.awt.ExtToolkit", self.LocalContext)
@@ -73,30 +74,30 @@ class SimpleDialog(unohelper.Base, XActionListener, XJobExecutor):
 
 class SelectBoxClass(SimpleDialog):
 
-    def __init__(self, message="Select one item", title="SelectBox", choices=['a','b','c']):
+    def __init__(self, message="Select one item", title="SelectBox", choices=['a', 'b', 'c']):
         SimpleDialog.__init__(self, nPositionX=60, nPositionY=60, nWidth=100, nHeight=55, sTitle=None)
         self.DialogModel.Title = title
 
-        dMessage = {"PositionY": 5, "PositionX": 5, "Height": 15, "Width": 90, "Label": message,}
+        dMessage = {"PositionY": 5, "PositionX": 5, "Height": 15, "Width": 90, "Label": message}
         self.lbMessage = self.addControl("FixedText", "lbMessage", dMessage)
 
-        dChoices = {"PositionY": 15, "PositionX": 5, "Height": 15, "Width": 90,"Dropdown": True,}
+        dChoices = {"PositionY": 15, "PositionX": 5, "Height": 15, "Width": 90, "Dropdown": True}
         self.cbChoices = self.addControl("ComboBox", "cbChoices", dChoices)
         self.cbChoices.StringItemList = tuple(choices)
 
-        dOK = {"PositionY": 35, "PositionX": 30, "Height": 15, "Width": 30, "Label": "OK",}
+        dOK = {"PositionY": 35, "PositionX": 30, "Height": 15, "Width": 30, "Label": "OK"}
         self.btnOK = self.addControl("Button", "btnOK", dOK)
 
-        dCancel = {"PositionY": 35, "PositionX": 65, "Height": 15, "Width": 30, "Label": "Cancel",}
+        dCancel = {"PositionY": 35, "PositionX": 65, "Height": 15, "Width": 30, "Label": "Cancel"}
         self.btnCancel = self.addControl("Button", "btnCancel", dCancel)
 
-        #default_text = self.cbChoices.StringItemList[0]
-        #self.cbChoices.Text = default_text
+        # default_text = self.cbChoices.StringItemList[0]
+        # self.cbChoices.Text = default_text
 
         self.returnValue = None
 
         self.showDialog()
-        #xray(self.DialogContainer)
+        # xray(self.DialogContainer)
 
     def actionPerformed(self, oActionEvent):
         if oActionEvent.ActionCommand == 'btnOK_OnClick':
@@ -111,33 +112,33 @@ class SelectBoxClass(SimpleDialog):
 
 
 class OptionBoxClass(SimpleDialog):
-    def __init__(self, message="Select multiple items", title="OptionBox", choices=['a','b','c']):
+    def __init__(self, message="Select multiple items", title="OptionBox", choices=['a', 'b', 'c']):
         SimpleDialog.__init__(self, nPositionX=60, nPositionY=60, nWidth=135, nHeight=120, sTitle=None)
         self.DialogModel.Title = title
 
-        dMessage = {"PositionY": 5, "PositionX": 5, "Height": 15, "Width": 110, "Label": message,}
+        dMessage = {"PositionY": 5, "PositionX": 5, "Height": 15, "Width": 110, "Label": message}
         self.lbMessage = self.addControl("FixedText", "lbMessage", dMessage)
 
-        dChoices = {"PositionY": 15, "PositionX": 5, "Height": 80, "Width": 125,"MultiSelection": True}
+        dChoices = {"PositionY": 15, "PositionX": 5, "Height": 80, "Width": 125, "MultiSelection": True}
         self.lbChoices = self.addControl("ListBox", "lbChoices", dChoices)
         self.lbChoices.StringItemList = tuple(choices)
 
-        dSelectAll = {"PositionY": 100, "PositionX": 5, "Height": 15, "Width": 30, "Label": "Select All",}
+        dSelectAll = {"PositionY": 100, "PositionX": 5, "Height": 15, "Width": 30, "Label": "Select All"}
         self.btnSelectAll = self.addControl("Button", "btnSelectAll", dSelectAll)
 
-        dClearAll = {"PositionY": 100, "PositionX": 35, "Height": 15, "Width": 30, "Label": "Clear All",}
+        dClearAll = {"PositionY": 100, "PositionX": 35, "Height": 15, "Width": 30, "Label": "Clear All"}
         self.btnClearAll = self.addControl("Button", "btnClearAll", dClearAll)
 
-        dOK = {"PositionY": 100, "PositionX": 70, "Height": 15, "Width": 30, "Label": "OK",}
+        dOK = {"PositionY": 100, "PositionX": 70, "Height": 15, "Width": 30, "Label": "OK"}
         self.btnOK = self.addControl("Button", "btnOK", dOK)
 
-        dCancel = {"PositionY": 100, "PositionX": 100, "Height": 15, "Width": 30, "Label": "Cancel",}
+        dCancel = {"PositionY": 100, "PositionX": 100, "Height": 15, "Width": 30, "Label": "Cancel"}
         self.btnCancel = self.addControl("Button", "btnCancel", dCancel)
 
         self.returnValue = ()
 
         self.showDialog()
-        #xray(self.DialogContainer)
+        # xray(self.DialogContainer)
 
     def actionPerformed(self, oActionEvent):
         if oActionEvent.ActionCommand == 'btnOK_OnClick':
@@ -174,22 +175,22 @@ class TextBoxClass(SimpleDialog):
         SimpleDialog.__init__(self, nPositionX=60, nPositionY=60, nWidth=100, nHeight=55, sTitle=None)
         self.DialogModel.Title = title
 
-        dMessage = {"PositionY": 5, "PositionX": 5, "Height": 15, "Width": 90, "Label": message,}
+        dMessage = {"PositionY": 5, "PositionX": 5, "Height": 15, "Width": 90, "Label": message}
         self.lbMessage = self.addControl("FixedText", "lbMessage", dMessage)
 
-        dText = {"PositionY": 15, "PositionX": 5, "Height": 15, "Width": 90,"Text":text}
+        dText = {"PositionY": 15, "PositionX": 5, "Height": 15, "Width": 90, "Text": text}
         self.txtText = self.addControl("Edit", "txtText", dText)
 
-        dOK = {"PositionY": 35, "PositionX": 30, "Height": 15, "Width": 30, "Label": "OK",}
+        dOK = {"PositionY": 35, "PositionX": 30, "Height": 15, "Width": 30, "Label": "OK"}
         self.btnOK = self.addControl("Button", "btnOK", dOK)
 
-        dCancel = {"PositionY": 35, "PositionX": 65, "Height": 15, "Width": 30, "Label": "Cancel",}
+        dCancel = {"PositionY": 35, "PositionX": 65, "Height": 15, "Width": 30, "Label": "Cancel"}
         self.btnCancel = self.addControl("Button", "btnCancel", dCancel)
 
         self.returnValue = None
 
         self.showDialog()
-        #xray(self.nfNumber)
+        # xray(self.nfNumber)
 
     def actionPerformed(self, oActionEvent):
         if oActionEvent.ActionCommand == 'btnOK_OnClick':
@@ -214,10 +215,10 @@ class NumberBoxClass(SimpleDialog):
         self.max_ = max_
         self.decimals = decimals
 
-        dMessage = {"PositionY": 5, "PositionX": 5, "Height": 15, "Width": 90, "Label": message,}
+        dMessage = {"PositionY": 5, "PositionX": 5, "Height": 15, "Width": 90, "Label": message}
         self.lbMessage = self.addControl("FixedText", "lbMessage", dMessage)
 
-        dNumber = {"PositionY": 15, "PositionX": 5, "Height": 15, "Width": 90,}
+        dNumber = {"PositionY": 15, "PositionX": 5, "Height": 15, "Width": 90}
         self.nfNumber = self.addControl("NumericField", "nfNumber", dNumber)
         self.nfNumber.setPropertyValue("DecimalAccuracy", self.decimals)
         self.nfNumber.setPropertyValue("StrictFormat", True)
@@ -225,16 +226,16 @@ class NumberBoxClass(SimpleDialog):
         self.nfNumber.setPropertyValue("ValueMin", self.min_)
         self.nfNumber.setPropertyValue("ValueMax", self.max_)
 
-        dOK = {"PositionY": 35, "PositionX": 30, "Height": 15, "Width": 30, "Label": "OK",}
+        dOK = {"PositionY": 35, "PositionX": 30, "Height": 15, "Width": 30, "Label": "OK"}
         self.btnOK = self.addControl("Button", "btnOK", dOK)
 
-        dCancel = {"PositionY": 35, "PositionX": 65, "Height": 15, "Width": 30, "Label": "Cancel",}
+        dCancel = {"PositionY": 35, "PositionX": 65, "Height": 15, "Width": 30, "Label": "Cancel"}
         self.btnCancel = self.addControl("Button", "btnCancel", dCancel)
 
         self.returnValue = None
 
         self.showDialog()
-        #xray(self.DialogContainer)
+        # xray(self.DialogContainer)
 
     def actionPerformed(self, oActionEvent):
         if oActionEvent.ActionCommand == 'btnOK_OnClick':
@@ -262,23 +263,23 @@ class DateBoxClass(SimpleDialog):
         SimpleDialog.__init__(self, nPositionX=60, nPositionY=60, nWidth=100, nHeight=55, sTitle=None)
         self.DialogModel.Title = title
 
-        dMessage = {"PositionY": 5, "PositionX": 5, "Height": 15, "Width": 90, "Label": message,}
+        dMessage = {"PositionY": 5, "PositionX": 5, "Height": 15, "Width": 90, "Label": message}
         self.lbMessage = self.addControl("FixedText", "lbMessage", dMessage)
 
         dDate = {"PositionY": 15, "PositionX": 5, "Height": 15, "Width": 90, "Dropdown": True,
                  "StrictFormat": True, "DateFormat": 9}
         self.dbDate = self.addControl("DateField", "dbDate", dDate)
 
-        dOK = {"PositionY": 35, "PositionX": 30, "Height": 15, "Width": 30, "Label": "OK",}
+        dOK = {"PositionY": 35, "PositionX": 30, "Height": 15, "Width": 30, "Label": "OK"}
         self.btnOK = self.addControl("Button", "btnOK", dOK)
 
-        dCancel = {"PositionY": 35, "PositionX": 65, "Height": 15, "Width": 30, "Label": "Cancel",}
+        dCancel = {"PositionY": 35, "PositionX": 65, "Height": 15, "Width": 30, "Label": "Cancel"}
         self.btnCancel = self.addControl("Button", "btnCancel", dCancel)
 
         self.returnValue = ""
 
         self.showDialog()
-        #xray(self.DialogContainer)
+        # xray(self.DialogContainer)
 
     def actionPerformed(self, oActionEvent):
         if oActionEvent.ActionCommand == 'btnOK_OnClick':
@@ -301,7 +302,7 @@ class MessageBoxClass(SimpleDialog):
         dMessage = {"PositionY": 5, "PositionX": 5, "Height": 30, "Width": 90, "Label": message, "MultiLine": True}
         self.lbMessage = self.addControl("FixedText", "lbMessage", dMessage)
 
-        dOK = {"PositionY": 35, "PositionX": 35, "Height": 15, "Width": 30, "Label": "OK",}
+        dOK = {"PositionY": 35, "PositionX": 35, "Height": 15, "Width": 30, "Label": "OK"}
         self.btnOK = self.addControl("Button", "btnOK", dOK)
 
         self.returnValue = None
@@ -315,6 +316,7 @@ class MessageBoxClass(SimpleDialog):
     def returnValue(self):
         pass
 
+
 class ActionBoxClass(SimpleDialog):
 
     def __init__(self, message="Message", title="ActionBox"):
@@ -324,13 +326,13 @@ class ActionBoxClass(SimpleDialog):
         dMessage = {"PositionY": 15, "PositionX": 5, "Height": 15, "Width": 90, "Label": message, "MultiLine": True}
         self.lbMessage = self.addControl("FixedText", "lbMessage", dMessage)
 
-        dOK = {"PositionY": 35, "PositionX": 5, "Height": 15, "Width": 30, "Label": "OK",}
+        dOK = {"PositionY": 35, "PositionX": 5, "Height": 15, "Width": 30, "Label": "OK"}
         self.btnOK = self.addControl("Button", "btnOK", dOK)
 
-        dNO = {"PositionY": 35, "PositionX": 35, "Height": 15, "Width": 30, "Label": "NO",}
+        dNO = {"PositionY": 35, "PositionX": 35, "Height": 15, "Width": 30, "Label": "NO"}
         self.btnNO = self.addControl("Button", "btnNO", dNO)
 
-        dCancel = {"PositionY": 35, "PositionX": 65, "Height": 15, "Width": 30, "Label": "Cancel",}
+        dCancel = {"PositionY": 35, "PositionX": 65, "Height": 15, "Width": 30, "Label": "Cancel"}
         self.btnCancel = self.addControl("Button", "btnCancel", dCancel)
 
         self.returnValue = None
@@ -357,12 +359,13 @@ class ActionBoxClass(SimpleDialog):
 #               FUNCTIONS
 # -----------------------------------------------------------
 
-def SelectBox(message="Select one item", title="SelectBox", choices=['a','b','c']):
+
+def SelectBox(message="Select one item", title="SelectBox", choices=['a', 'b', 'c']):
     app = SelectBoxClass(message, title, choices)
     return app.returnValue
 
 
-def OptionBox(message="Select multiple items", title="OptionBox", choices=['a','b','c']):
+def OptionBox(message="Select multiple items", title="OptionBox", choices=['a', 'b', 'c']):
     app = OptionBoxClass(message, title, choices)
     return app.returnValue
 

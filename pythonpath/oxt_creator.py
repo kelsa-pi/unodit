@@ -533,8 +533,7 @@ class CreateSidebarExtension:
         oxt_zip_file.write(os.path.join(self.pydir,
                                         self.config.get('sidebar_app_license', 'dir'),
                                         self.config.get('sidebar_app_license', 'file')),
-                           self.config.get('sidebar_app_license', 'dir') + '/' + self.config.get('sidebar_app_license',
-                                                                                                'file'),
+                           self.config.get('sidebar_app_license', 'dir') + '/' + self.config.get('sidebar_app_license', 'file'),
                            zipfile.ZIP_DEFLATED)
 
         # /src/Test_convert.py
@@ -555,7 +554,7 @@ class CreateSidebarExtension:
                                             self.config.get('sdb_directories', 'sdb_ui'),
                                             self.config.get(panel_section, 'name') + self.config.get('ui_file', 'sufix') + '.py'),
                                self.config.get('directories', 'source_dir') + '/' + conf.IMPORT_DIR + '/' + self.config.get('sdb_directories', 'sdb_ui') + '/' +
-                                            self.config.get(panel_section, 'name') + self.config.get('ui_file', 'sufix') + '.py',
+                                               self.config.get(panel_section, 'name') + self.config.get('ui_file', 'sufix') + '.py',
                                zipfile.ZIP_DEFLATED)
 
             oxt_zip_file.write(os.path.join(self.pydir,
@@ -563,8 +562,8 @@ class CreateSidebarExtension:
                                             conf.IMPORT_DIR,
                                             self.config.get('sdb_directories', 'sdb_ui_logic'),
                                             self.config.get(panel_section, 'name') + '.py'),
-                               self.config.get('directories','source_dir') + '/' + conf.IMPORT_DIR + '/' + self.config.get('sdb_directories', 'sdb_ui_logic') + '/' +
-                                            self.config.get(panel_section, 'name') + '.py',
+                               self.config.get('directories', 'source_dir') + '/' + conf.IMPORT_DIR + '/' + self.config.get('sdb_directories', 'sdb_ui_logic') + '/' +
+                                               self.config.get(panel_section, 'name') + '.py',
                                zipfile.ZIP_DEFLATED)
 
         oxt_zip_file.close()

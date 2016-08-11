@@ -94,7 +94,6 @@ class PythonGenerator:
             self.tmpl_event_callbacks = string.Template(self.get_template(py_tmpl_dir, '11_event_callbacks.txt'))
             self.logger.info('successfully read all templates for script files')
 
-
     def get_template(self, py_tmpl_dir, template):
         templ = os.path.join(py_tmpl_dir, template)
         with open(templ, 'rt') as t:

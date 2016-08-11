@@ -149,7 +149,7 @@ indent    = {}
 
             # read config.ini for xdl file
             read_conf = ReadINI(MAIN_DIR, pydir)
-            panel_section = 'panel'+ str(i + 1)
+            panel_section = 'panel' + str(i + 1)
             file_xdl = read_conf.get(panel_section, 'xdl_ui')
             panel_name = read_conf.get(panel_section, 'name')
 
@@ -177,18 +177,18 @@ indent    = {}
         cse = script.CreateSidebarExtension(mode, pydir, app, panel)
         cse.create()
 
-    def get_sidebar_panels():
-
-        for i in range(0, panel):
-            # read config.ini for xdl file
-            read_conf = ReadINI(MAIN_DIR, pydir)
-            panel_section = 'panel' + str(i + 1)
-            file_xdl = read_conf.get(panel_section, 'xdl_ui')
-            panel_name = read_conf.get(panel_section, 'name')
-            p_names = p_names + panel_name + ','
-
-        p_names = p_names[:-1]
-        return p_names
+    # def get_sidebar_panels():
+    #
+    #     for i in range(0, panel):
+    #         # read config.ini for xdl file
+    #         read_conf = ReadINI(MAIN_DIR, pydir)
+    #         panel_section = 'panel' + str(i + 1)
+    #         file_xdl = read_conf.get(panel_section, 'xdl_ui')
+    #         panel_name = read_conf.get(panel_section, 'name')
+    #         p_names = p_names + panel_name + ','
+    #
+    #     p_names = p_names[:-1]
+    #     return p_names
 
     # script - convert xdl file (1)
     if mode == 'script_convert':

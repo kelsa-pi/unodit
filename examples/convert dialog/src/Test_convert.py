@@ -17,9 +17,9 @@ from Test_convert_UI import Test_convert_UI
 
 
 class Test_convert(Test_convert_UI):
-    '''
+    """
     Class documentation...
-    '''
+    """
     def __init__(self):
         Test_convert_UI.__init__(self)
 
