@@ -86,6 +86,7 @@ class SidebarGenerator:
 
         for i in self.panel_list:
             pn = {'I': self.indent,
+                  'EXTENSION_IDENTIFIER_APP': self.config.get('extension', 'identifier_app'),
                   'PANEL_NAME': i
                   }
             code += self.sidebar_run_panels.substitute(pn)

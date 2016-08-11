@@ -33,7 +33,7 @@ ${I}${I}#               Create dialog and insert controls
 ${I}${I}# -----------------------------------------------------------
 
 ${I}${I}# --------------create dialog container and set model and properties
-${I}${I}self.DialogContainer = panelWin #self.ServiceManager.createInstanceWithContext("com.sun.star.awt.UnoControlDialog", self.LocalContext)
+${I}${I}self.DialogContainer = panelWin
 ${I}${I}self.DialogModel = self.ServiceManager.createInstance("com.sun.star.awt.UnoControlDialogModel")
 ${I}${I}self.DialogContainer.setModel(self.DialogModel)
 ${GEN_DIALOG_PROPERTIES}

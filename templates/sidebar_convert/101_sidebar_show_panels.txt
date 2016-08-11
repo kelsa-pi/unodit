@@ -1,9 +1,9 @@
-${I}if url == 'private:resource/toolpanel/SidebarExampleFactory/${PANEL_NAME}':
+${I}if url == 'private:resource/toolpanel/${EXTENSION_IDENTIFIER_APP}/${PANEL_NAME}':
 
 ${I}${I}pos_y = 20
-${I}${I}height = 20
+${I}${I}height = 100
 
 ${I}${I}app = ${PANEL_NAME}(panelWin)
 ${I}${I}app.showDialog()
 
-${I}${I}return 200 + pos_y + 15
+${I}${I}return height + pos_y + 15

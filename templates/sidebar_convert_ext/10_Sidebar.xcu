@@ -13,6 +13,9 @@
 	    	    <prop oor:name="Title" oor:type="xs:string">
             	   	<value xml:lang="en-US">${DECK_TITLE}</value>
 	            </prop>
+	            <prop oor:name="TitleBarIsOptional" oor:type="xs:boolean">
+			        <value>true</value>
+			    </prop>
 	            <prop oor:name="Id" oor:type="xs:string">
 	               	<value>${DECK_ID}</value>
 	            </prop>

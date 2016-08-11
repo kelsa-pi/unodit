@@ -22,6 +22,7 @@ from ${UI_DIR}.${APP_NAME}_UI import ${APP_NAME}_UI
 #${I}mri.inspect(target)
 
 # uncomment for Xray
+#from com.sun.star.uno import RuntimeException as _rtex
 #def xray(myObject):
 #${I}try:
 #${I}${I}sm = uno.getComponentContext().ServiceManager
@@ -32,7 +33,6 @@ from ${UI_DIR}.${APP_NAME}_UI import ${APP_NAME}_UI
 #${I}${I}return
 #${I}except:
 #${I}${I}raise _rtex("\nBasic library Xray is not installed", uno.getComponentContext())
-# -------------------------------------------------------------------
 
 
 class ${APP_NAME}(${APP_NAME}_UI):
@@ -42,8 +42,8 @@ ${I}'''
 ${I}def __init__(self, panelWin):
 ${I}${I}${APP_NAME}_UI.__init__(self, panelWin)
 
-${I}def getHeight(self):
-${I}${I}return self.DialogModel.Height
+#${I}def getHeight(self):
+#${I}${I}return self.DialogModel.Height
 
 ${I}${I}# --------- my code ---------------------
 ${I}${I}self.DialogModel.Title = "${APP_NAME}"
@@ -78,6 +78,11 @@ ${GEN_ACTIONS_CALLBACKS}
 
 
 def ${EXEC_FUNCTION_PREFIX}${APP_NAME}(*args):
+${I}"""
+${I}Intended to be used in a development environment only
+${I}Copy this file in src dir and run with (Tools - Macros - MyMacros)
+${I}After development copy this file back
+${I}"""
 ${I}ctx = uno.getComponentContext()
 ${I}sm = ctx.ServiceManager
 ${I}dialog = sm.createInstanceWithContext("com.sun.star.awt.UnoControlDialog", ctx)
