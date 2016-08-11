@@ -67,6 +67,10 @@ Test dialog
 
 ![Test dialog](resource/screenshot/Example_dialog.png)
 
+Sidebar
+
+![Test dialog](resource/screenshot/Sidebar_panels.png)
+
 
 Callback function
 
