@@ -1,7 +1,8 @@
 # unodit
-**UNO** **Di**alog **T**ools (alpha version) automate some of the tedious tasks with dialogs in order to help you write your own extension for LibreOffice in Python(PyUNO).
 
-Use this library to prepare your python script with dialogs as extension for LibreOffice or embed in document. Newcomers would benefit from reading generated code (see `examples` directory) or writing macros with simple dialog boxes for interaction with a user.
+**UNO** **Di**alog **T**ools is a Python 3 library and command-line tool that allows you to prepare your PyUNO macros with dialogs as extension, sidebar extension or embed in ODF documents. It also provides simple dialog boxes for interaction with a user. 
+
+Unodit was developed for LibreOffice extension with a focus on rapid prototyping in order to lower the barrier of entry for newcomers. 
 
 `unodit` main features are:
 
