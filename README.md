@@ -136,6 +136,3 @@ The following is an incomplete lists of a few projects that share some similarit
 [EasyGUI](https://sourceforge.net/projects/easygui): Very easy GUI programming in Python and Tkinter
 
 [EasyGUI_Qt](https://github.com/aroberge/easygui_qt): Inspired by EasyGUI, designed for PyQt
-
-
-
