@@ -66,7 +66,7 @@ class SidebarGenerator:
                     'EXTENSION_IDENTIFIER_DOMAIN': self.config.get('extension', 'identifier_domain'),
                     'EXTENSION_IDENTIFIER_APP': self.config.get('extension', 'identifier_app'),
                     'SIDEBAR_PROTOCOL': self.config.get('sidebar', 'protocol'),
-                    'RUN_DEFAULT_MENU_COMMAND': self._run_default_menu_command(),
+                    'RUN_DEFAULT_MENU_COMMAND': self._run_default_menu_command,
                     'RUN_PANELS': self._run_panels(),
                     }
         sidebar_main = self.sidebar_main.substitute(sdb_main)
