@@ -1,0 +1,3 @@
+${I}${I}if featureURL.Path == '${PANEL_NAME}':
+${I}${I}${I}messageBox(featureURL.Path, 'DefaultMenuCommand', MsgType=MESSAGEBOX, MsgButtons=BUTTONS_OK)
+

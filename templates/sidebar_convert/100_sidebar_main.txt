@@ -10,6 +10,10 @@
 import uno
 import unohelper
 
+from com.sun.star.awt.MessageBoxButtons import BUTTONS_OK, BUTTONS_OK_CANCEL, BUTTONS_YES_NO, BUTTONS_YES_NO_CANCEL, BUTTONS_RETRY_CANCEL, BUTTONS_ABORT_IGNORE_RETRY
+from com.sun.star.awt.MessageBoxButtons import DEFAULT_BUTTON_OK, DEFAULT_BUTTON_CANCEL, DEFAULT_BUTTON_RETRY, DEFAULT_BUTTON_YES, DEFAULT_BUTTON_NO, DEFAULT_BUTTON_IGNORE
+from com.sun.star.awt.MessageBoxType import MESSAGEBOX, INFOBOX, WARNINGBOX, ERRORBOX, QUERYBOX
+
 from com.sun.star.ui import XUIElementFactory
 from com.sun.star.lang import XComponent
 from com.sun.star.ui import XUIElement, XToolPanel,XSidebarPanel, LayoutSize
@@ -38,6 +42,14 @@ ${IMPORT_PANELS}
 #${I}${I}return
 #${I}except:
 #${I}${I}raise _rtex("\nBasic library Xray is not installed", uno.getComponentContext())
+
+def messageBox(MsgText, MsgTitle, MsgType=MESSAGEBOX, MsgButtons=BUTTONS_OK):
+${I}ctx = uno.getComponentContext()
+${I}sm = ctx.ServiceManager
+${I}si = sm.createInstanceWithContext("com.sun.star.awt.Toolkit", ctx)
+${I}toolkit = sm.createInstanceWithContext("com.sun.star.awt.ExtToolkit", ctx)
+${I}mBox = si.createMessageBox(toolkit, MsgType, MsgButtons, MsgTitle, MsgText)
+${I}mBox.execute()
 
 
 class ElementFactory( unohelper.Base, XUIElementFactory):
@@ -74,7 +86,7 @@ ${I}${I}${I}# panelWin has to be set visible
 ${I}${I}${I}panelWin.Visible = True
 
 ${I}${I}${I}# get and set height to receive a working scrollbar
-${I}${I}${I}height = create_panels(panelWin, url)
+${I}${I}${I}height = showPanels(panelWin, url)
 ${I}${I}${I}xUIElement.height = height
 
 ${I}${I}${I}return xUIElement
@@ -169,7 +181,7 @@ ${I}def queryDispatch(self, featureURL, frameName, searchFlag):
 ${I}${I}return self
 
 ${I}def dispatch(self, featureURL, args):
-${I}${I}self.do_something(featureURL)
+${I}${I}self.showDefaultMenuCommand(featureURL)
 
 ${I}def addStatusListener(self, listener, featureURL):
 ${I}${I}#print('addStatusListener', featureURL.Path)
@@ -179,22 +191,14 @@ ${I}def removeStatusListener(self, listener, featureURL):
 ${I}${I}#print('removeStatusListener', featureURL.Path)
 ${I}${I}return
 
-${I}def do_something(self, featureURL):
+${I}def showDefaultMenuCommand(self, featureURL):
 
-${I}${I}ctx = uno.getComponentContext()
-${I}${I}desktop = ctx.ServiceManager.createInstanceWithContext( "com.sun.star.frame.Desktop", ctx)
-${I}${I}doc = desktop.getCurrentComponent()
-${I}${I}text = doc.Text
-
-${I}${I}cur = text.createTextCursor()
-${I}${I}cur.gotoEnd(False)
-${I}${I}t = 'Hello from your command ' + featureURL.Path
-${I}${I}text.insertString(cur, t, False)
+${RUN_DEFAULT_MENU_COMMAND}
 
 g_ImplementationHelper.addImplementation(*test.get_imple())
 
 
-def create_panels(panelWin, url):
+def showPanels(panelWin, url):
 
 ${I}ctx = uno.getComponentContext()
 ${I}# url is set in Sidebar.xcu

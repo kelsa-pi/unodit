@@ -42,6 +42,7 @@ class SidebarGenerator:
             # sidebar main exe file
             py_tmpl_dir = os.path.join(self.tempates_dir, 'sidebar_convert')
             self.sidebar_main = string.Template(self.get_template(py_tmpl_dir, '100_sidebar_main.txt'))
+            self.sidebar_run_default_menu_command = string.Template(self.get_template(py_tmpl_dir, '102_show_menu_command.txt'))
             self.sidebar_run_panels = string.Template(self.get_template(py_tmpl_dir, '101_sidebar_show_panels.txt'))
 
             self.logger.info('successfully read all templates for script files')
@@ -65,6 +66,7 @@ class SidebarGenerator:
                     'EXTENSION_IDENTIFIER_DOMAIN': self.config.get('extension', 'identifier_domain'),
                     'EXTENSION_IDENTIFIER_APP': self.config.get('extension', 'identifier_app'),
                     'SIDEBAR_PROTOCOL': self.config.get('sidebar', 'protocol'),
+                    'RUN_DEFAULT_MENU_COMMAND': self._run_default_menu_command(),
                     'RUN_PANELS': self._run_panels(),
                     }
         sidebar_main = self.sidebar_main.substitute(sdb_main)
@@ -92,6 +94,19 @@ class SidebarGenerator:
             code += self.sidebar_run_panels.substitute(pn)
 
         return code
+
+    def _run_default_menu_command(self):
+
+        code = ''
+
+        for i in self.panel_list:
+            pn = {'I': self.indent,
+                  'PANEL_NAME': i
+                  }
+            code += self.sidebar_run_default_menu_command.substitute(pn)
+
+        return code
+
 
     def write_sidebar_main_file(self, sdb_text):
 
