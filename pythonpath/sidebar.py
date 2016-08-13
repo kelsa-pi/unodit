@@ -38,7 +38,7 @@ class SidebarGenerator:
             self.indent = indent * " "
 
         # read all templates
-        if self.mode == 'sidebar_convert':
+        if self.mode == 'sidebar_convert' or self.mode == 'sidebar_all':
             # sidebar main exe file
             py_tmpl_dir = os.path.join(self.tempates_dir, 'sidebar_convert')
             self.sidebar_main = string.Template(self.get_template(py_tmpl_dir, '100_sidebar_main.txt'))
@@ -106,7 +106,6 @@ class SidebarGenerator:
             code += self.sidebar_run_default_menu_command.substitute(pn)
 
         return code
-
 
     def write_sidebar_main_file(self, sdb_text):
 

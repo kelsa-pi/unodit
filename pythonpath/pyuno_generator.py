@@ -78,7 +78,7 @@ class PythonGenerator:
             self.logger.info('successfully read all templates for embed convert')
 
         # read all templates
-        if self.mode == 'sidebar_convert':
+        if self.mode == 'sidebar_convert' or self.mode == 'sidebar_all':
             # ui file
             py_tmpl_dir = os.path.join(self.tempates_dir, 'sidebar_convert')
             self.tmpl_main_ui = string.Template(self.get_template(py_tmpl_dir, '1_main_ui.txt'))

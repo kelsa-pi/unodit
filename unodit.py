@@ -238,24 +238,30 @@ indent    = {}
     elif mode == 'dialogs_all':
         mode_dialogs_all()
 
-    # sidebar - convert xdl fils (13)
+    # sidebar - convert xdl files (13)
     elif mode == 'sidebar_convert':
         mode_sidebar_convert()
 
-    # sidebar - convert xdl fils (13)
+    # sidebar - create extension files (14)
     elif mode == 'sidebar_files':
         mode_sidebar_files()
 
+    # sidebar - create script exstension (15)
     elif mode == 'sidebar_oxt':
         mode_sidebar_oxt()
 
-    # print(start_log + '\nStatus: Finished')
+    # sidebar all |13+14+15| (16)
+    elif mode == 'sidebar_all':
+        mode_sidebar_convert()
+        mode_sidebar_files()
+        mode_sidebar_oxt()
 
     paths = ''
     for path, subdirs, files in os.walk(pydir):
         for name in files:
             paths = paths + os.path.join(path, name) + ',\n'
             # print(os.path.join(path, name))
+
     logger.info('\nCONNTENT:' + pydir + ' directory:\n' + paths)
 
     print('Finished')

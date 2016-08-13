@@ -55,7 +55,7 @@ class CodeGenerator:
             self.write_app_exec_file(ui)
 
         # sidebar
-        elif self.mode == 'sidebar_convert':
+        elif self.mode == 'sidebar_convert' or self.mode == 'sidebar_all':
             for name, value in self.kwargs.items():
                 if name == 'panel_name':
                     pn = value
@@ -77,7 +77,7 @@ class CodeGenerator:
         if not os.path.exists(os.path.join(self.pydir, self.SOURCE_DIR, IMPORT_DIR)):
             os.makedirs(os.path.join(self.pydir, self.SOURCE_DIR, IMPORT_DIR))
 
-        if self.mode == 'sidebar_convert':
+        if self.mode == 'sidebar_convert' or self.mode == 'sidebar_all':
 
             for name, value in self.kwargs.items():
                 if name == 'panel_name':
