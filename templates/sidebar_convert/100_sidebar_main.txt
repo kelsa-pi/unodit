@@ -192,6 +192,10 @@ ${I}${I}#print('removeStatusListener', featureURL.Path)
 ${I}${I}return
 
 ${I}def showDefaultMenuCommand(self, featureURL):
+${I}${I}"""
+${I}${I}Command that is dispatched when the user clicks on
+${I}${I}the "More Options" button in the panel title bar
+${I}${I}"""
 
 ${RUN_DEFAULT_MENU_COMMAND}
 
@@ -199,6 +203,10 @@ g_ImplementationHelper.addImplementation(*test.get_imple())
 
 
 def showPanels(panelWin, url):
+${I}"""
+${I}Create a new panel object when the sidebar is initialized
+${I}or whenever a panel becomes visible
+${I}"""
 
 ${I}ctx = uno.getComponentContext()
 ${I}# url is set in Sidebar.xcu
