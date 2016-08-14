@@ -292,7 +292,7 @@ def create_parser():
     # add arguments
     parser.add_argument(
         '-m', '--mode', type=str, default='script_convert',
-        help='script_convert - convert xdl file, script_files - create script extension files, script_oxt - create script extension, script_all - convert xdl file, create script extension files and script extension, connect - connect to xdl file.',
+        help='choose mode',
         choices=['script_convert', 'script_files', 'script_oxt', 'script_all',
                  'connect', 'embed_convert', 'embed_pack', 'embed_all',
                  'dialogs_create', 'dialogs_files', 'dialogs_oxt', 'dialogs_all', 'sidebar_convert', 'sidebar_files', 'sidebar_oxt', 'sidebar_all'],
