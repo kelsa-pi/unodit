@@ -10,23 +10,43 @@ except ImportError:
     import pythonpath.config as conf
 
 
-class ScriptExtensionFiles:
-    def __init__(self, mode, pydir, app='MyApp'):
+class BaseExtension:
+    def __init__(self, mode, pydir, app='MyApp', panel=2):
         self.pydir = pydir
         self.app = app
         self.mode = mode
+        self.panels = panel
+
+    def get_template(self, ex_tmpl_dir, template):
+        templ = os.path.join(ex_tmpl_dir, template)
+        with open(templ, 'rt') as t:
+            tt = t.read()
+        return tt
+
+    def create_oxt(self, oxt_name):
+        oxt = os.path.join(self.pydir, oxt_name)
+
+        # add directories and files in zip file
+        oxt_zip_file = zipfile.ZipFile(oxt, "w", zipfile.ZIP_DEFLATED)
+        root_len = len(self.pydir) + 1
+
+        for base, dirs, files in os.walk(self.pydir):
+            for file in files:
+                file_path = os.path.join(base, file)
+                zip_file_path = file_path[root_len:].replace('\\', '/')
+                # print(file_path + ' - ' + zip_file_path)
+                oxt_zip_file.write(file_path, zip_file_path)
+        oxt_zip_file.close()
+
+
+class ScriptExtensionFiles(BaseExtension):
+    def __init__(self, *args, **kwargs):
+        super(ScriptExtensionFiles, self).__init__(*args, **kwargs)
         self.code = {}
         self.config = conf.ReadINI(conf.MAIN_DIR, self.pydir)
         self.ext_tmpl_dir = os.path.join(conf.TEMPLATES_DIR, 'script_ext')
         self.logger = logging.getLogger('unodit.oxt_creator.ScriptExtensionFiles')
         self.logger.info('NEW LOGGER: unodit.oxt_creator.ScriptExtensionFiles')
-
-    @staticmethod
-    def get_template(ex_tmpl_dir, template):
-        templ = os.path.join(ex_tmpl_dir, template)
-        with open(templ, 'rt') as t:
-            tt = t.read()
-        return tt
 
     def ext_meta(self):
 
@@ -154,102 +174,28 @@ class ScriptExtensionFiles:
         self.ext_add_on_menu()
 
 
-class CreateScriptExtension:
-    def __init__(self, mode, pydir, app='MyApp'):
-        self.pydir = pydir
-        self.app = app
-        self.mode = mode
+class CreateScriptExtension(BaseExtension):
+    def __init__(self, *args, **kwargs):
+        super(CreateScriptExtension, self).__init__(*args, **kwargs)
         self.config = conf.ReadINI(conf.MAIN_DIR, self.pydir)
         self.logger = logging.getLogger('unodit.oxt_creator.CreateScriptExtension')
         self.logger.info('NEW LOGGER: unodit.oxt_creator.CreateScriptExtension')
 
     def create(self):
         oxt_name = self.app + self.config.get('script_oxt', 'name_sufix') + '.oxt'
-        oxt = os.path.join(self.pydir, oxt_name)
-
-        # add directories and files in zip file
-        oxt_zip_file = zipfile.ZipFile(oxt, "w")
-
-        # Addons.xcu
-        oxt_zip_file.write(os.path.join(self.pydir, "Addons.xcu"), "Addons.xcu", zipfile.ZIP_DEFLATED)
-        # description.xml
-        oxt_zip_file.write(os.path.join(self.pydir, "description.xml"), "description.xml", zipfile.ZIP_DEFLATED)
-        # /description/description.txt
-        oxt_zip_file.write(os.path.join(self.pydir,
-                                        self.config.get('script_app_description', 'dir'),
-                                        self.config.get('script_app_description', 'file')),
-                           self.config.get('script_app_description', 'dir') + '/' + self.config.get(
-                               'script_app_description', 'file'),
-                           zipfile.ZIP_DEFLATED)
-        # /description/title.txt
-        oxt_zip_file.write(os.path.join(self.pydir,
-                                        self.config.get('script_app_title', 'dir'),
-                                        self.config.get('script_app_title', 'file')),
-                           self.config.get('script_app_title', 'dir') + '/' + self.config.get(
-                               'script_app_title', 'file'),
-                           zipfile.ZIP_DEFLATED)
-        # META-INF/manifest.xml
-        oxt_zip_file.write(os.path.join(self.pydir,
-                                        self.config.get('script_ext_meta', 'dir'),
-                                        self.config.get('script_ext_meta', 'file')),
-                           self.config.get('script_ext_meta', 'dir') + '/' + self.config.get('script_ext_meta', 'file'),
-                           zipfile.ZIP_DEFLATED)
-        # /registration/license.txt
-        oxt_zip_file.write(os.path.join(self.pydir,
-                                        self.config.get('script_app_license', 'dir'),
-                                        self.config.get('script_app_license', 'file')),
-                           self.config.get('script_app_license', 'dir') + '/' + self.config.get('script_app_license',
-                                                                                                'file'),
-                           zipfile.ZIP_DEFLATED)
-        # /src/Test_convert.py
-        oxt_zip_file.write(os.path.join(self.pydir,
-                                        self.config.get('directories', 'source_dir'),
-                                        self.app + '.py'),
-                           self.config.get('directories', 'source_dir') + '/' + self.app + '.py', zipfile.ZIP_DEFLATED)
-
-        # /src/pythonpath/*
-        if self.mode == 'dialogs_oxt' or self.mode == 'dialogs_all':
-            # /src/pythonpath/simple_dialogs.py
-            oxt_zip_file.write(os.path.join(self.pydir,
-                                            self.config.get('directories', 'source_dir'),
-                                            conf.IMPORT_DIR,
-                                            'simple_dialogs.py'),
-                               self.config.get('directories',
-                                               'source_dir') + '/' + conf.IMPORT_DIR + '/' + 'simple_dialogs.py',
-                               zipfile.ZIP_DEFLATED)
-        else:
-            # /src/pythonpath/TestApp_UI.py
-            oxt_zip_file.write(os.path.join(self.pydir,
-                                            self.config.get('directories', 'source_dir'),
-                                            conf.IMPORT_DIR,
-                                            self.app + self.config.get('ui_file', 'sufix') + '.py'),
-                               self.config.get('directories',
-                                               'source_dir') + '/' + conf.IMPORT_DIR + '/' + self.app + self.config.get(
-                                   'ui_file', 'sufix') + '.py',
-                               zipfile.ZIP_DEFLATED)
-
-        oxt_zip_file.close()
-        self.logger.info('oxt: ' + oxt)
+        self.create_oxt(oxt_name)
+        self.logger.info('oxt: ' + oxt_name)
 
 
-class SidebarExtensionFiles:
-    def __init__(self, mode, pydir, app='MyApp', panel=2):
-        self.pydir = pydir
-        self.app = app
-        self.mode = mode
+class SidebarExtensionFiles(BaseExtension):
+
+    def __init__(self, *args, **kwargs):
+        super(SidebarExtensionFiles, self).__init__(*args, **kwargs)
         self.code = {}
-        self.panels = panel
         self.config = conf.ReadINI(conf.MAIN_DIR, self.pydir)
         self.ext_tmpl_dir = os.path.join(conf.TEMPLATES_DIR, 'sidebar_convert_ext')
         self.logger = logging.getLogger('unodit.oxt_creator.SidebarExtensionFiles')
         self.logger.info('NEW LOGGER: unodit.oxt_creator.SidebarExtensionFiles')
-
-    @staticmethod
-    def get_template(ex_tmpl_dir, template):
-        templ = os.path.join(ex_tmpl_dir, template)
-        with open(templ, 'rt') as t:
-            tt = t.read()
-        return tt
 
     def ext_meta(self):
 
@@ -457,114 +403,14 @@ class SidebarExtensionFiles:
         self.sidebar_empty_dialog()
 
 
-class CreateSidebarExtension:
-    def __init__(self, mode, pydir, app='MyApp', panel=2):
-        self.pydir = pydir
-        self.app = app
-        self.mode = mode
-        self.panels = panel
+class CreateSidebarExtension(BaseExtension):
+    def __init__(self, *args, **kwargs):
+        super(CreateSidebarExtension, self).__init__(*args, **kwargs)
         self.config = conf.ReadINI(conf.MAIN_DIR, self.pydir)
         self.logger = logging.getLogger('unodit.oxt_creator.CreateSidebarExtension')
         self.logger.info('NEW LOGGER: unodit.oxt_creator.CreateSidebarExtension')
 
     def create(self):
         oxt_name = self.app + self.config.get('script_oxt', 'name_sufix') + '.oxt'
-        oxt = os.path.join(self.pydir, oxt_name)
-
-        # add directories and files in zip file
-        oxt_zip_file = zipfile.ZipFile(oxt, "w")
-
-        # Factory.xcu
-        oxt_zip_file.write(os.path.join(self.pydir,
-                                        self.config.get('sidebar_panel_factory', 'dir'),
-                                        self.config.get('sidebar_panel_factory', 'file')),
-                           self.config.get('sidebar_panel_factory', 'dir') + '/' + self.config.get('sidebar_panel_factory', 'file'),
-                           zipfile.ZIP_DEFLATED)
-        # ProtocolHandler.xcu
-        oxt_zip_file.write(os.path.join(self.pydir,
-                                        self.config.get('sidebar_protocol_handler', 'dir'),
-                                        self.config.get('sidebar_protocol_handler', 'file')),
-                           self.config.get('sidebar_protocol_handler', 'dir') + '/' + self.config.get('sidebar_protocol_handler', 'file'),
-                           zipfile.ZIP_DEFLATED)
-        # Sidebar.xcu
-        oxt_zip_file.write(os.path.join(self.pydir,
-                                        self.config.get('sidebar_configuration', 'dir'),
-                                        self.config.get('sidebar_configuration', 'file')),
-                           self.config.get('sidebar_configuration', 'dir') + '/' + self.config.get('sidebar_configuration', 'file'),
-                           zipfile.ZIP_DEFLATED)
-
-        # description.xml
-        oxt_zip_file.write(os.path.join(self.pydir, "description.xml"), "description.xml", zipfile.ZIP_DEFLATED)
-
-        # empty_dialog.xdl
-        oxt_zip_file.write(os.path.join(self.pydir, "empty_dialog.xdl"), "empty_dialog.xdl", zipfile.ZIP_DEFLATED)
-
-        # /description/description.txt
-        oxt_zip_file.write(os.path.join(self.pydir,
-                                        self.config.get('sidebar_app_description', 'dir'),
-                                        self.config.get('sidebar_app_description', 'file')),
-                           self.config.get('sidebar_app_description', 'dir') + '/' + self.config.get(
-                               'sidebar_app_description', 'file'),
-                           zipfile.ZIP_DEFLATED)
-
-        # /description/title.txt
-        oxt_zip_file.write(os.path.join(self.pydir,
-                                        self.config.get('sidebar_app_title', 'dir'),
-                                        self.config.get('sidebar_app_title', 'file')),
-                           self.config.get('sidebar_app_title', 'dir') + '/' + self.config.get(
-                               'sidebar_app_title', 'file'),
-                           zipfile.ZIP_DEFLATED)
-
-        # /image/icon.png
-        oxt_zip_file.write(os.path.join(self.pydir,
-                                        self.config.get('sidebar_icon', 'dir'),
-                                        self.config.get('sidebar_icon', 'file')),
-                           self.config.get('sidebar_icon', 'dir') + '/' + self.config.get(
-                               'sidebar_icon', 'file'),
-                           zipfile.ZIP_DEFLATED)
-
-        # META-INF/manifest.xml
-        oxt_zip_file.write(os.path.join(self.pydir,
-                                        self.config.get('sidebar_ext_meta', 'dir'),
-                                        self.config.get('sidebar_ext_meta', 'file')),
-                           self.config.get('sidebar_ext_meta', 'dir') + '/' + self.config.get('sidebar_ext_meta', 'file'),
-                           zipfile.ZIP_DEFLATED)
-        # /registration/license.txt
-        oxt_zip_file.write(os.path.join(self.pydir,
-                                        self.config.get('sidebar_app_license', 'dir'),
-                                        self.config.get('sidebar_app_license', 'file')),
-                           self.config.get('sidebar_app_license', 'dir') + '/' + self.config.get('sidebar_app_license', 'file'),
-                           zipfile.ZIP_DEFLATED)
-
-        # /src/Test_convert.py
-        oxt_zip_file.write(os.path.join(self.pydir,
-                                        self.config.get('directories', 'source_dir'),
-                                        self.app + '.py'),
-                           self.config.get('directories', 'source_dir') + '/' + self.app + '.py', zipfile.ZIP_DEFLATED)
-
-        # /src/pythonpath/*
-        # /src/pythonpath/ui
-        for i in range(0, self.panels):
-            # read config.ini for xdl file
-            panel_section = 'panel' + str(i + 1)
-
-            oxt_zip_file.write(os.path.join(self.pydir,
-                                            self.config.get('directories', 'source_dir'),
-                                            conf.IMPORT_DIR,
-                                            self.config.get('sdb_directories', 'sdb_ui'),
-                                            self.config.get(panel_section, 'name') + self.config.get('ui_file', 'sufix') + '.py'),
-                               self.config.get('directories', 'source_dir') + '/' + conf.IMPORT_DIR + '/' + self.config.get('sdb_directories', 'sdb_ui') + '/' +
-                                               self.config.get(panel_section, 'name') + self.config.get('ui_file', 'sufix') + '.py',
-                               zipfile.ZIP_DEFLATED)
-
-            oxt_zip_file.write(os.path.join(self.pydir,
-                                            self.config.get('directories', 'source_dir'),
-                                            conf.IMPORT_DIR,
-                                            self.config.get('sdb_directories', 'sdb_ui_logic'),
-                                            self.config.get(panel_section, 'name') + '.py'),
-                               self.config.get('directories', 'source_dir') + '/' + conf.IMPORT_DIR + '/' + self.config.get('sdb_directories', 'sdb_ui_logic') + '/' +
-                                               self.config.get(panel_section, 'name') + '.py',
-                               zipfile.ZIP_DEFLATED)
-
-        oxt_zip_file.close()
-        self.logger.info('oxt: ' + oxt)
+        self.create_oxt(oxt_name)
+        self.logger.info('oxt: ' + oxt_name)
