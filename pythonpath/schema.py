@@ -1,5 +1,28 @@
-# not xdl propeties: ns, uno_name
-# SpinButton1  {'model': 'spinbutton', 'uno_model': 'SpinButton', 'Name': 'SpinButton1', 'PositionX': '235', 'TabIndex': '22', 'Width': '60', 'Height': '20', 'PositionY': '167'}
+# This file is part of UNO Dialog Tools - UNODIT
+# Copyright © 2016 Sasa Kelecevic
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with UNODIT.  If not, see <http://www.gnu.org/licenses/>
+
+"""
+Holds all suported properties
+
+not xdl propeties: ns, uno_name
+SpinButton1  {'model': 'spinbutton', 'uno_model': 'SpinButton',
+              'Name': 'SpinButton1', 'PositionX': '235', 'TabIndex': '22',
+              'Width': '60', 'Height': '20', 'PositionY': '167'}
+
+"""
 
 properties = {
     'bulletinboard': {

@@ -1,3 +1,25 @@
+# This file is part of UNO Dialog Tools - UNODIT
+# Copyright © 2016 Sasa Kelecevic
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with tUNODIT.  If not, see <http://www.gnu.org/licenses/>
+
+"""
+UNODIT executable module.
+
+"""
+
+
 import argparse
 import logging
 import os
@@ -24,7 +46,14 @@ except ImportError:
 
 
 def create_logger(lname, ldir, lfile):
-    # create logger
+    """Create logger
+
+    :param lname:logger name
+    :param ldir: logger directory
+    :param lfile: logger file
+
+    """
+
     logger = logging.getLogger(lname)
     logger.setLevel(logging.DEBUG)
     # create file handler which logs even debug messages
@@ -287,29 +316,32 @@ def create_parser():
         prog="unodit",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=desc,
-        description="unodit is a Python unfinished library that takes a LibreOffice Basic Dialog XML file and: a) converts it to python code (PyUNO) b) connects it to other python code (PyUNO)")
+        description="UNO Dialog Tools - unodit")
 
     # add arguments
     parser.add_argument(
-        '-m', '--mode', type=str, default='script_convert',
-        help='choose mode',
+        '-m', '--mode', type=str, help='choose mode',
         choices=['script_convert', 'script_files', 'script_oxt', 'script_all',
                  'connect', 'embed_convert', 'embed_pack', 'embed_all',
-                 'dialogs_create', 'dialogs_files', 'dialogs_oxt', 'dialogs_all', 'sidebar_convert', 'sidebar_files', 'sidebar_oxt', 'sidebar_all'],
+                 'dialogs_create', 'dialogs_files', 'dialogs_oxt', 'dialogs_all',
+                 'sidebar_convert', 'sidebar_files', 'sidebar_oxt', 'sidebar_all'],
         required=True)
 
     parser.add_argument(
-        '-d', '--dir', type=str, help='full path to the output directory', default=os.getcwd(), required=True)
+        '-d', '--dir', type=str, help='full path to the output directory',
+        default=os.getcwd(), required=True)
 
     parser.add_argument(
-        '-f', '--file', type=str, help='full path to the xdl file', required=False)
+        '-f', '--file', type=str, help='full path to the xdl file',
+        required=False)
 
     parser.add_argument(
-        '-a', '--appname', type=str, default='MyApp', help='application name', required=False)
+        '-a', '--appname', type=str, default='MyApp', help='application name',
+        required=False)
 
     parser.add_argument(
-        '-p', '--panel', type=int, default=2,
-        help='number of panels in sidebar', required=False)
+        '-p', '--panel', type=int, default=2, help='number of panels in sidebar',
+        required=False)
 
     parser.add_argument(
         '-i', '--indent', type=int, default=4,
@@ -320,19 +352,17 @@ def create_parser():
 
 
 def main():
+    """Run unodit."""
 
+    # parse arguments
     parser = create_parser()
     args = parser.parse_args()
 
-    # if args.mode is None:
-    #     args.mode = 1
-    #
-    # if args.dir == '' or args.dir is None:
-    #     args.dir = os.getcwd()
-
+    # project directory
     if not os.path.exists(args.dir):
         os.makedirs(args.dir)
 
+    # start logging
     create_logger(LOGGER_NAME, args.dir, LOG_FILE)
 
     unodit(args.mode,
