@@ -1,6 +1,6 @@
 # unodit
 
-**UNO** **Di**alog **T**ools is a Python 3 library and command-line tool that allows you to prepare your PyUNO macros with dialogs as extension, sidebar extension or embed in ODF documents. It also provides simple dialog boxes for interaction with a user. 
+**UNO** **Di**alog **T**ools is a Python3 command-line tool that generates dialog code in PyUNO (Python) and create LibreOffice extension, sidebar extension or embed in ODF documents. The generated code allows you to customize code according to your needs. It also provides simple dialog boxes for interaction with a user. 
 
 Unodit was developed with a focus on rapid prototyping in order to lower the barrier of entry for newcomers. 
 

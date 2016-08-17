@@ -15,7 +15,7 @@
 # along with UNODIT.  If not, see <http://www.gnu.org/licenses/>
 
 """
-Generate code
+Write generated code in files
 """
 import os
 import logging
