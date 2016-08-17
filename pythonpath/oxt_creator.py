@@ -149,7 +149,7 @@ class ScriptExtensionFiles(BaseExtension):
         s = {'EXTENSION_IDENTIFIER_DOMAIN': self.config.get('extension', 'identifier_domain'),
              'EXTENSION_IDENTIFIER_APP': self.config.get('extension', 'identifier_app'),
              'TITLE': self.app,
-             'OXT_NAME': self.app + self.config.get('script_oxt', 'name_sufix') + '.oxt',
+             'OXT_NAME': self.app + self.config.get('oxt', 'name_sufix') + '.oxt',
              'SOURCE': self.config.get('directories', 'source_dir'),
              'EXEC_FILE_NAME': self.app + '.py',
              'EXEC_FUNCTION': self.config.get('exec_function', 'prefix') + self.app,
@@ -182,7 +182,7 @@ class CreateScriptExtension(BaseExtension):
         self.logger.info('NEW LOGGER: unodit.oxt_creator.CreateScriptExtension')
 
     def create(self):
-        oxt_name = self.app + self.config.get('script_oxt', 'name_sufix') + '.oxt'
+        oxt_name = self.app + self.config.get('oxt', 'name_sufix') + '.oxt'
         self.create_oxt(oxt_name)
         self.logger.info('oxt: ' + oxt_name)
 
@@ -337,7 +337,7 @@ class SidebarExtensionFiles(BaseExtension):
             s = {'EXTENSION_IDENTIFIER_DOMAIN': self.config.get('extension', 'identifier_domain'),
                  'EXTENSION_IDENTIFIER_APP': self.config.get('extension', 'identifier_app'),
                  'PANEL_NAME': self.config.get(panel_section, 'name'),
-                 'PANEL_TITLE': self.config.get(panel_section, 'title'),
+                 'PANEL_TITLE': self.config.get(panel_section, 'title').strip('"'),
                  'PANEL_ID': self.config.get(panel_section, 'id'),
                  'DECK_ID': self.config.get('deck', 'id'),
                  'PANEL_CONTEXT': self.config.get(panel_section, 'context'),
@@ -353,7 +353,7 @@ class SidebarExtensionFiles(BaseExtension):
         s = {'EXTENSION_IDENTIFIER_DOMAIN': self.config.get('extension', 'identifier_domain'),
              'EXTENSION_IDENTIFIER_APP': self.config.get('extension', 'identifier_app'),
              'DECK_NAME': self.config.get('deck', 'name'),
-             'DECK_TITLE': self.config.get('deck', 'title'),
+             'DECK_TITLE': self.config.get('deck', 'title').strip('"'),
              'DECK_ID': self.config.get('deck', 'id'),
              'SIDEBAR_ICON_DIR': self.config.get('sidebar_icon', 'dir'),
              'SIDEBAR_ICON': self.config.get('sidebar_icon', 'file'),
@@ -411,6 +411,6 @@ class CreateSidebarExtension(BaseExtension):
         self.logger.info('NEW LOGGER: unodit.oxt_creator.CreateSidebarExtension')
 
     def create(self):
-        oxt_name = self.app + self.config.get('script_oxt', 'name_sufix') + '.oxt'
+        oxt_name = self.app + self.config.get('oxt', 'name_sufix') + '.oxt'
         self.create_oxt(oxt_name)
         self.logger.info('oxt: ' + oxt_name)
