@@ -10,7 +10,7 @@ Unodit was developed with a focus on rapid prototyping in order to lower the bar
 2. Create extension with dialog
 3. Embed dialog in ODF document
 4. Create sidebar extension
-5. Connect to dialog
+5. Generate code to connect dialog
 
 Other features are:
 - all steps are logged to `log.log` file in project root
@@ -59,7 +59,7 @@ This section gives a general overview, for more information see [documentation](
                             -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
                             -a 'Test_convert'                           
 
-- install extension using Tools - Extension Manager or command-line `/usr/bin/unopkg add ./MyApp_Devel.oxt` (Ubuntu) 
+- install extension using Tools - Extension Manager or command-line `/usr/bin/unopkg add ./Test_convert_Devel.oxt` (Ubuntu) 
 
 
 ##Screenshot
