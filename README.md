@@ -22,7 +22,7 @@ Other features are:
 Your comments, feedback and patches are welcomed and appreciated.
 
 NOTE:
-I'm not a programmer and English is not my native language.
+I'm not a programmer and English is not my native language - you have been warned
 This is a project that targets LibreOffice 5+ and Python3 (Apache OpenOffice patches are welcomed).
 Tested with Xubuntu 16.04. and LibreOffice 5+.
 
