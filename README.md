@@ -1,16 +1,23 @@
 # unodit
 
-**UNO** **Di**alog **T**ools is a Python3 command-line tool which takes a `.xdl` file written in the Basic Dialog Editor and generates dialog code in PyUNO (Python) in order to create LibreOffice extension, sidebar extension or embed in ODF documents. The generated code allows you to customize code according to your needs. It also provides simple dialog boxes for interaction with a user. 
-
-Unodit was developed with a focus on rapid prototyping in order to lower the barrier of entry for newcomers. 
+**UNO** **Di**alog **T**ools is a Python3 command-line tool which takes a `.xdl` file written in the Basic Dialog Editor and generates dialog code in PyUNO (Python) in order to create LibreOffice extension, sidebar extension or embed in ODF documents. Unodit was developed with a focus on rapid prototyping in order to lower the barrier of entry for newcomers.
+ 
+##Features
 
 `unodit` main features are:
 
-1. Provides simple dialog boxes for interaction with a user
-2. Create extension with dialog
-3. Embed dialog in ODF document
-4. Create sidebar extension
-5. Generate code to connect dialog
+- **Convert a `.xdl` file written with Basic Dialog Editor into a PyUNO (Python):**
+Unodit create file `MyAppName_UI.py` with actual python code. It defines a class called `MyAppName_UI` with dialog and widget properties. Of course, nothing works for now and all changes made in this file will be overwritten if the file is generated again! 
+
+- **Allows you to customize code according to your needs:**
+In order to help you to add your own functionality to dialog unodit generates another file `MyAppName.py` (no `_UI`). There is a new class `MyAppName` which extend `MyAppName_UI`. Each button in your dialog is connected with XActionListener and generated callback function `ButtonName_OnClick()`. Now you have place to write down the code to actually do something.
+
+- **Pack your code as extension, sidebar extension or embed in ODF documents:**
+After finishing coding you can decide to distribute your code. Unodit can create necessary files and generate extension or file for you. 
+
+- **Provides simple dialog boxes for interaction with a user**
+If you only want simple GUI for your macros `unodit` provides simple dialog boxes for interaction with a user. In script interactions are invoked by simple function calls.
+
 
 Other features are:
 - all steps are logged to `log.log` file in project root
@@ -68,7 +75,7 @@ Test dialog
 
 ![Test dialog](resource/screenshot/Example_dialog.png)
 
-Sidebar
+Pack dialogs in Sidebar
 
 ![Test dialog](resource/screenshot/Sidebar_panels.png)
 
