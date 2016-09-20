@@ -7,15 +7,19 @@
 `unodit` main features are:
 
 - **Convert a `.xdl` file written with Basic Dialog Editor into a PyUNO (Python):**
+
 Unodit create file `MyAppName_UI.py` with actual python code. It defines a class called `MyAppName_UI` with dialog and widget properties. Of course, nothing works for now and all changes made in this file will be overwritten if the file is generated again! 
 
 - **Allows you to customize code according to your needs:**
+
 In order to help you to add your own functionality to dialog unodit generates another file `MyAppName.py` (no `_UI`). There is a new class `MyAppName` which extend `MyAppName_UI`. Each button in your dialog is connected with XActionListener and generated callback function `ButtonName_OnClick()`. Now you have place to write down the code to actually do something.
 
 - **Pack your code as extension, sidebar extension or embed in ODF documents:**
+
 After finishing coding you can decide to distribute your code. Unodit can create necessary files and generate extension or file for you. 
 
 - **Provides simple dialog boxes for interaction with a user**
+
 If you only want simple GUI for your macros `unodit` provides simple dialog boxes for interaction with a user. In script interactions are invoked by simple function calls.
 
 
