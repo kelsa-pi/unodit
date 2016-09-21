@@ -18,12 +18,11 @@
 
 - **Pack your code as extension, sidebar extension or embed in ODF documents:**
 
-    After finishing coding you can decide to distribute your code. `unodit` can create necessary files and generate extension or file for you. In some cases you can start extension with `Tools - AddOns - My App`.
+    After finishing coding you can decide to distribute your code. `unodit` can create necessary files and generate extension or file for you. After installation, in some cases, user can start extension with `Tools - AddOns - My App`.
 
-- **Provides simple dialog boxes for interaction with a user**
+- **Provides simple dialog boxes for interaction with a user:**
 
     If you only want simple GUI for your macros `unodit` provides simple dialog boxes for interaction with a user. In script interactions are invoked by simple function calls. If you decide to distribute your code `unodit` can create necessary files and generate extension for you.
-
 
 Other features are:
 - all steps are logged to `log.log` file in project root
