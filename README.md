@@ -18,7 +18,7 @@
 
 - **Pack your code as extension, sidebar extension or embed in ODF documents:**
 
-    After finishing coding you can decide to distribute your code. Unodit can create necessary files and generate extension or file for you. In some cases you an start extension with `Tools - AddOns - My App`.
+    After finishing coding you can decide to distribute your code. `unodit` can create necessary files and generate extension or file for you. In some cases you can start extension with `Tools - AddOns - My App`.
 
 - **Provides simple dialog boxes for interaction with a user**
 
