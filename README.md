@@ -22,7 +22,7 @@
 
 - **Provides simple dialog boxes for interaction with a user**
 
-    If you only want simple GUI for your macros `unodit` provides simple dialog boxes for interaction with a user. In script interactions are invoked by simple function calls. If you decide to distribute your code `nodit` can create necessary files and generate extension for you.
+    If you only want simple GUI for your macros `unodit` provides simple dialog boxes for interaction with a user. In script interactions are invoked by simple function calls. If you decide to distribute your code `unodit` can create necessary files and generate extension for you.
 
 
 Other features are:
