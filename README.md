@@ -77,31 +77,17 @@ This section gives a general overview, for more information see [documentation](
 
 ##Screenshot
 
-Test dialog
+Test dialog created at runtime
 
 ![Test dialog](resource/screenshot/Example_dialog.png)
+
+The action event listener is registered for all button controls.
+
+![Callback functions](resource/screenshot/Button_event.png)
 
 Pack dialogs in Sidebar
 
 ![Test dialog](resource/screenshot/Sidebar_panels.png)
-
-
-Callback function
-
-![Callback functions](resource/screenshot/Button_event.png)
-
-
-Run macro script
-
-![Script all](resource/screenshot/Macros_script_all.png)
-
-Run macro connect
-
-![Script all](resource/screenshot/Macros_connect.png)
-
-Run embeded macro in document
-
-![Embed all](resource/screenshot/Macros_embed_all.png)
 
 Run simple dialogs
 
