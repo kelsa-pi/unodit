@@ -41,6 +41,7 @@ class ReadINI(object):
             # print(f)
             if os.path.exists(f):
                 self.config.read(f)
+                #TODO log paths
 
     def get(self, section_name, prop_name):
         if section_name not in self.config.sections():  # we don't want KeyError

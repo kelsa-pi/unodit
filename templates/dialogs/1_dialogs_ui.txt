@@ -2,8 +2,7 @@
 #!/usr/bin/env python
 
 # =============================================================================
-#
-# Simple dialogs
+# A simple dialog boxes for interaction with a user
 #
 # Created: ${GENERATED_DATETIME}
 #      by: ${UNODIT_VERSION}
