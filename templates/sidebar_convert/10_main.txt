@@ -42,19 +42,25 @@ ${I}'''
 ${I}def __init__(self, panelWin):
 ${I}${I}${APP_NAME}_UI.__init__(self, panelWin)
 
+${I}${I}# document
+${I}${I}self.ctx = uno.getComponentContext()
+${I}${I}self.smgr = self.ctx.ServiceManager
+${I}${I}self.desktop = self.smgr.createInstanceWithContext("com.sun.star.frame.Desktop", self.ctx)
+${I}${I}self.document = self.desktop.getCurrentComponent()
+
 ${I}def getHeight(self):
 ${I}${I}return self.DialogContainer.Size.Height
 
-${I}${I}# --------- my code ---------------------
-${I}${I}self.DialogModel.Title = "${APP_NAME}"
-${I}${I}# mri(self.LocalContext, self.DialogContainer)
-${I}${I}# xray(self.DialogContainer)
+${I}# --------- my code ---------------------
+${I}self.DialogModel.Title = "${APP_NAME}"
+${I}# mri(self.LocalContext, self.DialogContainer)
+${I}# xray(self.DialogContainer)
 
 ${I}def myFunction(self):
 ${I}${I}# TODO: not implemented
 ${I}${I}pass
 
-${I}${I}# --------- helpers ---------------------
+${I}# --------- helpers ---------------------
 
 ${I}def messageBox(self, MsgText, MsgTitle, MsgType=MESSAGEBOX, MsgButtons=BUTTONS_OK):
 ${I}${I}sm = self.LocalContext.ServiceManager

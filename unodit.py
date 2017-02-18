@@ -181,7 +181,6 @@ indent    = {}
             panel_section = 'panel' + str(i + 1)
             file_xdl = read_conf.get(panel_section, 'xdl_ui')
             panel_name = read_conf.get(panel_section, 'name')
-
             # generate panel files
             ctx = extractor.ContextGenerator(file_xdl)
             ctx.get_xdl_context()
@@ -282,8 +281,8 @@ indent    = {}
     # sidebar all |13+14+15| (16)
     elif mode == 'sidebar_all':
         mode_sidebar_convert()
-        mode_sidebar_files()
-        mode_sidebar_oxt()
+        #mode_sidebar_files()
+        #mode_sidebar_oxt()
 
     paths = ''
     for path, subdirs, files in os.walk(pydir):
