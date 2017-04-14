@@ -52,7 +52,6 @@ ${I}def getHeight(self):
 ${I}${I}return self.DialogContainer.Size.Height
 
 ${I}# --------- my code ---------------------
-${I}self.DialogModel.Title = "${APP_NAME}"
 ${I}# mri(self.LocalContext, self.DialogContainer)
 ${I}# xray(self.DialogContainer)
 
