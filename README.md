@@ -101,14 +101,18 @@ Run simple dialogs
             embed_packer.py                > embed script in ODF file
             extractor.py                   > extract context from ui file
             generator.py                   > code generator
+            oxt_creator.py                 > create .oxt extension
             pyuno_generator.py             > python code generator
             schema.py                      > supported properties
-            script_oxt_creator.py          > extension creator
+            sidebar.py                     > write sidebars code 
             simple_dialogs.py              > like easygui dialogs
         
         resource/                      > resources dir
-            dialogs/                       > dialog images
+            embed/                         > odf files
+            images/                        > unodit icons
             screanshoot/                   > screanshoot images
+            simple_dialogs/                > dialog images
+            xdl/                           > examples .xdl
         
         templates/                     > tempaltes dir
             connect/
@@ -116,7 +120,8 @@ Run simple dialogs
             dialogs/
             embeded/
             script_ext/
-        
+            sidebar_convert/
+            sidebar_convert_ext/       
         config.ini                         > config file
         LICENSE.txt
         README.md
