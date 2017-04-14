@@ -2,7 +2,7 @@
 
 **UNO** **Di**alog **T**ools is a Python3 command-line tool which takes a `.xdl` file written in the Basic Dialog Editor and generates dialog code in PyUNO (Python) in order to create LibreOffice extension, sidebar extension or embed in ODF documents. Unodit was developed with a focus on rapid prototyping in order to lower the barrier of entry for newcomers.
  
-##Features
+## Features
 
 `unodit` main features are:
 
@@ -42,7 +42,7 @@ Tested with Xubuntu 16.04. and LibreOffice 5+.
 
 Place the unodit directory somewhere on your Python path.
 
-##Usage
+## Usage
     python3 ./unodit.py -m -d [-f ] [-a] [-p] [-i] 
     
 m - mode
@@ -58,7 +58,7 @@ p - number of panels in deck
 i - number of spaces used for indentation in the generated code. If 0, \t is used as indent
 
 
-##Quick start
+## Quick start
 
 This section gives a general overview, for more information see [documentation](https://github.com/kelsa-pi/unodit/wiki).
 
@@ -74,7 +74,7 @@ This section gives a general overview, for more information see [documentation](
 - install extension using Tools - Extension Manager or command-line `/usr/bin/unopkg add ./Test_convert_Devel.oxt` (Ubuntu) 
 
 
-##Screenshot
+## Screenshot
 
 Test dialog created at runtime
 
@@ -92,7 +92,7 @@ Run simple dialogs
 
 ![Embed all](resource/screenshot/Macros_simple_dialogs.png)
 
-##Unodit directory structure
+## Unodit directory structure
 
     unodit/
         
@@ -123,7 +123,7 @@ Run simple dialogs
         unodit.py                          > main script
 
 
-##Similar projects
+## Similar projects
 
 The following is an incomplete lists of a few projects that share some similarity with `unodit`.
 
