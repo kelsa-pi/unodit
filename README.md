@@ -8,7 +8,7 @@
 
 - **Convert a `.xdl` file written with Basic Dialog Editor into a PyUNO (Python):**
 
-    `unodit` create file `MyAppName_UI.py` with actual python code. It defines a class called `MyAppName_UI` with dialog and dialog controls properties. Each button in your dialog is connected with action event. All changes made in this file will be overwritten if the file is generated again!
+    `unodit` create file `MyAppName_UI.py` with actual python code. It defines a class called `MyAppName_UI` with dialog and dialog controls properties. Each button in your dialog is connected with action listener. All changes made in this file will be overwritten if the file is generated again!
 
 - **Allows you to customize code according to your needs:**
 
