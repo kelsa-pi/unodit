@@ -1,19 +1,19 @@
 # unodit
 
 **UNO** **Di**alog **T**ools is a Python3 command-line tool which takes a `.xdl` file written in the Basic Dialog Editor and generates dialog code in PyUNO (Python) in order to create LibreOffice extension, sidebar extension or embed in ODF documents. Unodit was developed with a focus on rapid prototyping in order to lower the barrier of entry for newcomers.
- 
+
 ## Features
 
 `unodit` main features are:
 
 - **Convert a `.xdl` file written with Basic Dialog Editor into a PyUNO (Python):**
 
-    `unodit` create file `MyAppName_UI.py` with actual python code. It defines a class called `MyAppName_UI` with dialog and dialog controls properties. All changes made in this file will be overwritten if the file is generated again! 
+    `unodit` create file `MyAppName_UI.py` with actual python code. It defines a class called `MyAppName_UI` with dialog and dialog controls properties. Each button in your dialog is connected with action event. All changes made in this file will be overwritten if the file is generated again!
 
 - **Allows you to customize code according to your needs:**
 
     In order to help you to add your own functionality to dialog `unodit` generates another file `MyAppName.py`. There is a new class `MyAppName` which extend `MyAppName_UI`. You can change dialog properties with eg. `self.DialogModel.Title = 'Hello world'` or control properties with eg.`self.TextField1.Text = "My New Text"`. Each button in your dialog is connected with action event which execute callback function `ButtonName_OnClick()`.
-      
+
     Now you can write down the code to actually do something :)
 
 - **Pack your code as extension, sidebar extension or embed in ODF documents:**
@@ -43,8 +43,8 @@ Tested with Xubuntu 16.04. and LibreOffice 5+.
 Place the unodit directory somewhere on your Python path.
 
 ## Usage
-    python3 ./unodit.py -m -d [-f ] [-a] [-p] [-i] 
-    
+    python3 ./unodit.py -m -d [-f ] [-a] [-p] [-i]
+
 m - mode
 
 d - full path to the output directory (project root)
@@ -65,13 +65,13 @@ This section gives a general overview, for more information see [documentation](
 - create dialog eg. `Default.xdl` in Dialog Editor
 - create project directory eg. `TestLib` in `LIBREOFFICE_PATH/4/user/Scripts/python/`
 - run `unodit` to create extension in project directory
- 
+
         python3 ./unodit.py -m 'script_all'
                             -d 'LIBREOFFICE_PATH/4/user/Scripts/python/TestLib'
                             -f 'LIBREOFFICE_PATH/4/user/basic/DialogLib/Default.xdl'
-                            -a 'Test_convert'                           
+                            -a 'Test_convert'
 
-- install extension using Tools - Extension Manager or command-line `/usr/bin/unopkg add ./Test_convert_Devel.oxt` (Ubuntu) 
+- install extension using Tools - Extension Manager or command-line `/usr/bin/unopkg add ./Test_convert_Devel.oxt` (Ubuntu)
 
 
 ## Screenshot
@@ -95,7 +95,7 @@ Run simple dialogs
 ## Unodit directory structure
 
     unodit/
-        
+
         pythonpath/                    > submodules dir
             config.py                      > config file
             embed_packer.py                > embed script in ODF file
@@ -104,16 +104,16 @@ Run simple dialogs
             oxt_creator.py                 > create .oxt extension
             pyuno_generator.py             > python code generator
             schema.py                      > supported properties
-            sidebar.py                     > write sidebars code 
+            sidebar.py                     > write sidebars code
             simple_dialogs.py              > like easygui dialogs
-        
+
         resource/                      > resources dir
             embed/                         > odf files
             images/                        > unodit icons
             screanshoot/                   > screanshoot images
             simple_dialogs/                > dialog images
             xdl/                           > examples .xdl
-        
+
         templates/                     > tempaltes dir
             connect/
             convert/
@@ -121,7 +121,7 @@ Run simple dialogs
             embeded/
             script_ext/
             sidebar_convert/
-            sidebar_convert_ext/       
+            sidebar_convert_ext/
         config.ini                         > config file
         LICENSE.txt
         README.md
