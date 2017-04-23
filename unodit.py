@@ -12,7 +12,7 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with tUNODIT.  If not, see <http://www.gnu.org/licenses/>
+# along with UNODIT.  If not, see <http://www.gnu.org/licenses/>
 
 """
 UNODIT executable module.
@@ -357,6 +357,8 @@ def main():
     parser = create_parser()
     args = parser.parse_args()
 
+    # normalize path
+    args.dir = args.dir.rstrip(os.sep)
     # project directory
     if not os.path.exists(args.dir):
         os.makedirs(args.dir)
