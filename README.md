@@ -73,6 +73,8 @@ This section gives a general overview, for more information see [documentation](
 
 - install extension using Tools - Extension Manager or command-line `/usr/bin/unopkg add ./Test_convert_Devel.oxt` (Ubuntu)
 
+## Projects using unodit
+Libreoffice-Addon for Qualitative Data Analysis ![Office-QDA-TagTree](https://github.com/jdittrich/Office-QDA-TagTree)
 
 ## Screenshot
 
