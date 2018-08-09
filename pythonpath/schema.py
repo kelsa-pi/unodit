@@ -36,6 +36,7 @@ properties = {
         'grab-focus': {'name': 'FocusOnClick', 'type': 'boolean'},
         'height': {'name': 'Height', 'type': 'long'},
         'help-text': {'name': 'HelpText', 'type': 'string'},
+        'help-url': {'name': 'HelpURL', 'type': 'string'},
         'id': {'name': 'Name', 'type': 'string'},
         'left': {'name': 'PositionX', 'type': 'string'},
         'ns': {'name': './/dlg:button', 'type': 'string'},
