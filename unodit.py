@@ -290,7 +290,7 @@ indent    = {}
             paths = paths + os.path.join(path, name) + ',\n'
             # print(os.path.join(path, name))
 
-    logger.info('\nCONNTENT:' + pydir + ' directory:\n' + paths)
+    logger.info('\nCONTENT:' + pydir + ' directory:\n' + paths)
 
     print('Finished')
     return 0
