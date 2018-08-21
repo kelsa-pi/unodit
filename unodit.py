@@ -99,7 +99,6 @@ indent    = {}
     logger.info(start_log)
 
     def mode_script_convert():
-
         logger.info('\nMODE: ---------- script_convert ----------------------------------')
         ctx = extractor.ContextGenerator(xdlfile)
         ctx.get_xdl_context()
@@ -123,7 +122,6 @@ indent    = {}
         mode_script_oxt()
 
     def mode_connect():
-
         logger.info('\nMODE: ---------- connect -----------------------------------------')
         ctx = extractor.ContextGenerator(xdlfile)
         ctx.get_xdl_context()
@@ -132,7 +130,6 @@ indent    = {}
         cg.generate_code()
 
     def mode_embed_convert():
-
         logger.info('\nMODE: ---------- embed_convert -----------------------------------')
         ctx = extractor.ContextGenerator(xdlfile)
         ctx.get_xdl_context()
@@ -373,6 +370,7 @@ def main():
            args.panel,
            args.indent,
            )
+
 
 if __name__ == '__main__':
     main()
