@@ -42,6 +42,6 @@ ${I}#               Action events
 ${I}# -----------------------------------------------------------
 
 ${I}def actionPerformed(self, oActionEvent):
-${GEN_ACTIONS_EVENTS}
+${I}${I}${GEN_ACTIONS_EVENTS}
 
 # ----------------- END GENERATED CODE ----------------------------------------
