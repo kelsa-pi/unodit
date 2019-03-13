@@ -171,10 +171,12 @@ indent    = {}
         logger.info('\nMODE: ---------- sidebar_convert ---------------------------------')
         p_names = ''
 
-        for i in range(0, panel):
+        panel_names = {}
 
-            # read config.ini for xdl file
-            read_conf = ReadINI(MAIN_DIR, pydir)
+        # read config.ini for xdl file
+        read_conf = ReadINI(MAIN_DIR, pydir)
+
+        for i in range(0, panel):
             panel_section = 'panel' + str(i + 1)
             file_xdl = read_conf.get(panel_section, 'xdl_ui')
             panel_name = read_conf.get(panel_section, 'name')
@@ -184,12 +186,25 @@ indent    = {}
             uno_ctx = ctx.get_uno_context()
             cg = generator.CodeGenerator(mode, pydir, file_xdl, uno_ctx, app, indent=4, panel_name=panel_name)
             cg.generate_code()
+            # generate panel options files
+            panel_option_name = read_conf.get(panel_section, 'option_name')
+            file_option_xdl = read_conf.get(panel_section, 'xdl_option_ui')
+            if file_option_xdl:
+                panel_names[panel_name] = panel_option_name
+                ctx_option = extractor.ContextGenerator(file_option_xdl)
+                ctx_option.get_xdl_context()
+                uno_ctx_option = ctx_option.get_uno_context()
+                cg_option = generator.CodeGenerator(mode, pydir, file_option_xdl, uno_ctx_option, app, indent=4, panel_name=panel_option_name)
+                cg_option.generate_code()
+            else:
+                panel_names[panel_name] = ''
 
             p_names = p_names + panel_name + ','
 
         # generate sidebar main file
         p_names = p_names[:-1]
-        sb = sidebar.SidebarGenerator(mode, pydir, file_xdl, uno_ctx, app, indent=4, all_panels=p_names)
+        # print(str(panel_names))
+        sb = sidebar.SidebarGenerator(mode, pydir, file_xdl, uno_ctx, app, indent=4, all_panels=panel_names)
         sb.generate_sidebar_code()
 
     def mode_sidebar_files():
@@ -278,8 +293,8 @@ indent    = {}
     # sidebar all |13+14+15| (16)
     elif mode == 'sidebar_all':
         mode_sidebar_convert()
-        #mode_sidebar_files()
-        #mode_sidebar_oxt()
+        mode_sidebar_files()
+        mode_sidebar_oxt()
 
     paths = ''
     for path, subdirs, files in os.walk(pydir):
@@ -289,7 +304,7 @@ indent    = {}
 
     logger.info('\nCONTENT:' + pydir + ' directory:\n' + paths)
 
-    print('Finished')
+    print('Finished', ' mode ' + mode)
     return 0
 
 
