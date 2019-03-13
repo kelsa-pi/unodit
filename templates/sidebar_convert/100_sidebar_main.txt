@@ -159,7 +159,7 @@ ${I}${I}return LayoutSize(self.height, self.height, self.height)
 
 ${I}# LO5.1-
 ${I}def getMinimalWidth(self):
-${I}${I}return 50
+${I}${I}return 300
 
 class test(unohelper.Base, XDispatch, XDispatchProvider):
 
@@ -196,6 +196,10 @@ ${I}${I}"""
 ${I}${I}Command that is dispatched when the user clicks on
 ${I}${I}the "More Options" button in the panel title bar
 ${I}${I}"""
+
+${I}${I}ctx = uno.getComponentContext()
+${I}${I}sm = ctx.ServiceManager
+${I}${I}dialog = sm.createInstanceWithContext("com.sun.star.awt.UnoControlDialog", ctx)
 
 ${RUN_DEFAULT_MENU_COMMAND}
 

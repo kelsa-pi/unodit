@@ -1,3 +1,7 @@
 ${I}${I}if featureURL.Path == '${PANEL_NAME}':
-${I}${I}${I}messageBox(featureURL.Path, 'DefaultMenuCommand', MsgType=MESSAGEBOX, MsgButtons=BUTTONS_OK)
-
+${I}${I}${I}panel_option_name = '${PANEL_OPTION_NAME}'
+${I}${I}${I}if panel_option_name:
+${I}${I}${I}${I}app = ${PANEL_OPTION_NAME}(dialog)
+${I}${I}${I}${I}app.showDialog()
+${I}${I}${I}else:
+${I}${I}${I}${I}messageBox(featureURL.Path, 'DefaultMenuCommand', MsgType=MESSAGEBOX, MsgButtons=BUTTONS_OK)

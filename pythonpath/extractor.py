@@ -54,12 +54,12 @@ class ContextGenerator:
     """
 
     def __init__(self, xdl_file):
-
         self.xdlfile = xdl_file
         self.tree = self.get_tree(self.xdlfile)
         self.ns = ns_tag
         self.logger = logging.getLogger('unodit.extractor.ContextGenerator')
         self.logger.info('NEW LOGGER: unodit.extractor.ContextGenerator')
+        self.logger.info(self.xdlfile)
 
     def get_tree(self, ui_xdl_file):
         """

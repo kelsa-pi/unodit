@@ -23,8 +23,8 @@ class ${APP_NAME}_UI(unohelper.Base, XActionListener, XJobExecutor):
 ${I}"""
 ${I}Class documentation...
 ${I}"""
-${I}def __init__(self, panelWin):
-${I}${I}self.LocalContext = uno.getComponentContext()
+${I}def __init__(self, panelWin, context=uno.getComponentContext()):
+${I}${I}self.LocalContext = context
 ${I}${I}self.ServiceManager = self.LocalContext.ServiceManager
 ${I}${I}self.Toolkit = self.ServiceManager.createInstanceWithContext("com.sun.star.awt.ExtToolkit", self.LocalContext)
 

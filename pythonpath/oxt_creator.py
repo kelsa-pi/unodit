@@ -17,6 +17,7 @@
 """
 Create script and sidebar extension files and extension(.oxt)
 """
+import fnmatch
 import os
 import string
 import zipfile
@@ -35,6 +36,7 @@ class BaseExtension:
         self.app = app
         self.mode = mode
         self.panels = panel
+        self.config = conf.ReadINI(conf.MAIN_DIR, self.pydir)
 
     def get_template(self, ex_tmpl_dir, template):
         templ = os.path.join(ex_tmpl_dir, template)
@@ -44,17 +46,26 @@ class BaseExtension:
 
     def create_oxt(self, oxt_name):
         oxt = os.path.join(self.pydir, oxt_name)
-
+        exclude_files = self.config.get('oxt', 'exclude')
+        exclude_dir = self.config.get('oxt', 'exclude_dir')
+        self.config.get('directories', 'templates_dir')
         # add directories and files in zip file
-        oxt_zip_file = zipfile.ZipFile(oxt, "w", zipfile.ZIP_DEFLATED)
-        root_len = len(self.pydir) + 1
+        with zipfile.ZipFile(oxt, "w", zipfile.ZIP_DEFLATED) as oxt_zip_file:
+            root_len = len(self.pydir) + 1
+            for base, dirs, files in os.walk(self.pydir, topdown=True):
+                dirs[:] = [d for d in dirs if d not in exclude_dir]
+                for file in files:
+                    badFile = False
 
-        for base, dirs, files in os.walk(self.pydir):
-            for file in files:
-                file_path = os.path.join(base, file)
-                zip_file_path = file_path[root_len:].replace('\\', '/')
-                # print(file_path + ' - ' + zip_file_path)
-                oxt_zip_file.write(file_path, zip_file_path)
+                    for pattern in exclude_files.split(','):
+                        if fnmatch.fnmatch(file, pattern):
+                            badFile = True
+
+                    if not badFile:
+                        file_path = os.path.join(base, file)
+                        zip_file_path = file_path[root_len:].replace('\\', '/')
+                        # print(file_path + ' - ' + zip_file_path)
+                        oxt_zip_file.write(file_path, zip_file_path)
         oxt_zip_file.close()
 
 

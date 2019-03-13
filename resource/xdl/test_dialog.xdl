@@ -3,7 +3,7 @@
 <dlg:window xmlns:dlg="http://openoffice.org/2000/dialog" xmlns:script="http://openoffice.org/2000/script" dlg:id="test_dialog" dlg:left="60" dlg:top="60" dlg:width="300" dlg:height="220" dlg:closeable="true" dlg:moveable="true">
  <dlg:bulletinboard>
   <dlg:button dlg:id="CommandButton1" dlg:tab-index="0" dlg:left="9" dlg:top="8" dlg:width="60" dlg:height="20" dlg:value="CommandButton1" dlg:align="left" dlg:toggled="1"/>
-  <dlg:img dlg:id="ImageControl1" dlg:tab-index="3" dlg:left="9" dlg:top="56" dlg:width="60" dlg:height="60" dlg:src="file:///home/sasa/Pictures/coquette-icons-set/png/32x32/add_home.png"/>
+  <dlg:img dlg:id="ImageControl1" dlg:tab-index="3" dlg:left="9" dlg:top="56" dlg:width="60" dlg:height="60"/>
   <dlg:checkbox dlg:id="CheckBox1" dlg:tab-index="4" dlg:left="9" dlg:top="121" dlg:width="60" dlg:height="20" dlg:value="CheckBox1" dlg:tristate="true" dlg:checked="true"/>
   <dlg:radiogroup>
    <dlg:radio dlg:id="OptionButton1" dlg:tab-index="5" dlg:left="14" dlg:top="162" dlg:width="50" dlg:height="20" dlg:value="OptionButton1" dlg:group-name="Group1" dlg:checked="true"/>

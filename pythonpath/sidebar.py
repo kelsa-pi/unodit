@@ -76,8 +76,21 @@ class SidebarGenerator:
     def get_panel_list(self):
         for name, value in self.kwargs.items():
             if name == 'all_panels':
-                pl = value.split(',')
+                pl = value  #.split(',')
+
         return pl
+
+    # def get_option_panel_list(self):
+    #     panel_option_name_list = []
+    #     for i in range(0, 20):
+    #         panel_section = 'panel' + str(i + 1)
+    #         panel_name = self.config.get(panel_section, 'name')
+    #         if panel_name:
+    #             panel_option_name = self.config.get(panel_section, 'option_name')
+    #             if panel_option_name:
+    #                 panel_option_name_list.append(panel_option_name)
+    #
+    #     return panel_option_name_list
 
     def generate_sidebar_code(self):
 
@@ -97,9 +110,16 @@ class SidebarGenerator:
         logic_dir = self.config.get('sdb_directories', 'sdb_ui_logic')
         panels = ''
 
-        for i in self.panel_list:
-            exec_file_name = i
+        # op = self.get_option_panel_list()
+        # if op:
+        #     self.panel_list = self.panel_list + op
+
+        for panel, option in self.panel_list.items():
+            exec_file_name = panel
             panels = panels + 'from ' + logic_dir + '.' + exec_file_name + ' import ' + exec_file_name + '\n'
+            if option:
+                exec_option_file_name = option
+                panels = panels + 'from ' + logic_dir + '.' + exec_option_file_name + ' import ' + exec_option_file_name + '\n'
 
         return panels
 
@@ -117,11 +137,24 @@ class SidebarGenerator:
 
     def _run_default_menu_command(self):
 
+        panels = {}
+        for i in range(0, 20):
+            panel_section = 'panel' + str(i + 1)
+            panel_name = self.config.get(panel_section, 'name')
+            if panel_name:
+                panel_option_name = self.config.get(panel_section, 'option_name')
+                if panel_option_name:
+                    panels[panel_name] = panel_option_name
+                else:
+                    panels[panel_name] = ''
+
         code = ''
 
-        for i in self.panel_list:
+        for panel, option in panels.items():
             pn = {'I': self.indent,
-                  'PANEL_NAME': i,
+                  'EXTENSION_IDENTIFIER_APP': self.config.get('extension', 'identifier_app'),
+                  'PANEL_NAME': panel,
+                  'PANEL_OPTION_NAME': option,
                   }
             code += self.sidebar_run_default_menu_command.substitute(pn)
 

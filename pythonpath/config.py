@@ -54,7 +54,7 @@ class ReadINI(object):
 # =================
 
 # library version
-VERSION = 'unodit 0.7.0'
+VERSION = 'unodit 0.8.0'
 
 # creation time
 NOW = time.strftime("%c")
