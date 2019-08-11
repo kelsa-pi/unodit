@@ -1,63 +1,106 @@
-from simple_dialogs import SelectBox, OptionBox, TextBox, NumberBox, DateBox, FolderPathBox, FilePathBox, MessageBox, ActionBox
+# -*- coding: utf-8 -*-
+#!/usr/bin/env python
 
-# ----------------- helpers for API_inspector tools -----------------
+import uno
 
-# uncomment for MRI
-#def mri(ctx, target):
-#${I}mri = ctx.ServiceManager.createInstanceWithContext("mytools.Mri", ctx)
-#${I}mri.inspect(target)
+try:
+    from simple_dialogs import SelectBox, OptionBox, TextBox, NumberBox, DateBox, FolderPathBox, FilePathBox, MessageBox, ActionBox
+except:
+    from pythonpath.simple_dialogs import SelectBox, OptionBox, TextBox, NumberBox, DateBox, FolderPathBox, FilePathBox, MessageBox, ActionBox
 
-# uncomment for Xray
-#def xray(myObject):
-#${I}try:
-#${I}${I}sm = uno.getComponentContext().ServiceManager
-#${I}${I}mspf = sm.createInstanceWithContext("com.sun.star.script.provider.MasterScriptProviderFactory", uno.getComponentContext())
-#${I}${I}scriptPro = mspf.createScriptProvider("")
-#${I}${I}xScript = scriptPro.getScript("vnd.sun.star.script:XrayTool._Main.Xray?language=Basic&location=application")
-#${I}${I}xScript.invoke((myObject,), (), ())
-#${I}${I}return
-#${I}except:
-#${I}${I}raise _rtex("\nBasic library Xray is not installed", uno.getComponentContext())
+
+# -------------------------------------
+# HELPERS FOR MRI AND  XRAY
+# -------------------------------------
+
+# Uncomment for MRI
+# def mri(ctx, target):
+#     mri = ctx.ServiceManager.createInstanceWithContext("mytools.Mri", ctx)
+#     mri.inspect(target)
+
+# Uncomment for Xray
+# def xray(myObject):
+#     try:
+#         sm = uno.getComponentContext().ServiceManager
+#         mspf = sm.createInstanceWithContext("com.sun.star.script.provider.MasterScriptProviderFactory", uno.getComponentContext())
+#         scriptPro = mspf.createScriptProvider("")
+#         xScript = scriptPro.getScript("vnd.sun.star.script:XrayTool._Main.Xray?language=Basic&location=application")
+#         xScript.invoke((myObject,), (), ())
+#         return
+#     except:
+#         raise _rtex("\nBasic library Xray is not installed", uno.getComponentContext())
 # -------------------------------------------------------------------
 
 
 def ${EXEC_FUNCTION_PREFIX}${APP_NAME}(*args):
 
-${I}# SelectBox(message="Select one item", title="SelectBox", choices=['a','b','c'])
-${I}# s = SelectBox(message="Select your favorite city", title="My choice", choices=["New York","London", "Paris", "Berlin"])
-${I}# print(s)
+    try:
+        ctx = remote_ctx                    # IDE
+    except:
+        ctx = uno.getComponentContext()     # UI
 
-${I}# OptionBox(message="Select multiple items", title="OptionBox", choices=['a','b','c'])
-${I}# o = OptionBox(message="Select one or multiple cities", title="My choices", choices=["New York","London", "Paris", "Berlin"])
-${I}# print(o)
+    # get desktop
+    desktop = ctx.getByName("/singletons/com.sun.star.frame.theDesktop")
 
-${I}# TextBox(message="Enter your input", title="TextBox", text="")
-${I}# t = TextBox(message="Enter your e-mail address", title="E-mail")
-${I}# print(t)
+    # get document
+    document = desktop.getCurrentComponent()
 
-${I}# NumberBox(message="Enter a number", title="NumberBox", default_value=0, min_=-10000, max_=10000, decimals=0)
-${I}# n = NumberBox(message="Year", title="Year of birth", default_value=1999, min_=1950, max_=2020, decimals=0)
-${I}# print(n)
+    # s = SelectBox(message="Select your favorite city", title="My choice", choices=["New York","London", "Paris", "Berlin"])
+    # print(s)
 
-${I}# DateBox(message="Choose a date", title='DateBox')
-${I}# d = DateBox(message="Date of birth", title="BirthDay")
-${I}# print(d)
+    # o = OptionBox(message="Select one or multiple cities", title="My choices", choices=["New York","London", "Paris", "Berlin"])
+    # print(o)
 
-${I}# FolderPathBox(title='Get directory path')
-${I}# fop = FolderPathBox(title='Get directory path')
-${I}# print(fop)
+    # t = TextBox(message="Enter your e-mail address", title="E-mail")
+    # print(t)
 
-${I}# FilePathBox(title='Get file path')
-${I}# fip = FilePathBox(title='Get file path')
-${I}# print(fip)
+    # n = NumberBox(message="Year", title="Year of birth", default_value=1999, min_=1950, max_=2020, decimals=0)
+    # print(n)
 
-${I}# MessageBox(message="Message", title="MessageBox")
-${I}# m = MessageBox(message="Message to you Message to you Message to you Message to you Message to you Message to you", title="MessageBox")
-${I}# print(m)
+    # d = DateBox(message="Date of birth", title="BirthDay")
+    # print(d)
 
-${I}# ActionBox(message="Message", title="ActionBox")
-${I}a = ActionBox(message="What's Your Decision?", title="ActionBox")
-${I}print(a)
+    # fop = FolderPathBox(title='Get directory path')
+    # print(fop)
+
+    # fip = FilePathBox(title='Get file path')
+    # print(fip)
+
+    # m = MessageBox(message="Message to you Message to you Message to you Message to you Message to you Message to you", title="MessageBox")
+    # print(m)
+
+    a = ActionBox(message="What's Your Decision?", title="ActionBox")
+    print(a)
 
 
 g_exportedScripts = ${EXEC_FUNCTION_PREFIX}${APP_NAME},
+
+
+# -------------------------------------
+# HELPER FOR AN IDE
+# -------------------------------------
+
+if __name__ == "__main__":
+    """ Connect to LibreOffice proccess.
+    1) Start the office in shell with command:
+    soffice "--accept=socket,host=127.0.0.1,port=2002,tcpNoDelay=1;urp;StarOffice.ComponentContext" --norestore
+    2) Run script
+    """
+    import os
+    import sys
+
+    sys.path.append(os.path.join(os.path.dirname(__file__), 'pythonpath'))
+
+    local_ctx = uno.getComponentContext()
+    resolver = local_ctx.ServiceManager.createInstance("com.sun.star.bridge.UnoUrlResolver")
+    try:
+        remote_ctx = resolver.resolve("uno:socket,"
+                                        "host=localhost,"
+                                        "port=2002,"
+                                        "tcpNoDelay=1;"
+                                        "urp;"
+                                        "StarOffice.ComponentContext")
+    except Exception as err:
+        print(err)
+
+    ${EXEC_FUNCTION_PREFIX}${APP_NAME}()

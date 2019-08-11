@@ -1,5 +1,4 @@
-﻿# -*- coding: utf-8 -*-
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 
 # =============================================================================
 #
@@ -22,85 +21,128 @@ from com.sun.star.awt.MessageBoxButtons import BUTTONS_OK, BUTTONS_OK_CANCEL, BU
 from com.sun.star.awt.MessageBoxButtons import DEFAULT_BUTTON_OK, DEFAULT_BUTTON_CANCEL, DEFAULT_BUTTON_RETRY, DEFAULT_BUTTON_YES, DEFAULT_BUTTON_NO, DEFAULT_BUTTON_IGNORE
 from com.sun.star.awt.MessageBoxType import MESSAGEBOX, INFOBOX, WARNINGBOX, ERRORBOX, QUERYBOX
 
+# -------------------------------------
+# HELPERS FOR MRI AND  XRAY
+# -------------------------------------
 
-# ----------------- helpers for API_inspector tools -----------------
+# Uncomment for MRI
+# def mri(ctx, target):
+#     mri = ctx.ServiceManager.createInstanceWithContext("mytools.Mri", ctx)
+#     mri.inspect(target)
 
-# uncomment for MRI
-#def mri(ctx, target):
-#${I}mri = ctx.ServiceManager.createInstanceWithContext("mytools.Mri", ctx)
-#${I}mri.inspect(target)
-
-# uncomment for Xray
-#def xray(myObject):
-#${I}try:
-#${I}${I}sm = uno.getComponentContext().ServiceManager
-#${I}${I}mspf = sm.createInstanceWithContext("com.sun.star.script.provider.MasterScriptProviderFactory", uno.getComponentContext())
-#${I}${I}scriptPro = mspf.createScriptProvider("")
-#${I}${I}xScript = scriptPro.getScript("vnd.sun.star.script:XrayTool._Main.Xray?language=Basic&location=application")
-#${I}${I}xScript.invoke((myObject,), (), ())
-#${I}${I}return
-#${I}except:
-#${I}${I}raise _rtex("\nBasic library Xray is not installed", uno.getComponentContext())
+# Uncomment for Xray
+# def xray(myObject):
+#     try:
+#         sm = uno.getComponentContext().ServiceManager
+#         mspf = sm.createInstanceWithContext("com.sun.star.script.provider.MasterScriptProviderFactory", uno.getComponentContext())
+#         scriptPro = mspf.createScriptProvider("")
+#         xScript = scriptPro.getScript("vnd.sun.star.script:XrayTool._Main.Xray?language=Basic&location=application")
+#         xScript.invoke((myObject,), (), ())
+#         return
+#     except:
+#         raise _rtex("\nBasic library Xray is not installed", uno.getComponentContext())
 # -------------------------------------------------------------------
 
 
 class ${APP_NAME}_UI(unohelper.Base, XActionListener, XJobExecutor):
-${I}"""
-${I}Class documentation...
-${I}"""
-${I}def __init__(self):
-${I}${I}self.LocalContext = uno.getComponentContext()
-${I}${I}self.ServiceManager = self.LocalContext.ServiceManager
-${I}${I}self.Toolkit = self.ServiceManager.createInstanceWithContext("com.sun.star.awt.ExtToolkit", self.LocalContext)
+    """
+    Class documentation...
+    """
+    def __init__(self, ctx=uno.getComponentContext()):
+        self.LocalContext = ctx
+        self.ServiceManager = self.LocalContext.ServiceManager
+        self.Toolkit = self.ServiceManager.createInstanceWithContext("com.sun.star.awt.ExtToolkit", self.LocalContext)
 
-${I}${I}# --------------connect dialog container and set model --
+        # --------------connect dialog container and set model --
 
-${I}${I}dlg_path = "vnd.sun.star.script:${GEN_DIALOG_ADDRESS}?location=application"
-${I}${I}self.Dialog = self.ServiceManager.createInstanceWithContext("com.sun.star.awt.DialogProvider", self.LocalContext)
-${I}${I}self.DialogContainer = self.Dialog.createDialog(dlg_path)
-${I}${I}self.DialogModel = self.DialogContainer.getModel()
+        dlg_path = "vnd.sun.star.script:${GEN_DIALOG_ADDRESS}?location=application"
+        self.Dialog = self.ServiceManager.createInstanceWithContext("com.sun.star.awt.DialogProvider", self.LocalContext)
+        self.DialogContainer = self.Dialog.createDialog(dlg_path)
+        self.DialogModel = self.DialogContainer.getModel()
 
-${I}${I}# ------------- define all controls models --------------
+        # ------------- define all controls models --------------
 
 ${GEN_ALL_CONTROLS}
-${I}${I}# ------------- add the action listener to buttons ------
+        # ------------- add the action listener to buttons ------
 
 ${GEN_ACTIONS_EVENTS}
-${I}${I}# --------- my code ---------------------
-${I}${I}self.DialogModel.Title = "${APP_NAME}"
-${I}${I}# mri(self.LocalContext, self.DialogContainer)
+        # --------- my code ---------------------
+        self.DialogModel.Title = "${APP_NAME}"
+        # mri(self.LocalContext, self.DialogContainer)
 
-${I}# --------- functions -----------------------
+        # --------- functions -----------------------
 
-${I}def myFunction(self):
-${I}${I}# TODO: not implemented
-${I}${I}pass
+    def myFunction(self):
+        # TODO: not implemented
+        pass
 
-${I}# --------- helpers -------------------------
+    # --------- helpers -------------------------
 
-${I}def messageBox(self, MsgText, MsgTitle, MsgType=MESSAGEBOX, MsgButtons=BUTTONS_OK):
-${I}${I}sm = self.LocalContext.ServiceManager
-${I}${I}si = sm.createInstanceWithContext("com.sun.star.awt.Toolkit", self.LocalContext)
-${I}${I}mBox = si.createMessageBox(self.Toolkit, MsgType, MsgButtons, MsgTitle, MsgText)
-${I}${I}mBox.execute()
+    def messageBox(self, MsgText, MsgTitle, MsgType=MESSAGEBOX, MsgButtons=BUTTONS_OK):
+        sm = self.LocalContext.ServiceManager
+        si = sm.createInstanceWithContext("com.sun.star.awt.Toolkit", self.LocalContext)
+        mBox = si.createMessageBox(self.Toolkit, MsgType, MsgButtons, MsgTitle, MsgText)
+        mBox.execute()
 
-${I}# -----------------------------------------------------------
-${I}#                   Action events
-${I}# -----------------------------------------------------------
+    # -----------------------------------------------------------
+    #                   Action events
+    # -----------------------------------------------------------
 
-${I}def actionPerformed(self, oActionEvent):
+    def actionPerformed(self, oActionEvent):
 ${GEN_ACTIONS}
 
 ${GEN_CALLBAKS}
 
-${I}def showDialog(self):
-${I}${I}self.DialogContainer.execute()
+    def showDialog(self):
+        self.DialogContainer.execute()
 
 
 def ${EXEC_FUNCTION_PREFIX}${APP_NAME}(*args):
-${I}app = ${APP_NAME}_UI()
-${I}app.showDialog()
 
+    try:
+        ctx = remote_ctx                    # IDE
+    except:
+        ctx = uno.getComponentContext()     # UI
+
+    # get desktop
+    desktop = ctx.getByName("/singletons/com.sun.star.frame.theDesktop")
+
+    # get document
+    document = desktop.getCurrentComponent()
+
+    app = ${APP_NAME}_UI(ctx=ctx)
+    app.showDialog()
+
+# Execute macro from LibreOffice UI (Tools - Macro)
 g_exportedScripts = ${EXEC_FUNCTION_PREFIX}${APP_NAME},
+
+# -------------------------------------
+# HELPER FOR AN IDE
+# -------------------------------------
+
+if __name__ == "__main__":
+    """ Connect to LibreOffice proccess.
+    1) Start the office in shell with command:
+    soffice "--accept=socket,host=127.0.0.1,port=2002,tcpNoDelay=1;urp;StarOffice.ComponentContext" --norestore
+    2) Run script
+    """
+    import os
+    import sys
+
+    sys.path.append(os.path.join(os.path.dirname(__file__), 'pythonpath'))
+
+    local_ctx = uno.getComponentContext()
+    resolver = local_ctx.ServiceManager.createInstance("com.sun.star.bridge.UnoUrlResolver")
+    try:
+        remote_ctx = resolver.resolve("uno:socket,"
+                                        "host=127.0.0.1,"
+                                        "port=2002,"
+                                        "tcpNoDelay=1;"
+                                        "urp;"
+                                        "StarOffice.ComponentContext")
+    except Exception as err:
+        print(err)
+
+    ${EXEC_FUNCTION_PREFIX}${APP_NAME}()
 
 # ----------------- END GENERATED CODE ----------------------------------------

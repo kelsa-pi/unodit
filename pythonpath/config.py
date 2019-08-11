@@ -1,5 +1,5 @@
 # This file is part of UNO Dialog Tools - UNODIT
-# Copyright © 2016 Sasa Kelecevic
+# Copyright © 2016-2019 Sasa Kelecevic
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,12 +32,13 @@ class ReadINI(object):
     """
     Read ini file
     """
+
     def __init__(self, *dir_paths):
         self.config = configparser.ConfigParser()
         self.config.optionxform = str
         # section_names = []
         for d in dir_paths:
-            f = os.path.join(d, 'config.ini')
+            f = os.path.join(d, "config.ini")
             # print(f)
             if os.path.exists(f):
                 self.config.read(f)
@@ -45,7 +46,7 @@ class ReadINI(object):
 
     def get(self, section_name, prop_name):
         if section_name not in self.config.sections():  # we don't want KeyError
-            return None                                 # just return None if not found
+            return None  # just return None if not found
 
         return self.config.get(section_name, prop_name)
 
@@ -54,7 +55,7 @@ class ReadINI(object):
 # =================
 
 # library version
-VERSION = 'unodit 0.8.0'
+VERSION = "unodit 0.8.0"
 
 # creation time
 NOW = time.strftime("%c")
@@ -63,10 +64,10 @@ NOW = time.strftime("%c")
 # =================
 
 # logger name
-LOGGER_NAME = 'unodit'
+LOGGER_NAME = "unodit"
 
 # log file
-LOG_FILE = 'log.log'
+LOG_FILE = "log.log"
 
 # DIRECTORIES
 # =================
@@ -75,8 +76,7 @@ LOG_FILE = 'log.log'
 MAIN_DIR = path
 
 # templates dir
-TEMPLATES_DIR = os.path.join(MAIN_DIR, 'templates')
+TEMPLATES_DIR = os.path.join(MAIN_DIR, "templates")
 
 # pythopath directory - do not change!
-IMPORT_DIR = 'pythonpath'
-
+IMPORT_DIR = "pythonpath"

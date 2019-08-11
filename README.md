@@ -15,7 +15,15 @@
     In order to help you to add your own functionality to dialog `unodit` generates another file `MyAppName.py`. There is a new class `MyAppName` which extend `MyAppName_UI`. You can change dialog properties with eg. `self.DialogModel.Title = 'Hello world'` or control properties with eg.`self.TextField1.Text = "My New Text"`. Each button in your dialog is connected with action event which execute callback function `ButtonName_OnClick()`.
 
     Now you can write down the code to actually do something :)
-
+    
+- **Object inspection and debugging:**
+  
+    The file `MyAppName.py` provide convenient code,  depending on your requirements and development practices, for easy object inspection and debugging with extension or in the IDE. 
+    
+    Extension: One can use installed extension ([MRI](https://github.com/hanya/MRI/releases) or [Xray](http://berma.pagesperso-orange.fr/index2.html)) by uncommenting code in section `HELPERS FOR MRI AND  XRAY`. 
+    
+    IDE: First start LibreOffice with the command `soffice "--accept=socket,host=127.0.0.1,port=2002,tcpNoDelay=1;urp;StarOffice.ComponentContext" --norestore` as described in code section `HELPER FOR AN IDE`. Then step through code (tested with: [PyCharm](https://www.jetbrains.com/pycharm/), [Pyzo](https://pyzo.org/) with [PyUNO Workspace](https://github.com/kelsa-pi/PyUNO_Workspace) plugin).
+    
 - **Pack your code as extension, sidebar extension or embed in ODF documents:**
 
     After finishing coding you can decide to distribute your code. `unodit` can create necessary files and generate extension or file for you. After installation, in some cases, user can start extension with `Tools - AddOns - My App`.
@@ -34,11 +42,10 @@ Other features are:
 Your comments, feedback and patches are welcomed and appreciated.
 
 NOTE:
-I'm not a programmer and English is not my native language - you have been warned.
-This is a project that targets LibreOffice 5+ and Python3 (Apache OpenOffice patches are welcomed).
-Tested with Xubuntu 16.04. and LibreOffice 5+.
+This is a project that targets LibreOffice 6+ and Python3.
+Tested with Xubuntu 18.04. and LibreOffice 6+.
 
-##Installation
+## Installation
 
 Place the unodit directory somewhere on your Python path.
 

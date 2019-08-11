@@ -1,2 +1,2 @@
 
-${I}${I}self.${CONTROL_NAME}.${PROPERTIES} = ${VALUE}
+        self.${CONTROL_NAME}.${PROPERTIES} = ${VALUE}

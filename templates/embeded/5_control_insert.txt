@@ -1,4 +1,4 @@
 
 
-${I}${I}# inserts the control model into the dialog model
-${I}${I}self.DialogModel.insertByName("${CONTROL_NAME}", self.${CONTROL_NAME})
+        # inserts the control model into the dialog model
+        self.DialogModel.insertByName("${CONTROL_NAME}", self.${CONTROL_NAME})

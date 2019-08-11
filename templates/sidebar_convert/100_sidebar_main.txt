@@ -2,8 +2,9 @@
 #!/usr/bin/env python
 
 # =============================================================================
-#
-# Write your code here
+# Source:
+# https://wiki.openoffice.org/wiki/Sidebar_for_Developers
+# https://forum.openoffice.org/en/forum/viewtopic.php?f=20&t=70747
 #
 # =============================================================================
 
@@ -23,195 +24,175 @@ from com.sun.star.ui.UIElementType import TOOLPANEL as UET_TOOLPANEL
 ${IMPORT_PANELS}
 
 
-# ----------------- helpers for API_inspector tools -----------------
-
-# uncomment for MRI
-#def mri(ctx, target):
-#${I}mri = ctx.ServiceManager.createInstanceWithContext("mytools.Mri", ctx)
-#${I}mri.inspect(target)
-
-# uncomment for Xray
-#from com.sun.star.uno import RuntimeException as _rtex
-#def xray(myObject):
-#${I}try:
-#${I}${I}sm = uno.getComponentContext().ServiceManager
-#${I}${I}mspf = sm.createInstanceWithContext("com.sun.star.script.provider.MasterScriptProviderFactory", uno.getComponentContext())
-#${I}${I}scriptPro = mspf.createScriptProvider("")
-#${I}${I}xScript = scriptPro.getScript("vnd.sun.star.script:XrayTool._Main.Xray?language=Basic&location=application")
-#${I}${I}xScript.invoke((myObject,), (), ())
-#${I}${I}return
-#${I}except:
-#${I}${I}raise _rtex("\nBasic library Xray is not installed", uno.getComponentContext())
-
 def messageBox(MsgText, MsgTitle, MsgType=MESSAGEBOX, MsgButtons=BUTTONS_OK):
-${I}ctx = uno.getComponentContext()
-${I}sm = ctx.ServiceManager
-${I}si = sm.createInstanceWithContext("com.sun.star.awt.Toolkit", ctx)
-${I}toolkit = sm.createInstanceWithContext("com.sun.star.awt.ExtToolkit", ctx)
-${I}mBox = si.createMessageBox(toolkit, MsgType, MsgButtons, MsgTitle, MsgText)
-${I}mBox.execute()
+    ctx = uno.getComponentContext()
+    sm = ctx.ServiceManager
+    si = sm.createInstanceWithContext("com.sun.star.awt.Toolkit", ctx)
+    toolkit = sm.createInstanceWithContext("com.sun.star.awt.ExtToolkit", ctx)
+    mBox = si.createMessageBox(toolkit, MsgType, MsgButtons, MsgTitle, MsgText)
+    mBox.execute()
 
 
 class ElementFactory( unohelper.Base, XUIElementFactory):
-${I}"""
-${I}UNO service that implements the com/sun/star/ui/XUIElementFactory interface.
-${I}If you write a new factory then add it to Factories.xcu
-${I}Method createUIElement(URL,arguments) is called for URLs defined in Sidebar.xcu.
-${I}"""
+    """
+    UNO service that implements the com/sun/star/ui/XUIElementFactory interface.
+    If you write a new factory then add it to Factories.xcu
+    Method createUIElement(URL,arguments) is called for URLs defined in Sidebar.xcu.
+    """
 
-${I}def __init__(self, ctx):
-${I}${I}self.ctx = ctx
+    def __init__(self, ctx):
+        self.ctx = uno.getComponentContext()
 
-${I}def createUIElement(self, url, args):
+    def createUIElement(self, url, args):
 
-${I}${I}try:
-${I}${I}${I}xParentWindow = None
-${I}${I}${I}xFrame = None
-${I}${I}${I}xUIElement = None
+        try:
+            xParentWindow = None
+            xFrame = None
+            xUIElement = None
 
-${I}${I}${I}for arg in args:
-${I}${I}${I}${I}if arg.Name == "Frame":
-${I}${I}${I}${I}${I}xFrame = arg.Value
-${I}${I}${I}${I}elif arg.Name == "ParentWindow":
-${I}${I}${I}${I}${I}xParentWindow = arg.Value
+            for arg in args:
+                if arg.Name == "Frame":
+                    xFrame = arg.Value
+                elif arg.Name == "ParentWindow":
+                    xParentWindow = arg.Value
 
-${I}${I}${I}xUIElement = XUIPanel(self.ctx, xFrame, xParentWindow, url)
+            xUIElement = XUIPanel(self.ctx, xFrame, xParentWindow, url)
 
-${I}${I}${I}# getting the real panel window
-${I}${I}${I}# for setting the content
-${I}${I}${I}xUIElement.getRealInterface()
-${I}${I}${I}panelWin = xUIElement.Window
+            # getting the real panel window
+            # for setting the content
+            xUIElement.getRealInterface()
+            panelWin = xUIElement.Window
 
-${I}${I}${I}# panelWin has to be set visible
-${I}${I}${I}panelWin.Visible = True
+            # panelWin has to be set visible
+            panelWin.Visible = True
 
-${I}${I}${I}# get and set height to receive a working scrollbar
-${I}${I}${I}height = showPanels(panelWin, url)
-${I}${I}${I}xUIElement.height = height
+            # get and set height to receive a working scrollbar
+            height = showPanels(panelWin, url)
+            xUIElement.height = height
 
-${I}${I}${I}return xUIElement
+            return xUIElement
 
-${I}${I}except Exception as e:
-${I}${I}${I}print(e)
-${I}${I}${I}tb()
+        except Exception as e:
+            print(e)
+            tb()
+
 
 g_ImplementationHelper = unohelper.ImplementationHelper()
 g_ImplementationHelper.addImplementation(
-${I}${I}ElementFactory,
-${I}${I}"${EXTENSION_IDENTIFIER_DOMAIN}.${EXTENSION_IDENTIFIER_APP}",
-${I}${I}("com.sun.star.task.Job",),)
+                ElementFactory,
+                "${EXTENSION_IDENTIFIER_DOMAIN}.${EXTENSION_IDENTIFIER_APP}",
+                ("com.sun.star.task.Job",),)
 
 
 class XUIPanel( unohelper.Base,  XSidebarPanel, XUIElement, XToolPanel, XComponent):
 
-${I}def __init__(self, ctx, frame, xParentWindow, url):
+    def __init__(self, ctx, frame, xParentWindow, url):
 
-${I}${I}self.ctx = ctx
-${I}${I}self.xParentWindow = xParentWindow
-${I}${I}self.window = None
-${I}${I}self.height = 100
+        self.ctx = ctx
+        self.xParentWindow = xParentWindow
+        self.window = None
+        self.height = 100
 
-${I}# XUIElement
-${I}def getRealInterface(self):
+    # XUIElement
+    def getRealInterface(self):
 
-${I}${I}if not self.window:
-${I}${I}${I}dialogUrl = "vnd.sun.star.extension://${EXTENSION_IDENTIFIER_DOMAIN}.${EXTENSION_IDENTIFIER_APP}/empty_dialog.xdl"
-${I}${I}${I}smgr = self.ctx.ServiceManager
+        if not self.window:
+            dialogUrl = "vnd.sun.star.extension://${EXTENSION_IDENTIFIER_DOMAIN}.${EXTENSION_IDENTIFIER_APP}/empty_dialog.xdl"
+            # smgr = self.ctx.ServiceManager
 
-${I}${I}${I}provider = smgr.createInstanceWithContext("com.sun.star.awt.ContainerWindowProvider", self.ctx)
-${I}${I}${I}self.window = provider.createContainerWindow(dialogUrl, "", self.xParentWindow, None)
+            provider = self.ctx.ServiceManager.createInstanceWithContext("com.sun.star.awt.ContainerWindowProvider", self.ctx)
+            self.window = provider.createContainerWindow(dialogUrl, "", self.xParentWindow, None)
 
-${I}${I}return self
+        return self
 
-${I}@property
-${I}def Frame(self):
-${I}${I}self.frame = frame
+    @property
+    def Frame(self):
+        self.frame = frame
 
-${I}@property
-${I}def ResourceURL(self):
-${I}${I}return self.name
+    @property
+    def ResourceURL(self):
+        return self.name
 
-${I}@property
-${I}def Type(self):
-${I}${I}return UET_TOOLPANEL
+    @property
+    def Type(self):
+        return UET_TOOLPANEL
 
-${I}# XComponent
-${I}def dispose(self):
-${I}${I}pass
+    # XComponent
+    def dispose(self):
+        pass
 
-${I}def addEventListener(self, ev): pass
+    def addEventListener(self, ev): pass
 
-${I}def removeEventListener(self, ev): pass
+    def removeEventListener(self, ev): pass
 
-${I}# XToolPanel
-${I}def createAccessible(self, parent):
-${I}${I}return self
+    # XToolPanel
+    def createAccessible(self, parent):
+        return self
 
-${I}@property
-${I}def Window(self):
-${I}${I}return self.window
+    @property
+    def Window(self):
+        return self.window
 
-${I}# XSidebarPanel
-${I}def getHeightForWidth(self, width):
-${I}${I}# print("getHeightForWidth: %s" % width)
-${I}${I}# return LayoutSize(0, -1, 0) # full height
-${I}${I}return LayoutSize(self.height, self.height, self.height)
+    # XSidebarPanel
+    def getHeightForWidth(self, width):
+        # print("getHeightForWidth: %s" % width)
+        # return LayoutSize(0, -1, 0) # full height
+        return LayoutSize(self.height, self.height, self.height)
 
-${I}# LO5.1-
-${I}def getMinimalWidth(self):
-${I}${I}return 300
+    # LO 5.1+
+    def getMinimalWidth(self):
+        return 300
 
 class test(unohelper.Base, XDispatch, XDispatchProvider):
 
-${I}IMPLE_NAME = "${EXTENSION_IDENTIFIER_DOMAIN}.${SIDEBAR_PROTOCOL}"
-${I}SERVICE_NAMES = IMPLE_NAME,
+    IMPLE_NAME = "${EXTENSION_IDENTIFIER_DOMAIN}.${SIDEBAR_PROTOCOL}"
+    SERVICE_NAMES = IMPLE_NAME,
 
-${I}@classmethod
-${I}def get_imple(klass):
-${I}${I}#pydevBrk()
-${I}${I}return klass, klass.IMPLE_NAME, klass.SERVICE_NAMES
+    @classmethod
+    def get_imple(klass):
+        #pydevBrk()
+        return klass, klass.IMPLE_NAME, klass.SERVICE_NAMES
 
-${I}def __init__(self, *args):
-${I}${I}pass
+    def __init__(self, *args):
+        pass
 
-${I}def queryDispatches(self, *args):
-${I}${I}return
+    def queryDispatches(self, *args):
+        return
 
-${I}def queryDispatch(self, featureURL, frameName, searchFlag):
-${I}${I}return self
+    def queryDispatch(self, featureURL, frameName, searchFlag):
+        return self
 
-${I}def dispatch(self, featureURL, args):
-${I}${I}self.showDefaultMenuCommand(featureURL)
+    def dispatch(self, featureURL, args):
+        self.showDefaultMenuCommand(featureURL)
 
-${I}def addStatusListener(self, listener, featureURL):
-${I}${I}#print('addStatusListener', featureURL.Path)
-${I}${I}return
+    def addStatusListener(self, listener, featureURL):
+        #print('addStatusListener', featureURL.Path)
+        return
 
-${I}def removeStatusListener(self, listener, featureURL):
-${I}${I}#print('removeStatusListener', featureURL.Path)
-${I}${I}return
+    def removeStatusListener(self, listener, featureURL):
+        #print('removeStatusListener', featureURL.Path)
+        return
 
-${I}def showDefaultMenuCommand(self, featureURL):
-${I}${I}"""
-${I}${I}Command that is dispatched when the user clicks on
-${I}${I}the "More Options" button in the panel title bar
-${I}${I}"""
+    def showDefaultMenuCommand(self, featureURL):
+        """
+        Command that is dispatched when the user clicks on
+        the "More Options" button in the panel title bar
+        """
 
-${I}${I}ctx = uno.getComponentContext()
-${I}${I}sm = ctx.ServiceManager
-${I}${I}dialog = sm.createInstanceWithContext("com.sun.star.awt.UnoControlDialog", ctx)
+        ctx = uno.getComponentContext()
+        sm = ctx.ServiceManager
+        dialog = sm.createInstanceWithContext("com.sun.star.awt.UnoControlDialog", ctx)
 
 ${RUN_DEFAULT_MENU_COMMAND}
-
 g_ImplementationHelper.addImplementation(*test.get_imple())
 
 
 def showPanels(panelWin, url):
-${I}"""
-${I}Create a new panel object when the sidebar is initialized
-${I}or whenever a panel becomes visible
-${I}"""
+    """
+    Create a new panel object when the sidebar is initialized
+    or whenever a panel becomes visible
+    """
 
-${I}ctx = uno.getComponentContext()
-${I}# url is set in Sidebar.xcu
+    ctx = uno.getComponentContext()
+    # url is set in Sidebar.xcu
 ${RUN_PANELS}

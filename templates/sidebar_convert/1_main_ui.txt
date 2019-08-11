@@ -20,29 +20,30 @@ from com.sun.star.task import XJobExecutor
 
 
 class ${APP_NAME}_UI(unohelper.Base, XActionListener, XJobExecutor):
-${I}"""
-${I}Class documentation...
-${I}"""
-${I}def __init__(self, panelWin, context=uno.getComponentContext()):
-${I}${I}self.LocalContext = context
-${I}${I}self.ServiceManager = self.LocalContext.ServiceManager
-${I}${I}self.Toolkit = self.ServiceManager.createInstanceWithContext("com.sun.star.awt.ExtToolkit", self.LocalContext)
+    """
+    Class documentation...
+    """
+    def __init__(self, ctx=uno.getComponentContext(), dialog=None):
+        self.LocalContext = ctx
+        self.dlg = dialog
+        self.ServiceManager = self.LocalContext.ServiceManager
+        self.Toolkit = self.ServiceManager.createInstanceWithContext("com.sun.star.awt.ExtToolkit", self.LocalContext)
 
-${I}${I}# -----------------------------------------------------------
-${I}${I}#               Create dialog and insert controls
-${I}${I}# -----------------------------------------------------------
+        # -----------------------------------------------------------
+        #               Create dialog and insert controls
+        # -----------------------------------------------------------
 
-${I}${I}# --------------create dialog container and set model and properties
-${I}${I}self.DialogContainer = panelWin
-${I}${I}self.DialogModel = self.ServiceManager.createInstance("com.sun.star.awt.UnoControlDialogModel")
-${I}${I}self.DialogContainer.setModel(self.DialogModel)
+        # --------------create dialog container and set model and properties
+        self.DialogContainer = self.dlg
+        self.DialogModel = self.ServiceManager.createInstance("com.sun.star.awt.UnoControlDialogModel")
+        self.DialogContainer.setModel(self.DialogModel)
 ${GEN_DIALOG_PROPERTIES}
-${GEN_CONTROLS}
-${I}# -----------------------------------------------------------
-${I}#               Action events
-${I}# -----------------------------------------------------------
+        ${GEN_CONTROLS}
+        # -----------------------------------------------------------
+        #               Action events
+        # -----------------------------------------------------------
 
-${I}def actionPerformed(self, oActionEvent):
+    def actionPerformed(self, oActionEvent):
 ${GEN_ACTIONS_EVENTS}
 
 # ----------------- END GENERATED CODE ----------------------------------------

@@ -1,5 +1,5 @@
 
-${I}def ${CONTROL_NAME}_OnClick(self):
-${I}${I}self.DialogModel.Title = "It's Alive! - ${CONTROL_NAME}"
-${I}${I}self.messageBox("It's Alive! - ${CONTROL_NAME}", "Event: OnClick", INFOBOX)
-${I}${I}# TODO: not implemented
+    def ${CONTROL_NAME}_OnClick(self):
+        self.DialogModel.Title = "It's Alive! - ${CONTROL_NAME}"
+        self.messageBox("It's Alive! - ${CONTROL_NAME}", "Event: OnClick", INFOBOX)
+        # TODO: not implemented
