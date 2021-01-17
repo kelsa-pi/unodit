@@ -8,12 +8,12 @@
 
 - **Convert a `.xdl` file written with Basic Dialog Editor into a PyUNO (Python):**
 
-    `unodit` create file `MyAppName_UI.py` with actual python code. It defines a class called `MyAppName_UI` with dialog and dialog controls properties. Each button in your dialog is connected with action listener. All changes made in this file will be overwritten if the file is generated again!
+    `unodit` create file `MyAppName_UI.py` with actual python code. It defines a class called `MyAppName_UI` with dialog and dialog controls properties. Each button in your dialog is connected with action listener. **New:** window listener was added in sidebar. All changes made in this file will be overwritten if the file is generated again
+
 
 - **Allows you to customize code according to your needs:**
 
-    In order to help you to add your own functionality to dialog `unodit` generates another file `MyAppName.py`. There is a new class `MyAppName` which extend `MyAppName_UI`. You can change dialog properties with eg. `self.DialogModel.Title = 'Hello world'` or control properties with eg.`self.TextField1.Text = "My New Text"`. Each button in your dialog is connected with action event which execute callback function `ButtonName_OnClick()`.
-
+    In order to help you to add your own functionality to dialog `unodit` generates another file `MyAppName.py`. There is a new class `MyAppName` which extend `MyAppName_UI`. You can change dialog properties with eg. `self.DialogModel.Title = 'Hello world'` or control properties with eg.`self.TextField1.Text = "My New Text"`. Each button in your dialog is connected with action event which execute callback function `ButtonName_OnClick()`. **New:** `resizeControls` event handler has been added, which will be called when sidebar has been resized. This allows you to resize/reposition controls in the sidebar dialog.
     Now you can write down the code to actually do something :)
     
 - **Object inspection and debugging:**
