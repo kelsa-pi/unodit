@@ -2,7 +2,7 @@
 
         pos_y = 20
 
-        app = ${PANEL_NAME}(ctx, panelWin)
+        app = ${PANEL_NAME}(context=ctx, dialog=panelWin)
         app.showDialog()
         panel_height = app.getHeight()
 
