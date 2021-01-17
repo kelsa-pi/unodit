@@ -16,10 +16,11 @@
 import uno
 import unohelper
 from com.sun.star.awt import XActionListener
+from com.sun.star.awt import XWindowListener
 from com.sun.star.task import XJobExecutor
 
 
-class ${APP_NAME}_UI(unohelper.Base, XActionListener, XJobExecutor):
+class ${APP_NAME}_UI(unohelper.Base, XActionListener, XWindowListener, XJobExecutor):
     """
     Class documentation...
     """
@@ -39,11 +40,23 @@ class ${APP_NAME}_UI(unohelper.Base, XActionListener, XJobExecutor):
         self.DialogContainer.setModel(self.DialogModel)
 ${GEN_DIALOG_PROPERTIES}
         ${GEN_CONTROLS}
-        # -----------------------------------------------------------
-        #               Action events
-        # -----------------------------------------------------------
+
+        # add the window listener
+        self.DialogContainer.addWindowListener(self)
+
+    # -----------------------------------------------------------
+    #               Action events
+    # -----------------------------------------------------------
 
     def actionPerformed(self, oActionEvent):
 ${GEN_ACTIONS_EVENTS}
+
+    # -----------------------------------------------------------
+    #               Window (dialog/panel) events
+    # -----------------------------------------------------------
+
+    def windowResized(self, oWindowEvent):
+        # print(dir(oWindowEvent.Source))
+        self.resizeControls(dialog=oWindowEvent.Source)
 
 # ----------------- END GENERATED CODE ----------------------------------------
