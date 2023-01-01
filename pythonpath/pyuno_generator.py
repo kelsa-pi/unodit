@@ -518,7 +518,7 @@ class PythonGenerator:
                 pass
 
         if code == "":
-            code = "pass"
+            code = f"{self.indent*2}pass"
 
         return code
 
