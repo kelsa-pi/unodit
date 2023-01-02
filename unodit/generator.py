@@ -22,8 +22,8 @@ import logging
 
 try:
     # extension
-    import pyuno_generator as pcg
-    import config as conf
+    from unodit import pyuno_generator as pcg
+    from unodit import config as conf
 
 except ImportError:
     # command line
