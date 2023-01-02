@@ -23,7 +23,7 @@ except ImportError:
 
 try:
     # extension
-    import schema
+    from unodit import schema
 
 except ImportError:
     # command line

@@ -26,13 +26,14 @@ import os
 
 try:
     # extension
-    import extractor
-    import generator
-    import oxt_creator as script
-    import simple_dialogs as dialogs
-    import embed_packer as ep
-    import sidebar
-    from config import LOGGER_NAME, LOG_FILE, VERSION, NOW, MAIN_DIR, ReadINI
+    from unodit import extractor
+    from unodit import generator
+    from unodit import oxt_creator as script
+    from unodit import simple_dialogs as dialogs
+    from unodit import embed_packer as ep
+    from unodit import sidebar
+    from unodit.config import (LOGGER_NAME, LOG_FILE, VERSION,
+                               NOW, MAIN_DIR, ReadINI)
 
 except ImportError:
     # command line

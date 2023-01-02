@@ -30,7 +30,7 @@ import string
 import logging
 
 try:
-    import config as conf
+    from unodit import config as conf
 except ImportError:
     import pythonpath.config as conf
 
