@@ -24,8 +24,7 @@ import configparser
 import time
 import os
 
-full_path = os.path.dirname(__file__)
-path, ldir = os.path.split(full_path)
+path = os.path.dirname(__file__)
 
 
 class ReadINI(object):
